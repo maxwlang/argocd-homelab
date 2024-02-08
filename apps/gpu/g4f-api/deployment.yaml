@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: g4f-api
 spec:
-  replicas: 5
+  replicas: 6
   selector:
     matchLabels:
       app: g4f-api
