@@ -45,7 +45,8 @@ spec:
         - name: REDIS_ENABLED
           value: "false"
         - name: REDIS_URL
-          secretKeyRef:
+          valueFrom:
+            secretKeyRef:
               name: accomplice-secrets
               key: REDIS_URL
         - name: REDIS_PREFIX
@@ -53,40 +54,48 @@ spec:
         - name: DB_PROD_DIALECT
           value: "mariadb"
         - name: DB_PROD_HOST
-          secretKeyRef:
+          valueFrom:
+            secretKeyRef:
               name: accomplice-secrets
               key: MARIADB_HOST_PROD
         - name: DB_PROD_PORT
           value: "3306"
         - name: DB_PROD_USERNAME
-          secretKeyRef:
+          valueFrom:
+            secretKeyRef:
               name: accomplice-secrets
               key: MARIADB_USERNAME_PROD
         - name: DB_PROD_PASSWORD
-          secretKeyRef:
+          valueFrom:
+            secretKeyRef:
               name: accomplice-secrets
               key: MARIADB_PASSWORD_PROD
         - name: DB_PROD_DATABASE
-          secretKeyRef:
+          valueFrom:
+            secretKeyRef:
               name: accomplice-secrets
               key: MARIADB_DATABASE_PROD
         - name: DB_DEV_DIALECT
           value: "mariadb"
         - name: DB_DEV_HOST
-          secretKeyRef:
+          valueFrom:
+            secretKeyRef:
               name: accomplice-secrets
               key: MARIADB_HOST_DEV
         - name: DB_DEV_PORT
           value: "3306"
         - name: DB_DEV_USERNAME
-          secretKeyRef:
+          valueFrom:
+            secretKeyRef:
               name: accomplice-secrets
               key: MARIADB_USERNAME_DEV
         - name: DB_DEV_PASSWORD
-          secretKeyRef:
+          valueFrom:
+            secretKeyRef:
               name: accomplice-secrets
               key: MARIADB_PASSWORD_DEV
         - name: DB_DEV_DATABASE
-          secretKeyRef:
+          valueFrom:
+            secretKeyRef:
               name: accomplice-secrets
               key: MARIADB_DATABASE_DEV
