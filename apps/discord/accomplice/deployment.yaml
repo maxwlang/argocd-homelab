@@ -30,7 +30,7 @@ spec:
         - name: DB_ENV
           value: "production"
         - name: LOG_LEVEL
-          value: "info"
+          value: "debug"
         - name: DISCORD_TOKEN
           valueFrom:
             secretKeyRef:
