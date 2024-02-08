@@ -1,0 +1,4 @@
+secrets/*
+!secrets/*.sample.*
+
+.decrypted*.sops.yaml
