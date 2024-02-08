@@ -22,7 +22,7 @@ spec:
         - name: GPT_MODEL
           value: gpt-4
         - name: GPT_TIMEOUT
-          value: "8000"
+          value: "12000"
         - name: GPT_BLACKLISTED_PROVIDERS
           value: Phind
         - name: WEBHOOK_URL
@@ -31,7 +31,7 @@ spec:
               name: neural-meme-secrets
               key: WEBHOOK_URL
         - name: POST_INTERVAL
-          value: "20000"
+          value: "600000"
         resources:
           limits:
             memory: "256Mi"
