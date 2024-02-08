@@ -1,37 +1,3 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx-container
-        image: nginx:latest
-        ports:
-        - containerPort: 80
-        env:
-        - name: DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: accomplice-secrets
-              key: username
-        resources:
-          limits:
-            memory: "256Mi"
-            cpu: "1000m"
-          requests:
-            memory: "64Mi"
-            cpu: "250m"
-
-
 # apiVersion: apps/v1
 # kind: Deployment
 # metadata:
