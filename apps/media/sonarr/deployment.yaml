@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarr
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sonarr
+  template:
+    metadata:
+      labels:
+        app: sonarr
+
+    spec:
+      containers:
+      - name: sonarr
+        # https://github.com/linuxserver/docker-sonarr/releases/latest
+        image: lscr.io/linuxserver/sonarr:4.0.1.929-ls222
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "5Gi"
+            cpu: "2000m"
+        ports:
+        - containerPort: 8989
+        env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        - name: TZ
+          value: "America/Chicago"
+        volumeMounts:
+        - name: sonarr-config
+          mountPath: /config
+        - name: tv
+          mountPath: /tv
+        - name: downloads
+          mountPath: /downloads
+        - name: downloads-sabnzbd
+          mountPath: /downloads-sabnzbd
+      volumes:
+      - name: tv
+        nfs:
+          server: "10.0.20.3"
+          path: /mnt/tank/media/plex-published-media/TV
+      - name: downloads
+        nfs:
+          server: "10.0.20.3"
+          path: /mnt/tank/downloads/qbittorrent-vpn-media
+      - name: downloads-sabnzbd
+        nfs:
+          server: "10.0.20.3"
+          path: /mnt/tank/downloads/sabnzbd-vpn-media
+      - name: sonarr-config
+        hostPath:
+          path: /lxc-configs/sonarr-config # This path contains the same files on all nodes 
+          type: DirectoryOrCreate

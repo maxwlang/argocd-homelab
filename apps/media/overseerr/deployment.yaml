@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: overseerr
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: overseerr
+  template:
+    metadata:
+      labels:
+        app: overseerr
+
+    spec:
+      containers:
+      - name: overseerr
+        # https://github.com/linuxserver/docker-overseerr/releases/latest
+        image: lscr.io/linuxserver/overseerr:v1.33.2-ls93
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "1000m"
+        ports:
+        - containerPort: 5055
+        env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        - name: TZ
+          value: "America/Chicago"
+        volumeMounts:
+        - name: overseerr-config
+          mountPath: /config
+      volumes:
+      - name: overseerr-config
+        hostPath:
+          path: /lxc-configs/overseerr-config # This path contains the same files on all nodes 
+          type: DirectoryOrCreate

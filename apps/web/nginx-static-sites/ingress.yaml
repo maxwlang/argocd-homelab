@@ -1,0 +1,189 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  namespace: web
+  name: &appname nginx-static-sites
+spec:
+  rules:
+  - host: &uri_mcchickers uri-mcchickers
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: *appname
+            port:
+              number: 80
+  - host: &uri_mcchickers_www uri-mcchickers-www
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: *appname
+            port:
+              number: 80
+  - host: &uri_08122036 uri-08122036
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: *appname
+            port:
+              number: 80
+  - host: &uri_08122036_www uri-08122036-www
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: *appname
+            port:
+              number: 80
+  - host: &uri_catvideo uri-catvideo
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: *appname
+            port:
+              number: 80
+  - host: &uri_catvideo_www uri-catvideo-www
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: *appname
+            port:
+              number: 80
+  - host: &uri_phucken uri-phucken
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: *appname
+            port:
+              number: 80
+  - host: &uri_phucken_www uri-phucken-www
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: *appname
+            port:
+              number: 80
+  - host: &uri_burpin uri-burpin
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: *appname
+            port:
+              number: 80
+  - host: &uri_burpin_www uri-burpin-www
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: *appname
+            port:
+              number: 80
+  - host: &uri_chr uri-chr
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: *appname
+            port:
+              number: 80
+  - host: &uri_chr_www uri-chr-www
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: *appname
+            port:
+              number: 80
+  - host: &uri_msw uri-msw
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: *appname
+            port:
+              number: 80
+  - host: &uri_msw_www uri-msw-www
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: *appname
+            port:
+              number: 80
+  - host: &uri_s4c uri-s4c
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: *appname
+            port:
+              number: 80
+  - host: &uri_s4c_www uri-s4c-www
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: *appname
+            port:
+              number: 80 
+  tls:
+  - hosts:
+    - *uri_mcchickers
+    - *uri_mcchickers_www
+    - *uri_08122036
+    - *uri_08122036_www
+    - *uri_catvideo
+    - *uri_catvideo_www
+    - *uri_phucken
+    - *uri_phucken_www
+    - *uri_burpin
+    - *uri_burpin_www
+    - *uri_chr
+    - *uri_chr_www
+    - *uri_msw
+    - *uri_msw_www
+    - *uri_s4c
+    - *uri_s4c_www
+    secretName: *appname
+  

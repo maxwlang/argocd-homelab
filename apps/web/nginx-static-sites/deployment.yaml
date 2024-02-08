@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-static-sites
+  namespace: web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-static-sites
+  template:
+    metadata:
+      labels:
+        app: nginx-static-sites
+
+    spec:
+      containers:
+      - name: nginx-static-sites
+        # https://hub.docker.com/_/nginx/tags
+        image: nginx:1.25.3
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "1000m"
+        ports:
+          - containerPort: 80
+        volumeMounts:
+          - name: site-data
+            mountPath: /var/www
+          - name: nginx-config
+            mountPath: /etc/nginx/conf.d
+      volumes:
+      - name: site-data
+        nfs:
+          server: "10.0.20.3"
+          path: /mnt/ssd/nginx-static-sites/html
+      - name: nginx-config
+        nfs:
+          server: "10.0.20.3"
+          path: /mnt/ssd/nginx-static-sites/config

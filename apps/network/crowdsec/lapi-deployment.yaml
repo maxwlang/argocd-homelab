@@ -1,0 +1,164 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crowdsec-lapi
+  labels:
+    k8s-app: crowdsec
+    type: lapi
+    version: v1
+spec:
+  selector:
+    matchLabels:
+      k8s-app: crowdsec
+      type: lapi
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        k8s-app: crowdsec
+        type: lapi
+        version: v1
+    spec:
+      # initContainers:
+      # - name: install-bouncers
+      #   image: "busybox:1.28"
+      #   imagePullPolicy: IfNotPresent
+      #   command:
+      #     - sh
+      #     - -c
+      #     - |
+      #       echo "ls -lah /bouncers-data";
+      #       ls -lah /bouncers-data;
+      #       echo "Installing bouncers...";
+      #       wget https://github.com/crowdsecurity/cs-blocklist-mirror/releases/download/v0.0.2/crowdsec-blocklist-mirror.tgz;
+      #       tar -xzf crowdsec-blocklist-mirror.tgz;
+      #       mv crowdsec-blocklist-mirror-v0.0.2 /bouncers-data/crowdsec-blocklist-mirror;
+      #       echo "ls -lah /bouncers-data";
+      #       ls -lah /bouncers-data;
+      #   volumeMounts:
+      #   - name: install-bouncers-data
+      #     mountPath: /bouncers-data
+      containers:
+      - name: crowdsec-lapi
+        image: "ghcr.io/crowdsecurity/crowdsec:v1.5.5"
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: LOCAL_API_URL
+            value: http://localhost:8080
+          - name: AGENT_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: agent-credentials
+                key: username
+          - name: AGENT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: agent-credentials
+                key: password
+          - name: DISABLE_AGENT
+            value: "true"
+          - name: INSECURE_SKIP_VERIFY
+            value: "false"
+          - name: TZ
+            value: America/Chicago
+          - name: ENROLL_KEY
+            valueFrom:
+              secretKeyRef:
+                key: ENROLL_KEY
+                name: crowdsec-secrets
+          - name: ENROLL_INSTANCE_NAME
+            value: k8s_cluster
+        resources:
+          limits:
+            cpu: 750m
+            memory: 1024M
+          requests:
+            cpu: 150m
+            memory: 100M
+        livenessProbe:
+          failureThreshold: 3
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+          httpGet:
+            path: /health
+            port: lapi
+            scheme: HTTP
+        readinessProbe:
+          failureThreshold: 3
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+          httpGet:
+            path: /health
+            port: lapi
+            scheme: HTTP
+        startupProbe:
+          failureThreshold: 30
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+          httpGet:
+            path: /health
+            port: lapi
+            scheme: HTTP
+        securityContext:
+          allowPrivilegeEscalation: false
+          privileged: false
+        ports:
+          - name: lapi
+            containerPort: 8080
+            protocol: TCP
+          - name: metrics
+            containerPort: 6060
+            protocol: TCP
+        # command: ['sh', '-c', 'mv -n /staging/etc/crowdsec/* /etc/crowdsec_data/ && rm -rf /staging/etc/crowdsec && ln -s /etc/crowdsec_data /etc/crowdsec && ./docker_start.sh']
+        command:
+          - sh
+          - -c
+          - |
+            # echo "Installing bouncers..";
+            # echo "ls -lah /bouncers-data";
+            # ls -lah /bouncers-data;
+
+            # # Iterate all folders in /bouncers-data
+            # cd /bouncers-data;
+            # for d in /bouncers-data/*/ ; do
+            #   echo "Installing bouncer: $d";
+            #   cd $d;
+            #   ls -lah;
+            #   cd ..;
+            # done
+
+
+            echo "Starting..";
+            cd /;
+            mv -n /staging/etc/crowdsec/* /etc/crowdsec_data/;
+            rm -rf /staging/etc/crowdsec;
+            ln -s /etc/crowdsec_data /etc/crowdsec;
+            ./docker_start.sh;
+        volumeMounts:
+          - name: crowdsec-db
+            mountPath: /var/lib/crowdsec/data
+          - name: crowdsec-config
+            mountPath: /etc/crowdsec_data
+          # - name: install-bouncers-data
+          #   mountPath: /bouncers-data
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: crowdsec-db
+        hostPath:
+          path: /lxc-configs/crowdsec/crowdsec-db # This path contains the same files on all nodes 
+          type: DirectoryOrCreate
+      - name: crowdsec-config
+        hostPath:
+          path: /lxc-configs/crowdsec/crowdsec-config # This path contains the same files on all nodes 
+          type: DirectoryOrCreate
+      # - name: install-bouncers-data
+      #   emptyDir: {}
+      tolerations:
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: "true"

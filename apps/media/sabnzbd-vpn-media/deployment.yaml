@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sabnzbd-vpn-media
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sabnzbd-vpn-media
+  template:
+    metadata:
+      labels:
+        app: sabnzbd-vpn-media
+
+    spec:
+      containers:
+      - name: sabnzbd-vpn-media
+        # https://hub.docker.com/r/binhex/arch-sabnzbdvpn/tags
+        image: binhex/arch-sabnzbdvpn:4.2.2-1-01
+        resources:
+          requests:
+            memory: "6Gi"
+            cpu: "6000m"
+          limits:
+            memory: "10Gi"
+            cpu: "8000m"
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
+          privileged: true
+        ports:
+        - containerPort: 8080
+        - containerPort: 8090
+        env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        - name: TZ
+          value: "America/Chicago"
+        - name: VPN_ENABLED
+          value: "yes"
+        - name: VPN_USER
+          valueFrom:
+            secretKeyRef:
+              name: qbittorrent-vpn-media-secrets
+              key: PIA_USER
+        - name: VPN_PASS
+          valueFrom:
+            secretKeyRef:
+              name: qbittorrent-vpn-media-secrets
+              key: PIA_PASS
+        - name: VPN_PROV
+          value: "pia"
+        - name: VPN_CLIENT
+          value: "openvpn"
+        - name: ENABLE_PRIVOXY
+          value: "no"
+        - name: STRICT_PORT_FORWARD
+          value: "no"
+        - name: LAN_NETWORK
+          value: "10.0.0.0/8"
+        - name: NAME_SERVERS
+          value: "1.1.1.1,1.0.0.1,8.8.8.8,8.8.4.4"
+        - name: DEBUG
+          value: "false"
+        volumeMounts:
+        - name: sabnzbd-vpn-media-config
+          mountPath: /config
+        # - name: downloads-nas-ssd
+        #   mountPath: /config/Downloads
+        - name: downloads-nas-hdd
+          mountPath: /config/Downloads
+      volumes:
+      # - name: downloads-nas-ssd
+      #   nfs:
+      #     server: "10.0.20.3"
+      #     path: /mnt/ssd/kubernetes/sabnzbd-vpn-media
+      - name: downloads-nas-hdd
+        nfs:
+          server: "10.0.20.3"
+          path: /mnt/tank/downloads/sabnzbd-vpn-media
+      - name: sabnzbd-vpn-media-config
+        hostPath:
+          path: /lxc-configs/sabnzbd-vpn-media-config # This path contains the same files on all nodes 
+          type: DirectoryOrCreate

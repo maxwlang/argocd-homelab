@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redisinsight
+  namespace: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redisinsight
+  template:
+    metadata:
+      labels:
+        app: redisinsight
+
+    spec:
+      containers:
+      - name: redisinsight
+        # https://hub.docker.com/r/redislabs/redisinsight/tags
+        image: redislabs/redisinsight:1.14.0
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "1000m"
+        env:
+        - name: RIPROXYENABLE
+          value: "true"
+        - name: RITRUSTEDORIGINS
+          value: "https://redisinsight.k8s.maxwlang.com"
+        ports:
+        - containerPort: 8001
+        volumeMounts:
+        - name: config
+          mountPath: /db
+      volumes:
+      - name: config
+        hostPath:
+          path: /lxc-configs/redisinsight-config # This path contains the same files on all nodes 
+          type: DirectoryOrCreate

@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jupyter
+spec:
+  destination:
+    namespace: gpu
+    server: https://kubernetes.default.svc
+  project: gpu
+  source:
+    repoURL: git@github.com:maxwlang/argocd-homelab.git
+    path: apps/gpu/jupyter
+    targetRevision: HEAD
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true

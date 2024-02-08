@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    # hajimari.io/enable: "true"
+    # hajimari.io/icon: "weather-sunset"
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+  namespace: gpu
+  name: &appname g4f-api
+spec:
+  rules:
+  - host: g4f-api.k8s.maxwlang.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: *appname
+            port:
+              number: 1337

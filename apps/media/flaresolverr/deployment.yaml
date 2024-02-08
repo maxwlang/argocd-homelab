@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flaresolverr
+  namespace: media
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: flaresolverr
+  template:
+    metadata:
+      labels:
+        app: flaresolverr
+
+    spec:
+      containers:
+      - name: flaresolverr
+        # https://github.com/flaresolverr/FlareSolverr/pkgs/container/flaresolverr
+        image: ghcr.io/flaresolverr/flaresolverr:v3.3.13
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "5Gi"
+            cpu: "5000m"
+        ports:
+        - containerPort: 8191

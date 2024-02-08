@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: overseerr
+spec:
+  destination:
+    namespace: media
+    server: https://kubernetes.default.svc
+  project: media
+  source:
+    repoURL: git@github.com:maxwlang/argocd-homelab.git
+    path: apps/media/overseerr
+    targetRevision: HEAD
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true

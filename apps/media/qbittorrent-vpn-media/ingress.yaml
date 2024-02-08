@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    # hajimari.io/enable: "true"
+    # hajimari.io/icon: "weather-sunset"
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  namespace: media
+  name: &appname qbittorrent-vpn-media
+spec:
+  rules:
+  - host: &uri public-uri-secret
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: *appname
+            port:
+              number: 80
+  - host: &local_uri qbittorrent-vpn-media.k8s.maxwlang.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: *appname
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - *uri
+    - *local_uri
+    secretName: *appname

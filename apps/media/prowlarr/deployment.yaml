@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prowlarr
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prowlarr
+  template:
+    metadata:
+      labels:
+        app: prowlarr
+
+    spec:
+      containers:
+      - name: prowlarr
+        # https://github.com/linuxserver/docker-prowlarr/releases/latest
+        image: lscr.io/linuxserver/prowlarr:1.12.2.4211-ls48
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        ports:
+        - containerPort: 9696
+        env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        - name: TZ
+          value: "America/Chicago"
+        volumeMounts:
+        - name: prowlarr-config
+          mountPath: /config
+      volumes:
+      - name: prowlarr-config
+        hostPath:
+          path: /lxc-configs/prowlarr-config # This path contains the same files on all nodes 
+          type: DirectoryOrCreate

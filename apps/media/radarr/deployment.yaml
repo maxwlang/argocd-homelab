@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radarr
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: radarr
+  template:
+    metadata:
+      labels:
+        app: radarr
+
+    spec:
+      containers:
+      - name: radarr
+        # https://github.com/linuxserver/docker-radarr/releases/latest
+        image: lscr.io/linuxserver/radarr:5.2.6.8376-ls200
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "5Gi"
+            cpu: "1000m"
+        ports:
+        - containerPort: 7878
+        env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        - name: TZ
+          value: "America/Chicago"
+        volumeMounts:
+        - name: radarr-config
+          mountPath: /config
+        - name: movies
+          mountPath: /movies
+        - name: downloads
+          mountPath: /downloads
+        - name: downloads-sabnzbd
+          mountPath: /downloads-sabnzbd
+      volumes:
+      - name: movies
+        nfs:
+          server: "10.0.20.3"
+          path: /mnt/tank/media/plex-published-media/Movies
+      - name: downloads
+        nfs:
+          server: "10.0.20.3"
+          path: /mnt/tank/downloads/qbittorrent-vpn-media
+      - name: downloads-sabnzbd
+        nfs:
+          server: "10.0.20.3"
+          path: /mnt/tank/downloads/sabnzbd-vpn-media
+      - name: radarr-config
+        hostPath:
+          path: /lxc-configs/radarr-config # This path contains the same files on all nodes 
+          type: DirectoryOrCreate
