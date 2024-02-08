@@ -18,7 +18,7 @@ spec:
         image: ghcr.io/maxwlang/neural-meme:v1.0.0
         env:
         - name: GPT_API
-          value: "http://g4f-api.gpu.svc.cluster.local:1337"
+          value: "http://g4f-api.gpu.svc.cluster.local:1337/v1/chat/completions"
         - name: GPT_MODEL
           value: gpt-4
         - name: GPT_TIMEOUT
