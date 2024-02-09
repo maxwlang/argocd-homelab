@@ -27,8 +27,6 @@ spec:
         env:
         - name: NODE_ENV
           value: "production"
-        - name: DB_ENV
-          value: "production"
         - name: LOG_LEVEL
           value: "debug"
         - name: DISCORD_TOKEN
@@ -51,51 +49,27 @@ spec:
               key: REDIS_URL
         - name: REDIS_PREFIX
           value: "accomplice_v2_prod"
-        - name: DB_PROD_DIALECT
+        - name: DB_DIALECT
           value: "mariadb"
-        - name: DB_PROD_HOST
+        - name: DB_HOST
           valueFrom:
             secretKeyRef:
               name: accomplice-secrets
-              key: MARIADB_HOST_PROD
-        - name: DB_PROD_PORT
+              key: MARIADB_HOST
+        - name: DB_PORT
           value: "3306"
-        - name: DB_PROD_USERNAME
+        - name: DB_USERNAME
           valueFrom:
             secretKeyRef:
               name: accomplice-secrets
-              key: MARIADB_USERNAME_PROD
+              key: MARIADB_USERNAME
         - name: DB_PROD_PASSWORD
           valueFrom:
             secretKeyRef:
               name: accomplice-secrets
-              key: MARIADB_PASSWORD_PROD
-        - name: DB_PROD_DATABASE
+              key: MARIADB_PASSWORD
+        - name: DB_DATABASE
           valueFrom:
             secretKeyRef:
               name: accomplice-secrets
-              key: MARIADB_DATABASE_PROD
-        - name: DB_DEV_DIALECT
-          value: "mariadb"
-        - name: DB_DEV_HOST
-          valueFrom:
-            secretKeyRef:
-              name: accomplice-secrets
-              key: MARIADB_HOST_DEV
-        - name: DB_DEV_PORT
-          value: "3306"
-        - name: DB_DEV_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: accomplice-secrets
-              key: MARIADB_USERNAME_DEV
-        - name: DB_DEV_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: accomplice-secrets
-              key: MARIADB_PASSWORD_DEV
-        - name: DB_DEV_DATABASE
-          valueFrom:
-            secretKeyRef:
-              name: accomplice-secrets
-              key: MARIADB_DATABASE_DEV
+              key: MARIADB_DATABASE
