@@ -63,7 +63,7 @@ spec:
             secretKeyRef:
               name: accomplice-secrets
               key: MARIADB_USERNAME
-        - name: DB_PROD_PASSWORD
+        - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
               name: accomplice-secrets
