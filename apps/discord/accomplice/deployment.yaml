@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: accomplice-v2
-        image: gotkrypto/accomplice-v2:latest
+        image: ghcr.io/maxwlang/accomplice-v2:v2.0.0
         resources:
           requests:
             memory: "64Mi"
