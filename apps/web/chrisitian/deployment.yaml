@@ -26,3 +26,5 @@ spec:
             cpu: "1000m"
         ports:
           - containerPort: 3000
+      imagePullSecrets:
+      - name: ghcr-login-secret
