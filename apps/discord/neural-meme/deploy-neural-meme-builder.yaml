@@ -19,6 +19,8 @@
 #         env:
 #         - name: GPT_API
 #           value: "http://g4f-api.gpu.svc.cluster.local:1337/v1/chat/completions"
+#         - name: NEURAL_MEME_IDENTIFY_SERVER
+#           value: "http://neural-meme-identify-server.discord.svc.cluster.local:8338"
 #         - name: GPT_MODEL
 #           value: gpt-4
 #         - name: GPT_TIMEOUT
