@@ -1,0 +1,41 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: neural-meme-poster
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: neural-meme-poster
+#   template:
+#     metadata:
+#       labels:
+#         app: neural-meme-poster
+#     spec:
+#       containers:
+#       - name: neural-meme-poster
+#         # https://github.com/maxwlang/neural-meme/releases/latest
+#         image: ghcr.io/maxwlang/neural-meme:v1.1.2
+#         env:
+#         - name: GPT_API
+#           value: "http://g4f-api.gpu.svc.cluster.local:1337/v1/chat/completions"
+#         - name: GPT_MODEL
+#           value: gpt-4
+#         - name: GPT_TIMEOUT
+#           value: "12000"
+#         - name: GPT_BLACKLISTED_PROVIDERS
+#           value: Phind
+#         - name: WEBHOOK_URL
+#           valueFrom:
+#             secretKeyRef:
+#               name: neural-meme-secrets
+#               key: WEBHOOK_URL
+#         - name: POST_INTERVAL
+#           value: "600000"
+#         resources:
+#           limits:
+#             memory: "256Mi"
+#             cpu: "1000m"
+#           requests:
+#             memory: "64Mi"
+#             cpu: "250m"
