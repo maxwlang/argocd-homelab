@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: identify-server 
+  name: neural-meme-identify-server
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: identify-server 
+      app: neural-meme-identify-server
   template:
     metadata:
       labels:
-        app: identify-server 
+        app: neural-meme-identify-server
     spec:
       containers:
-      - name: identify-server 
+      - name: neural-meme-identify-server
         # https://github.com/maxwlang/neural-meme-identify-server/releases/latest
         image: ghcr.io/maxwlang/neural-meme-identify-server:v1.0.1
         env:
