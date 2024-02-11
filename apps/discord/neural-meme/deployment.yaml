@@ -15,7 +15,7 @@ spec:
       containers:
       - name: neural-meme
         # https://github.com/maxwlang/neural-meme/releases/latest
-        image: ghcr.io/maxwlang/neural-meme:v1.1.1
+        image: ghcr.io/maxwlang/neural-meme:v1.1.2
         env:
         - name: GPT_API
           value: "http://g4f-api.gpu.svc.cluster.local:1337/v1/chat/completions"
