@@ -4,6 +4,8 @@ kind: Kustomization
 resources:
  - deploy-neural-meme-v1.yaml
  - deploy-neural-meme-identify-server.yaml
+ - service.yaml
+ - ingress.yaml
 
 generators:
   - secret-generator.yaml
