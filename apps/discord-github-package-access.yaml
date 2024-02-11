@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: discord-github-package-access
+spec:
+  destination:
+    namespace: discord
+    server: https://kubernetes.default.svc
+  project: discord
+  source:
+    repoURL: git@github.com:maxwlang/argocd-homelab.git
+    path: apps/discord/github-package-access
+    targetRevision: HEAD
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
