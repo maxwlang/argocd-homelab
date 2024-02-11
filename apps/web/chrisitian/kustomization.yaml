@@ -12,21 +12,21 @@ generators:
 replacements:
   - source:
       kind: Secret
-      name: nginx-static-sites-secrets
+      name: chrisitian-secrets
       fieldPath: stringData.CHR_URI
     targets:
       - select:
           kind: Ingress
-          name: nginx-static-sites
+          name: chrisitian
         fieldPaths:
           - spec.rules.0.host
   - source:
       kind: Secret
-      name: nginx-static-sites-secrets
+      name: chrisitian-secrets
       fieldPath: stringData.CHR_URI_WWW
     targets:
       - select:
           kind: Ingress
-          name: nginx-static-sites
+          name: chrisitian
         fieldPaths:
           - spec.rules.1.host
