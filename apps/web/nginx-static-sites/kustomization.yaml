@@ -113,7 +113,7 @@ replacements:
   - source:
       kind: Secret
       name: nginx-static-sites-secrets
-      fieldPath: stringData.CHR_URI
+      fieldPath: stringData.MSW_URI
     targets:
       - select:
           kind: Ingress
@@ -123,7 +123,7 @@ replacements:
   - source:
       kind: Secret
       name: nginx-static-sites-secrets
-      fieldPath: stringData.CHR_URI_WWW
+      fieldPath: stringData.MSW_URI_WWW
     targets:
       - select:
           kind: Ingress
@@ -133,7 +133,7 @@ replacements:
   - source:
       kind: Secret
       name: nginx-static-sites-secrets
-      fieldPath: stringData.MSW_URI
+      fieldPath: stringData.S4C_URI
     targets:
       - select:
           kind: Ingress
@@ -143,30 +143,10 @@ replacements:
   - source:
       kind: Secret
       name: nginx-static-sites-secrets
-      fieldPath: stringData.MSW_URI_WWW
-    targets:
-      - select:
-          kind: Ingress
-          name: nginx-static-sites
-        fieldPaths:
-          - spec.rules.13.host
-  - source:
-      kind: Secret
-      name: nginx-static-sites-secrets
-      fieldPath: stringData.S4C_URI
-    targets:
-      - select:
-          kind: Ingress
-          name: nginx-static-sites
-        fieldPaths:
-          - spec.rules.14.host
-  - source:
-      kind: Secret
-      name: nginx-static-sites-secrets
       fieldPath: stringData.S4C_URI_WWW
     targets:
       - select:
           kind: Ingress
           name: nginx-static-sites
         fieldPaths:
-          - spec.rules.15.host
+          - spec.rules.13.host

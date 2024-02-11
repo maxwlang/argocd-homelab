@@ -107,26 +107,6 @@ spec:
             name: *appname
             port:
               number: 80
-  - host: &uri_chr uri-chr
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: *appname
-            port:
-              number: 80
-  - host: &uri_chr_www uri-chr-www
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: *appname
-            port:
-              number: 80
   - host: &uri_msw uri-msw
     http:
       paths:
@@ -179,8 +159,6 @@ spec:
     - *uri_phucken_www
     - *uri_burpin
     - *uri_burpin_www
-    - *uri_chr
-    - *uri_chr_www
     - *uri_msw
     - *uri_msw_www
     - *uri_s4c

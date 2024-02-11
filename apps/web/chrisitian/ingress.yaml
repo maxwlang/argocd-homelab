@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  namespace: web
+  name: &appname chrisitian
+spec:
+  rules:
+  - host: &uri_chr uri-chr
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: *appname
+            port:
+              number: 80
+  - host: &uri_chr_www uri-chr-www
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: *appname
+            port:
+              number: 80 
+  tls:
+  - hosts:
+    - *uri_chr
+    - *uri_chr_www
+    secretName: *appname
+  
