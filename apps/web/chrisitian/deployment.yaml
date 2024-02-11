@@ -4,7 +4,7 @@ metadata:
   name: chrisitian
   namespace: web
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: chrisitian
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: chrisitian
-        image: ghcr.io/maxwlang/chrisitian:v1.0.1
+        image: ghcr.io/maxwlang/chrisitian:v1.0.2
         resources:
           requests:
             memory: "64Mi"
