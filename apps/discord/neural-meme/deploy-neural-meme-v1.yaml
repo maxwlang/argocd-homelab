@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: neural-meme
+  name: neural-meme_v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: neural-meme
+      app: neural-meme_v1
   template:
     metadata:
       labels:
-        app: neural-meme
+        app: neural-meme_v1
     spec:
       containers:
-      - name: neural-meme
+      - name: neural-meme_v1
         # https://github.com/maxwlang/neural-meme/releases/latest
         image: ghcr.io/maxwlang/neural-meme:v1.1.2
         env:

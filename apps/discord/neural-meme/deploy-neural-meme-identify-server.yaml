@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: identify-server 
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: identify-server 
+  template:
+    metadata:
+      labels:
+        app: identify-server 
+    spec:
+      containers:
+      - name: identify-server 
+        # https://github.com/maxwlang/neural-meme-identify-server/releases/latest
+        image: ghcr.io/maxwlang/neural-meme-identify-server:v1.0.1
+        env:
+        - name: PORT
+          value: "8338"
+        - name: DEBUG
+          value: "false"
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "1000m"
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
