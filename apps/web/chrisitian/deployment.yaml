@@ -26,5 +26,33 @@ spec:
             cpu: "1000m"
         ports:
           - containerPort: 3000
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: NEXT_PUBLIC_GA_MEASUREMENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: chrisitian-secrets
+              key: NEXT_PUBLIC_GA_MEASUREMENT_ID
+        - name: NEXT_PRIVATE_MARIADB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: chrisitian-secrets
+              key: NEXT_PRIVATE_MARIADB_HOST
+        - name: NEXT_PRIVATE_MARIADB_USER
+          valueFrom:
+            secretKeyRef:
+              name: chrisitian-secrets
+              key: NEXT_PRIVATE_MARIADB_USER
+        - name: NEXT_PRIVATE_MARIADB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: chrisitian-secrets
+              key: NEXT_PRIVATE_MARIADB_PASSWORD
+        - name: NEXT_PRIVATE_MARIADB_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: chrisitian-secrets
+              key: NEXT_PRIVATE_MARIADB_DATABASE
       imagePullSecrets:
       - name: ghcr-login-secret
