@@ -14,6 +14,14 @@ server:
   config:
     # Argo CD's externally facing base URL (optional). Required when configuring SSO
     # url: http://argocd.k8s.maxwlang.com/
+    configManagementPlugins: |
+      - name: kustomized-helm
+        init:
+          command: ["/bin/sh", "-c"]
+          args: ["helm dependency build"]
+        generate:
+          command: [sh, -c]
+          args: ["helm template --release-name release-name . > all.yaml && kustomize build"]
     kustomize.buildOptions: "--enable-alpha-plugins --enable-exec"
     repositories: |
       - type: git
