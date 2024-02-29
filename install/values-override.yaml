@@ -4,16 +4,16 @@ global:
     tag: v2.9.3
 
 server:
-  ingress:
-    enabled: true
-    ingressClassName: "traefik"
-    hosts:
-      - argocd.k8s.maxwlang.com
-    # https: true
+  # ingress:
+  #   enabled: true
+  #   ingressClassName: "traefik"
+  #   hosts:
+  #     - argocd.k8s.maxwlang.com
+  #   https: true
   configEnabled: true
   config:
     # Argo CD's externally facing base URL (optional). Required when configuring SSO
-    url: http://argocd.k8s.maxwlang.com/
+    # url: http://argocd.k8s.maxwlang.com/
     kustomize.buildOptions: "--enable-alpha-plugins --enable-exec"
     repositories: |
       - type: git
