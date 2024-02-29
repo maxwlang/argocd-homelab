@@ -17,8 +17,20 @@ spec:
             name: *appname
             port:
               number: 80
+
+  - host: &local_uri git.k8s.maxwlang.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: *appname
+            port:
+              number: 80
   tls:
   - hosts:
     - *uri_gitea
+    - *local_uri
     secretName: *appname
   
