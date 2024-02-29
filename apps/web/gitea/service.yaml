@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: gittea
+  name: gitea
 spec:
   selector:
-    app: gittea
+    app: gitea
   ports:
     - protocol: TCP
       port: 80

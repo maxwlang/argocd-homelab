@@ -7,7 +7,7 @@ metadata:
   name: &appname gitea
 spec:
   rules:
-  - host: &uri_gitea uri-gittea
+  - host: &uri_gitea uri-gitea
     http:
       paths:
       - path: /
