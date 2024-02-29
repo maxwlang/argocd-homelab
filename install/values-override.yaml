@@ -9,7 +9,7 @@ server:
     ingressClassName: "traefik"
     hosts:
       - argocd.k8s.maxwlang.com
-    https: true
+    # https: true
   configEnabled: true
   config:
     # Argo CD's externally facing base URL (optional). Required when configuring SSO
