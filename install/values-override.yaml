@@ -6,6 +6,8 @@ global:
 server:
   configEnabled: true
   config:
+    # Argo CD's externally facing base URL (optional). Required when configuring SSO
+    url: https://argocd.k8s.maxwlang.com
     kustomize.buildOptions: "--enable-alpha-plugins --enable-exec"
     repositories: |
       - type: git
