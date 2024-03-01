@@ -8,4 +8,4 @@ spec:
     - placeholder
   issuerRef:
     kind: Issuer
-    name: letsencrypt-staging
+    name: letsencrypt-prod
