@@ -25,7 +25,7 @@ replacements:
   - source:
       kind: Secret
       name: nginx-static-sites-secrets
-      fieldPath: stringData.sslDomains.yaml
+      fieldPath: stringData.sslDomains
     targets:
       - select:
           kind: IngressRoute
