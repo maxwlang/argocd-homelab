@@ -1,10 +1,10 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: nginx-static-sites-cert-staging
+  name: nginx-static-sites-cert
 spec:
   commonName: mcchickers.com
-  secretName: nginx-static-sites-cert-staging
+  secretName: nginx-static-sites-cert
   dnsNames:
     - mcchickers.com
     - www.mcchickers.com

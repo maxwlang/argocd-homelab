@@ -13,4 +13,4 @@ spec:
         - name: *appname
           port: 80
   tls:
-    secretName: nginx-static-sites-cert-staging
+    secretName: nginx-static-sites-cert
