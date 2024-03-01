@@ -28,7 +28,7 @@ replacements:
       fieldPath: stringData.sslDomains
     targets:
       - select:
-          kind: IngressRoute
-          name: nginx-static-sites
+          kind: Certificate
+          name: nginx-static-sites-cert
         fieldPaths:
-          - spec.routes.0.match
+          - spec.dnsNames
