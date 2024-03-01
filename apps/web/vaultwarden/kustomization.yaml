@@ -4,19 +4,33 @@ kind: Kustomization
 resources:
   - deployment.yaml
   - service.yaml
-  - ingress.yaml
+  - certificate.yaml
+  - ingress-route.yaml
 
 generators:
   - secret-generator.yaml
 
 replacements:
+# Ingress Route
+  - source:
+      kind: Secret
+      name: vaultwarden-secrets
+      fieldPath: stringData.INGRESS_ROUTE_MATCH
+    targets:
+      - select:
+          kind: IngressRoute
+          name: pterodactyl-panel
+        fieldPaths:
+          - spec.routes.0.match
+
+# Certificates
   - source:
       kind: Secret
       name: vaultwarden-secrets
       fieldPath: stringData.APP_DOMAIN
     targets:
       - select:
-          kind: Ingress
-          name: vaultwarden
+          kind: Certificate
+          name: pterodactyl-panel-cert
         fieldPaths:
-          - spec.rules.0.host
+          - spec.dnsNames.0
