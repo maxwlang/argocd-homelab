@@ -11,6 +11,7 @@ generators:
   - secret-generator.yaml
 
 replacements:
+# Ingress Route
   - source:
       kind: Secret
       name: nginx-static-sites-secrets
@@ -22,24 +23,144 @@ replacements:
         fieldPaths:
           - spec.routes.0.match
 
+# Certificates
   - source:
       kind: Secret
       name: nginx-static-sites-secrets
-      fieldPath: stringData.sslDomains
+      fieldPath: stringData.MCCHICKERS_URI
     targets:
       - select:
           kind: Certificate
           name: nginx-static-sites-cert
         fieldPaths:
           - spec.dnsNames.0
-
   - source:
       kind: Secret
       name: nginx-static-sites-secrets
-      fieldPath: stringData.sslDomains
+      fieldPath: stringData.MCCHICKERS_URI_WWW
     targets:
       - select:
           kind: Certificate
           name: nginx-static-sites-cert
         fieldPaths:
           - spec.dnsNames.1
+  - source:
+      kind: Secret
+      name: nginx-static-sites-secrets
+      fieldPath: stringData.08122036_URI
+    targets:
+      - select:
+          kind: Certificate
+          name: nginx-static-sites-cert
+        fieldPaths:
+          - spec.dnsNames.2
+  - source:
+      kind: Secret
+      name: nginx-static-sites-secrets
+      fieldPath: stringData.08122036_URI_WWW
+    targets:
+      - select:
+          kind: Certificate
+          name: nginx-static-sites-cert
+        fieldPaths:
+          - spec.dnsNames.3
+  - source:
+      kind: Secret
+      name: nginx-static-sites-secrets
+      fieldPath: stringData.CATVIDEO_URI
+    targets:
+      - select:
+          kind: Certificate
+          name: nginx-static-sites-cert
+        fieldPaths:
+          - spec.dnsNames.4
+  - source:
+      kind: Secret
+      name: nginx-static-sites-secrets
+      fieldPath: stringData.CATVIDEO_URI_WWW
+    targets:
+      - select:
+          kind: Certificate
+          name: nginx-static-sites-cert
+        fieldPaths:
+          - spec.dnsNames.5
+  - source:
+      kind: Secret
+      name: nginx-static-sites-secrets
+      fieldPath: stringData.PHUCKEN_URI
+    targets:
+      - select:
+          kind: Certificate
+          name: nginx-static-sites-cert
+        fieldPaths:
+          - spec.dnsNames.6
+  - source:
+      kind: Secret
+      name: nginx-static-sites-secrets
+      fieldPath: stringData.PHUCKEN_URI_WWW
+    targets:
+      - select:
+          kind: Certificate
+          name: nginx-static-sites-cert
+        fieldPaths:
+          - spec.dnsNames.7
+  - source:
+      kind: Secret
+      name: nginx-static-sites-secrets
+      fieldPath: stringData.BURPIN_URI
+    targets:
+      - select:
+          kind: Certificate
+          name: nginx-static-sites-cert
+        fieldPaths:
+          - spec.dnsNames.8
+  - source:
+      kind: Secret
+      name: nginx-static-sites-secrets
+      fieldPath: stringData.BURPIN_URI_WWW
+    targets:
+      - select:
+          kind: Certificate
+          name: nginx-static-sites-cert
+        fieldPaths:
+          - spec.dnsNames.9
+  - source:
+      kind: Secret
+      name: nginx-static-sites-secrets
+      fieldPath: stringData.MSW_URI
+    targets:
+      - select:
+          kind: Certificate
+          name: nginx-static-sites-cert
+        fieldPaths:
+          - spec.dnsNames.10
+  - source:
+      kind: Secret
+      name: nginx-static-sites-secrets
+      fieldPath: stringData.MSW_URI_WWW
+    targets:
+      - select:
+          kind: Certificate
+          name: nginx-static-sites-cert
+        fieldPaths:
+          - spec.dnsNames.11
+  - source:
+      kind: Secret
+      name: nginx-static-sites-secrets
+      fieldPath: stringData.S4C_URI
+    targets:
+      - select:
+          kind: Certificate
+          name: nginx-static-sites-cert
+        fieldPaths:
+          - spec.dnsNames.12
+  - source:
+      kind: Secret
+      name: nginx-static-sites-secrets
+      fieldPath: stringData.S4C_URI_WWW
+    targets:
+      - select:
+          kind: Certificate
+          name: nginx-static-sites-cert
+        fieldPaths:
+          - spec.dnsNames.13
