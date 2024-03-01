@@ -19,7 +19,7 @@ replacements:
     targets:
       - select:
           kind: IngressRoute
-          name: pterodactyl-panel
+          name: vaultwarden
         fieldPaths:
           - spec.routes.0.match
 
@@ -31,6 +31,6 @@ replacements:
     targets:
       - select:
           kind: Certificate
-          name: pterodactyl-panel-cert
+          name: vaultwarden-cert
         fieldPaths:
           - spec.dnsNames.0
