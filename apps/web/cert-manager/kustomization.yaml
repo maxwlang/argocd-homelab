@@ -6,3 +6,4 @@ helmCharts:
   includeCRDs: true
   version: v1.14.3
   repo: https://charts.jetstack.io
+  valuesFile: values-override.yaml
