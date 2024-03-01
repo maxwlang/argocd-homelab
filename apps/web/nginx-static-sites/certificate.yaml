@@ -4,7 +4,7 @@ metadata:
   name: nginx-static-sites-cert-staging
 spec:
   commonName: mcchickers.com
-  secretName: nginx-cert-staging
+  secretName: nginx-static-sites-cert-staging
   dnsNames:
     - mcchickers.com
     - www.mcchickers.com
