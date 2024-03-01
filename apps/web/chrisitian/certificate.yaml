@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: chrisitian-cert
+spec:
+  secretName: chrisitian-cert
+  dnsNames: 
+    - placeholder
+    - placeholder_www
+  issuerRef:
+    kind: Issuer
+    name: letsencrypt-prod
