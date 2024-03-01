@@ -5,6 +5,8 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+  - certificate.yaml
+  - ingress-route.yaml
 
 generators:
   - secret-generator.yaml

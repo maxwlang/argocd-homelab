@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  namespace: web
+  name: &appname nginx-static-sites
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`(www\.)?mcchickers.com`)
+      kind: Rule
+      services:
+        - name: *appname
+          port: 80
+  tls:
+    secretName: nginx-static-sites-cert-staging
