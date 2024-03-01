@@ -43,4 +43,4 @@ replacements:
           kind: Certificate
           name: chrisitian-cert
         fieldPaths:
-          - spec.dnsNames.0
+          - spec.dnsNames.1
