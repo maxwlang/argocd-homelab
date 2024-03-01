@@ -5,6 +5,7 @@ metadata:
   name: &appname nginx-static-sites
 spec:
   entryPoints:
+    - web
     - websecure
   routes:
     - match: ingress-route-match
@@ -12,5 +13,7 @@ spec:
       services:
         - name: *appname
           port: 80
+      middlewares:
+        - name: https-only
   tls:
     secretName: nginx-static-sites-cert
