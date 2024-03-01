@@ -7,3 +7,5 @@ helmCharts:
   version: v1.14.3
   repo: https://charts.jetstack.io
   valuesFile: values-override.yaml
+  releaseName: cert-manager
+  
