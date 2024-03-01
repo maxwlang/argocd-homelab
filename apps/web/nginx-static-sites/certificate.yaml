@@ -13,4 +13,4 @@ spec:
     - catvideo_uri_www
   issuerRef:
     kind: Issuer
-    name: letsencrypt-staging
+    name: letsencrypt-prod
