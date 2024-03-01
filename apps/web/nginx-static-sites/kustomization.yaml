@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - deployment.yaml
   - service.yaml
-  - ingress.yaml
   - certificate.yaml
   - ingress-route.yaml
 
@@ -15,140 +14,21 @@ replacements:
   - source:
       kind: Secret
       name: nginx-static-sites-secrets
-      fieldPath: stringData.MCCHICKERS_URI
+      fieldPath: stringData.INGRESS_ROUTE_MATCH
     targets:
       - select:
-          kind: Ingress
+          kind: IngressRoute
           name: nginx-static-sites
         fieldPaths:
-          - spec.rules.0.host
+          - spec.routes.0.match
+
   - source:
       kind: Secret
       name: nginx-static-sites-secrets
-      fieldPath: stringData.MCCHICKERS_URI_WWW
+      fieldPath: stringData.sslDomains.yaml
     targets:
       - select:
-          kind: Ingress
+          kind: IngressRoute
           name: nginx-static-sites
         fieldPaths:
-          - spec.rules.1.host
-  - source:
-      kind: Secret
-      name: nginx-static-sites-secrets
-      fieldPath: stringData.08122036_URI
-    targets:
-      - select:
-          kind: Ingress
-          name: nginx-static-sites
-        fieldPaths:
-          - spec.rules.2.host
-  - source:
-      kind: Secret
-      name: nginx-static-sites-secrets
-      fieldPath: stringData.08122036_URI_WWW
-    targets:
-      - select:
-          kind: Ingress
-          name: nginx-static-sites
-        fieldPaths:
-          - spec.rules.3.host
-  - source:
-      kind: Secret
-      name: nginx-static-sites-secrets
-      fieldPath: stringData.CATVIDEO_URI
-    targets:
-      - select:
-          kind: Ingress
-          name: nginx-static-sites
-        fieldPaths:
-          - spec.rules.4.host
-  - source:
-      kind: Secret
-      name: nginx-static-sites-secrets
-      fieldPath: stringData.CATVIDEO_URI_WWW
-    targets:
-      - select:
-          kind: Ingress
-          name: nginx-static-sites
-        fieldPaths:
-          - spec.rules.5.host
-  - source:
-      kind: Secret
-      name: nginx-static-sites-secrets
-      fieldPath: stringData.PHUCKEN_URI
-    targets:
-      - select:
-          kind: Ingress
-          name: nginx-static-sites
-        fieldPaths:
-          - spec.rules.6.host
-  - source:
-      kind: Secret
-      name: nginx-static-sites-secrets
-      fieldPath: stringData.PHUCKEN_URI_WWW
-    targets:
-      - select:
-          kind: Ingress
-          name: nginx-static-sites
-        fieldPaths:
-          - spec.rules.7.host
-  - source:
-      kind: Secret
-      name: nginx-static-sites-secrets
-      fieldPath: stringData.BURPIN_URI
-    targets:
-      - select:
-          kind: Ingress
-          name: nginx-static-sites
-        fieldPaths:
-          - spec.rules.8.host
-  - source:
-      kind: Secret
-      name: nginx-static-sites-secrets
-      fieldPath: stringData.BURPIN_URI_WWW
-    targets:
-      - select:
-          kind: Ingress
-          name: nginx-static-sites
-        fieldPaths:
-          - spec.rules.9.host
-  - source:
-      kind: Secret
-      name: nginx-static-sites-secrets
-      fieldPath: stringData.MSW_URI
-    targets:
-      - select:
-          kind: Ingress
-          name: nginx-static-sites
-        fieldPaths:
-          - spec.rules.10.host
-  - source:
-      kind: Secret
-      name: nginx-static-sites-secrets
-      fieldPath: stringData.MSW_URI_WWW
-    targets:
-      - select:
-          kind: Ingress
-          name: nginx-static-sites
-        fieldPaths:
-          - spec.rules.11.host
-  - source:
-      kind: Secret
-      name: nginx-static-sites-secrets
-      fieldPath: stringData.S4C_URI
-    targets:
-      - select:
-          kind: Ingress
-          name: nginx-static-sites
-        fieldPaths:
-          - spec.rules.12.host
-  - source:
-      kind: Secret
-      name: nginx-static-sites-secrets
-      fieldPath: stringData.S4C_URI_WWW
-    targets:
-      - select:
-          kind: Ingress
-          name: nginx-static-sites
-        fieldPaths:
-          - spec.rules.13.host
+          - spec.routes.0.match

@@ -4,6 +4,7 @@ metadata:
   name: nginx-static-sites-cert
 spec:
   secretName: nginx-static-sites-cert
+  dnsNames: []
   issuerRef:
     kind: Issuer
     name: letsencrypt-staging

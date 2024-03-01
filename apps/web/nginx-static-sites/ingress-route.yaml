@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`mcchickers.com`) || Host(`www.mcchickers.com`)
+    - match: ingress-route-match
       kind: Rule
       services:
         - name: *appname
