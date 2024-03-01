@@ -19,7 +19,7 @@ replacements:
     targets:
       - select:
           kind: IngressRoute
-          name: nginx-static-sites
+          name: pterodactyl-panel
         fieldPaths:
           - spec.routes.0.match
 
