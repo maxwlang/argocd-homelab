@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
   - issuer-letsencrypt-staging.yaml
+  - issuer-letsencrypt-prod.yaml
 
 helmCharts:
 - name: cert-manager
