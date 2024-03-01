@@ -10,4 +10,4 @@ spec:
     - www.mcchickers.com
   issuerRef:
     kind: Issuer
-    name: letsencrypt-staging
+    name: letsencrypt-prod
