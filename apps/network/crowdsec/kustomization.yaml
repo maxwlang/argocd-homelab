@@ -1,15 +1,11 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-resources:
-  - acquis-configmap.yaml
-  - agent-service.yaml
-  - lapi-service.yaml
-  - lapi-ingress.yaml
-  # - lapi-perstistentVolume.yaml # Using hostpath instead
-  # Deployments last
-  - agent-daemonSet.yaml
-  - lapi-deployment.yaml
-
-generators:
-  - secret-generator.yaml
+helmCharts:
+- name: crowdsec
+  includeCRDs: true
+  version: 0.9.12
+  repo: https://crowdsecurity.github.io/helm-charts
+  valuesFile: values-override.yaml
+  releaseName: crowdsec
+  
