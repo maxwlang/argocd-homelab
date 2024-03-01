@@ -1,6 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+resources:
+  - issuer-letsencrypt-staging.yaml
+
 helmCharts:
 - name: cert-manager
   includeCRDs: true
@@ -8,4 +11,3 @@ helmCharts:
   repo: https://charts.jetstack.io
   valuesFile: values-override.yaml
   releaseName: cert-manager
-  
