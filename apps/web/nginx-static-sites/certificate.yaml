@@ -11,14 +11,6 @@ spec:
     - 08122036_uri_www
     - catvideo_uri
     - catvideo_uri_www
-    - phucken_uri
-    - phucken_uri_www
-    - burpin_uri
-    - burpin_uri_www
-    - msw_uri
-    - msw_uri_www
-    - s4c_uri
-    - s4c_uri_www
   issuerRef:
     kind: Issuer
     name: letsencrypt-staging
