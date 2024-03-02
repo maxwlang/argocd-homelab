@@ -27,11 +27,11 @@ server:
       - overwritten-by-secret
       - overwritten-by-secret
     https: true
-    tls:
-      hosts:
-        - overwritten-by-secret
-        - overwritten-by-secret
-      secretName: authentik-cert
+    # tls:
+    #   hosts:
+    #     - overwritten-by-secret
+    #     - overwritten-by-secret
+    #   secretName: authentik-cert
   # volumes:
   #   - name: postgres-creds
   #     secret:
