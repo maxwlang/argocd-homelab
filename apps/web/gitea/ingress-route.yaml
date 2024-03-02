@@ -10,12 +10,22 @@ spec:
   routes:
     - match: ingress-route-match
       kind: Rule
+      priority: 10
       services:
         - name: *appname
           port: 80
       middlewares:
         - name: https-only
         - name: authentik-forwardauth-media
+    - kind: Rule
+      match: ingress-route-authentik
+      priority: 15
+      services:
+          - kind: Service
+            name: authentik-server
+            port: 80
+      middlewares:
+        - name: https-only
     - match: Host(`git.k8s.maxwlang.com`)
       kind: Rule
       services:
