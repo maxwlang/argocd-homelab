@@ -6,5 +6,6 @@ helmCharts:
   includeCRDs: true
   version: 2024.2.1
   repo: https://charts.goauthentik.io
+  namespace: web
   valuesFile: values-override.yaml
   releaseName: authentik
