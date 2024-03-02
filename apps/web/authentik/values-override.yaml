@@ -40,7 +40,7 @@ server:
   #   - name: postgres-creds
   #     mountPath: /postgres-creds
   #     readOnly: true
-worker:
+# worker:
   # volumes:
   #   - name: postgres-creds
   #     secret:
