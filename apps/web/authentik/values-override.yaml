@@ -2,26 +2,50 @@ namespace: web
 
 authentik:
   postgresql:
-    host: postgres.domain.tld
-    user: the
-    password: the
+    host: overwritten-by-secret
+    port: overwritten-by-secret
+    name: overwritten-by-secret
+    user: overwritten-by-secret
+    password: overwritten-by-secret
   redis:
-    host: redis.domain.tld
+    host: overwritten-by-secret
+    password: overwritten-by-secret
+  secret_key: overwritten-by-secret
+  email:
+    host: overwritten-by-secret
+    port: overwritten-by-secret
+    use_tls: true
+    username: overwritten-by-secret
+    password: overwritten-by-secret
+    from: overwritten-by-secret
 server:
-  volumes:
-    - name: postgres-creds
-      secret:
-        secretName: authentik-postgres-credentials
-  volumeMounts:
-    - name: postgres-creds
-      mountPath: /postgres-creds
-      readOnly: true
+  ingress:
+    enabled: true
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    hosts:
+      - overwritten-by-secret
+      - overwritten-by-secret
+    https: true
+    tls:
+      hosts:
+        - overwritten-by-secret
+        - overwritten-by-secret
+      secretName: authentik-cert
+  # volumes:
+  #   - name: postgres-creds
+  #     secret:
+  #       secretName: authentik-postgres-credentials
+  # volumeMounts:
+  #   - name: postgres-creds
+  #     mountPath: /postgres-creds
+  #     readOnly: true
 worker:
-  volumes:
-    - name: postgres-creds
-      secret:
-        secretName: authentik-postgres-credentials
-  volumeMounts:
-    - name: postgres-creds
-      mountPath: /postgres-creds
-      readOnly: true
+  # volumes:
+  #   - name: postgres-creds
+  #     secret:
+  #       secretName: authentik-postgres-credentials
+  # volumeMounts:
+  #   - name: postgres-creds
+  #     mountPath: /postgres-creds
+  #     readOnly: true

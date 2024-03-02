@@ -1,6 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+resources:
+  - certificate.yaml
+
 helmCharts:
 - name: authentik
   includeCRDs: true
@@ -13,14 +16,179 @@ helmCharts:
 generators:
   - secret-generator.yaml
 
+# Helm is really cool because when you want to
+# pull a value from a secret and put it into a
+# Helm value, you can't do it unless the helm chart
+# creator was generous enough to include an option for that.
+# This is fun because it means you have to do weird shit like this.
 replacements:
   - source:
       kind: Secret
       name: authentik-secrets
-      fieldPath: data.test
+      fieldPath: data.POSTGRES_HOST
+    targets:
+      - select:
+          kind: Secret
+          name: authentik
+        fieldPaths:
+          - data.AUTHENTIK_POSTGRESQL__HOST
+  - source:
+      kind: Secret
+      name: authentik-secrets
+      fieldPath: data.POSTGRES_PORT
+    targets:
+      - select:
+          kind: Secret
+          name: authentik
+        fieldPaths:
+          - data.AUTHENTIK_POSTGRESQL__PORT
+  - source:
+      kind: Secret
+      name: authentik-secrets
+      fieldPath: data.POSTGRES_DB
+    targets:
+      - select:
+          kind: Secret
+          name: authentik
+        fieldPaths:
+          - data.AUTHENTIK_POSTGRESQL__NAME
+  - source:
+      kind: Secret
+      name: authentik-secrets
+      fieldPath: data.POSTGRES_USER
+    targets:
+      - select:
+          kind: Secret
+          name: authentik
+        fieldPaths:
+          - data.AUTHENTIK_POSTGRESQL__USER
+  - source:
+      kind: Secret
+      name: authentik-secrets
+      fieldPath: data.POSTGRES_PASSWORD
     targets:
       - select:
           kind: Secret
           name: authentik
         fieldPaths:
           - data.AUTHENTIK_POSTGRESQL__PASSWORD
+  - source:
+      kind: Secret
+      name: authentik-secrets
+      fieldPath: data.REDIS_HOST
+    targets:
+      - select:
+          kind: Secret
+          name: authentik
+        fieldPaths:
+          - data.AUTHENTIK_REDIS__HOST
+  # - source:
+  #     kind: Secret
+  #     name: authentik-secrets
+  #     fieldPath: data.POSTGRES_USER
+  #   targets:
+  #     - select:
+  #         kind: Secret
+  #         name: authentik
+  #       fieldPaths:
+  #         - data.AUTHENTIK_POSTGRESQL__USER
+  # - source:
+  #     kind: Secret
+  #     name: authentik-secrets
+  #     fieldPath: data.POSTGRES_USER
+  #   targets:
+  #     - select:
+  #         kind: Secret
+  #         name: authentik
+  #       fieldPaths:
+  #         - data.AUTHENTIK_POSTGRESQL__USER
+  # - source:
+  #     kind: Secret
+  #     name: authentik-secrets
+  #     fieldPath: data.POSTGRES_USER
+  #   targets:
+  #     - select:
+  #         kind: Secret
+  #         name: authentik
+  #       fieldPaths:
+  #         - data.AUTHENTIK_POSTGRESQL__USER
+  # - source:
+  #     kind: Secret
+  #     name: authentik-secrets
+  #     fieldPath: data.POSTGRES_USER
+  #   targets:
+  #     - select:
+  #         kind: Secret
+  #         name: authentik
+  #       fieldPaths:
+  #         - data.AUTHENTIK_POSTGRESQL__USER
+  # - source:
+  #     kind: Secret
+  #     name: authentik-secrets
+  #     fieldPath: data.POSTGRES_USER
+  #   targets:
+  #     - select:
+  #         kind: Secret
+  #         name: authentik
+  #       fieldPaths:
+  #         - data.AUTHENTIK_POSTGRESQL__USER
+  # - source:
+  #     kind: Secret
+  #     name: authentik-secrets
+  #     fieldPath: data.POSTGRES_USER
+  #   targets:
+  #     - select:
+  #         kind: Secret
+  #         name: authentik
+  #       fieldPaths:
+  #         - data.AUTHENTIK_POSTGRESQL__USER
+  # - source:
+  #     kind: Secret
+  #     name: authentik-secrets
+  #     fieldPath: data.POSTGRES_USER
+  #   targets:
+  #     - select:
+  #         kind: Secret
+  #         name: authentik
+  #       fieldPaths:
+  #         - data.AUTHENTIK_POSTGRESQL__USER
+  # - source:
+  #     kind: Secret
+  #     name: authentik-secrets
+  #     fieldPath: data.POSTGRES_USER
+  #   targets:
+  #     - select:
+  #         kind: Secret
+  #         name: authentik
+  #       fieldPaths:
+  #         - data.AUTHENTIK_POSTGRESQL__USER
+  # - source:
+  #     kind: Secret
+  #     name: authentik-secrets
+  #     fieldPath: data.POSTGRES_USER
+  #   targets:
+  #     - select:
+  #         kind: Secret
+  #         name: authentik
+  #       fieldPaths:
+  #         - data.AUTHENTIK_POSTGRESQL__USER
+  # - source:
+  #     kind: Secret
+  #     name: authentik-secrets
+  #     fieldPath: data.POSTGRES_USER
+  #   targets:
+  #     - select:
+  #         kind: Secret
+  #         name: authentik
+  #       fieldPaths:
+  #         - data.AUTHENTIK_POSTGRESQL__USER
+  # - source:
+  #     kind: Secret
+  #     name: authentik-secrets
+  #     fieldPath: data.POSTGRES_USER
+  #   targets:
+  #     - select:
+  #         kind: Secret
+  #         name: authentik
+  #       fieldPaths:
+  #         - data.AUTHENTIK_POSTGRESQL__USER
