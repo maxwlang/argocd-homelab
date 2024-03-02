@@ -16,8 +16,6 @@ helmCharts:
 generators:
   - secret-generator.yaml
 
-
-
 replacements:
 # Certificates
   - source:
