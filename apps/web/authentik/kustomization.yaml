@@ -17,7 +17,7 @@ replacements:
   - source:
       kind: Secret
       name: authentik-secrets
-      fieldPath: stringData.test
+      fieldPath: data.test
     targets:
       - select:
           kind: Secret
