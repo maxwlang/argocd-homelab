@@ -9,3 +9,18 @@ helmCharts:
   namespace: web
   valuesFile: values-override.yaml
   releaseName: authentik
+
+generators:
+  - secret-generator.yaml
+
+replacements:
+  - source:
+      kind: Secret
+      name: authentik-secrets
+      fieldPath: stringData.test
+    targets:
+      - select:
+          kind: Secret
+          name: authentik
+        fieldPaths:
+          - data.AUTHENTIK_POSTGRESQL__PASSWORD
