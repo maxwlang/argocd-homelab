@@ -5,7 +5,7 @@ metadata:
 spec:
   secretName: vaultwarden-cert
   dnsNames: 
-    - placeholder
+    - overwritten-by-secret
   issuerRef:
     kind: Issuer
     name: letsencrypt-prod

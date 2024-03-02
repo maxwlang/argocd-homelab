@@ -5,8 +5,8 @@ metadata:
 spec:
   secretName: chrisitian-cert
   dnsNames: 
-    - placeholder
-    - placeholder_www
+    - overwritten-by-secret
+    - overwritten-by-secret
   issuerRef:
     kind: Issuer
     name: letsencrypt-prod
