@@ -9,4 +9,4 @@ spec:
     - overwritten-by-secret
   issuerRef:
     kind: Issuer
-    name: letsencrypt-staging
+    name: letsencrypt-prod
