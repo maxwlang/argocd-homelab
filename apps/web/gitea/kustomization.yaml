@@ -22,16 +22,16 @@ replacements:
           name: gitea
         fieldPaths:
           - spec.routes.0.match
-  - source:
-      kind: Secret
-      name: gitea-secrets
-      fieldPath: stringData.INGRESS_ROUTE_AUTHENTIK
-    targets:
-      - select:
-          kind: IngressRoute
-          name: gitea
-        fieldPaths:
-          - spec.routes.1.match
+  # - source:
+  #     kind: Secret
+  #     name: gitea-secrets
+  #     fieldPath: stringData.INGRESS_ROUTE_AUTHENTIK
+  #   targets:
+  #     - select:
+  #         kind: IngressRoute
+  #         name: gitea
+  #       fieldPaths:
+  #         - spec.routes.1.match
 # Certificates
   - source:
       kind: Secret
