@@ -5,6 +5,6 @@ helmCharts:
 - name: authentik
   includeCRDs: true
   version: 2024.2.1
-  repo: https://charts.jetstack.io
+  repo: https://charts.goauthentik.io
   valuesFile: values-override.yaml
   releaseName: authentik
