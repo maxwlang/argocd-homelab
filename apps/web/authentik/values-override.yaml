@@ -1,0 +1,27 @@
+namespace: web
+
+authentik:
+  postgresql:
+    host: postgres.domain.tld
+    user: the
+    password: the
+  redis:
+    host: redis.domain.tld
+server:
+  volumes:
+    - name: postgres-creds
+      secret:
+        secretName: authentik-postgres-credentials
+  volumeMounts:
+    - name: postgres-creds
+      mountPath: /postgres-creds
+      readOnly: true
+worker:
+  volumes:
+    - name: postgres-creds
+      secret:
+        secretName: authentik-postgres-credentials
+  volumeMounts:
+    - name: postgres-creds
+      mountPath: /postgres-creds
+      readOnly: true
