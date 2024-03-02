@@ -15,6 +15,7 @@ spec:
           port: 80
       middlewares:
         - name: https-only
+        - name: authentik-forwardauth-media
     - match: Host(`git.k8s.maxwlang.com`)
       kind: Rule
       services:
