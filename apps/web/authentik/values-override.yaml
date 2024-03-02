@@ -20,13 +20,13 @@ authentik:
     from: overwritten-by-secret
 server:
   ingress:
-    enabled: true
-    annotations:
-      traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    hosts:
-      - overwritten-by-secret
-      - overwritten-by-secret
-    https: true
+    enabled: false
+    # annotations:
+      # traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    # hosts:
+    #   - overwritten-by-secret
+    #   - overwritten-by-secret
+    # https: true
     # tls:
     #   hosts:
     #     - overwritten-by-secret
