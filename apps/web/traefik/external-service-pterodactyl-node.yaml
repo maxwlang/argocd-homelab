@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: pterodactyl-node
+spec:
+  ports:
+  - protocol: TCP
+    port: 7329
+    targetPort: 7329
+    name: http

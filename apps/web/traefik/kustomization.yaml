@@ -8,6 +8,7 @@ resources:
   - middleware-https-only.yaml
   - middleware-authentik-forwardauth-media.yaml
   - external-endpoint-pterodactyl-node.yaml
+  - external-service-pterodactyl-node.yaml
 
 replacements:
   - source:
