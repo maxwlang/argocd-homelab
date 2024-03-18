@@ -33,3 +33,13 @@ replacements:
           name: pterodactyl-node-cert
         fieldPaths:
           - spec.dnsNames.0
+  - source:
+      kind: Secret
+      name: traefik-secrets
+      fieldPath: stringData.EXTERNAL_INGRESS_ROUTE_MATCH_PTERODACTYL_NODE
+    targets:
+      - select:
+          kind: IngressRoute
+          name: pterodactyl-node
+        fieldPaths:
+          - spec.routes.0.match
