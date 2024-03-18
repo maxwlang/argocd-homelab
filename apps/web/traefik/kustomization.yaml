@@ -21,3 +21,13 @@ replacements:
           name: authentik-forwardauth-media
         fieldPaths:
           - spec.forwardAuth.address
+  - source:
+      kind: Secret
+      name: traefik-secrets
+      fieldPath: stringData.EXTERNAL_INGRESS_ROUTE_PTERODACTYL_NODE_ADDRESS
+    targets:
+      - select:
+          kind: Certificate
+          name: pterodactyl-node-cert
+        fieldPaths:
+          - spec.dnsNames.0
