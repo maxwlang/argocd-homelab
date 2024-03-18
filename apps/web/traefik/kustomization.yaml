@@ -9,6 +9,8 @@ resources:
   - middleware-authentik-forwardauth-media.yaml
   - external-endpoint-pterodactyl-node.yaml
   - external-service-pterodactyl-node.yaml
+  - external-certificate-pterodactyl-node.yamlz
+  - external-ingress-route-pterodactyl-node.yaml
 
 replacements:
   - source:
