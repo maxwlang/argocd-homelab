@@ -1,0 +1,11 @@
+kind: Endpoints
+apiVersion: v1
+metadata:
+  name: pterodactyl-node
+subsets:
+  - addresses:
+    - ip: 10.0.50.2
+    ports:
+    - protocol: TCP
+      port: 7329
+      name: https
