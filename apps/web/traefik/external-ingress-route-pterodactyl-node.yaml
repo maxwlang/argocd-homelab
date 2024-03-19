@@ -5,6 +5,7 @@ metadata:
   name: &appname pterodactyl-node
 spec:
   entryPoints:
+    - web
     - websecure
   routes:
     - match: ingress-route-match
