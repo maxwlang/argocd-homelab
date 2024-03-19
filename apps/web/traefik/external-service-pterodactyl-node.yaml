@@ -1,12 +1,13 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: pterodactyl-node-svc
+  name: pterodactyl-node
 spec:
-  type: ExternalName
-  externalName: pterodactyl-node.web.svc.cluster.local
+  # type: ExternalName
+  # externalName: 10.0.50.2
   ports:
   - protocol: TCP
     port: 7329
     targetPort: 7329
     name: http
+  clusterIP: None
