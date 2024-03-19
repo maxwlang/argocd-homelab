@@ -8,3 +8,4 @@ spec:
     port: 7329
     targetPort: 7329
     name: http
+  clusterIP: None
