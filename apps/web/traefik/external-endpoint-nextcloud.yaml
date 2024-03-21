@@ -1,0 +1,10 @@
+kind: Endpoints
+apiVersion: v1
+metadata:
+  name: nextcloud
+subsets:
+  - addresses:
+    - ip: 10.0.20.33
+    ports:
+    - protocol: TCP
+      port: 80
