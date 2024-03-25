@@ -90,13 +90,13 @@ replacements:
           name: nextcloud-cert
         fieldPaths:
           - spec.dnsNames.3
-  - source:
-      kind: Secret
-      name: traefik-secrets
-      fieldPath: stringData.EXTERNAL_INGRESS_ROUTE_MATCH_NEXTCLOUD
-    targets:
-      - select:
-          kind: IngressRoute
-          name: nextcloud
-        fieldPaths:
-          - spec.routes.0.match
+  # - source:
+  #     kind: Secret
+  #     name: traefik-secrets
+  #     fieldPath: stringData.EXTERNAL_INGRESS_ROUTE_MATCH_NEXTCLOUD
+  #   targets:
+  #     - select:
+  #         kind: IngressRoute
+  #         name: nextcloud
+  #       fieldPaths:
+  #         - spec.routes.0.match
