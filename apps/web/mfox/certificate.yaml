@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: mfox-cert
+spec:
+  secretName: mfox-cert
+  dnsNames: 
+    - overwritten-by-secret
+    - overwritten-by-secret
+  issuerRef:
+    kind: Issuer
+    name: letsencrypt-prod

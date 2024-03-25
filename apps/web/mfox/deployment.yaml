@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mfox
+  namespace: web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mfox
+  template:
+    metadata:
+      labels:
+        app: mfox
+
+    spec:
+      containers:
+      - name: mfox
+        image: ghcr.io/maxwlang/mochafox:v1.0.0
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "1000m"
+        ports:
+          - containerPort: 3000
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: NEXT_PUBLIC_GA_MEASUREMENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: chrisitian-secrets
+              key: NEXT_PUBLIC_GA_MEASUREMENT_ID
+      imagePullSecrets:
+      - name: ghcr-login-secret
