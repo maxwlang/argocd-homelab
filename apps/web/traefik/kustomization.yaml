@@ -83,6 +83,16 @@ replacements:
   - source:
       kind: Secret
       name: traefik-secrets
+      fieldPath: stringData.EXTERNAL_INGRESS_ROUTE_NEXTCLOUD_ADDRESS_4
+    targets:
+      - select:
+          kind: Certificate
+          name: nextcloud-cert
+        fieldPaths:
+          - spec.dnsNames.3
+  - source:
+      kind: Secret
+      name: traefik-secrets
       fieldPath: stringData.EXTERNAL_INGRESS_ROUTE_MATCH_NEXTCLOUD
     targets:
       - select:
