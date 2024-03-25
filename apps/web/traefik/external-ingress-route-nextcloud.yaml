@@ -8,7 +8,7 @@ spec:
     - web
     - websecure
   routes:
-    - match: Host(`files.maxwlang.com`) || Host(`files.gotkryp.to`) || Host(`files.crust.monster`) || Host(`files.mochafox.com`)
+    - match: overwritten-by-secret
       kind: Rule
       services:
         - name: *appname
