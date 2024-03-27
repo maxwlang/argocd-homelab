@@ -15,7 +15,6 @@ spec:
           port: 80
       middlewares:
         - name: authentik-forwardauth-media
-        - name: https-only
     - kind: Rule
       match: ingress-route-authentik
       priority: 15
