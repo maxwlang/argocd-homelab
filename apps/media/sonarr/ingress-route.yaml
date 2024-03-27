@@ -14,7 +14,7 @@ spec:
         - name: *appname
           port: 80
       middlewares:
-        - name: authentik-forwardauth-media
+        - name: authentik-forwardauth-mediakkkkkkk
     - kind: Rule
       match: ingress-route-authentik
       priority: 15
