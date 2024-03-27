@@ -29,7 +29,7 @@ spec:
     - match: ingress-route-match
       kind: Rule
       services:
-        - name: *appname
+        - name: mfox
           port: 80
       middlewares:
         - name: https-only
