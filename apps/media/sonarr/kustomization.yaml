@@ -38,6 +38,6 @@ replacements:
     targets:
       - select:
           kind: IngressRoute
-          name: sonarr
+          name: sonarr-authentik
         fieldPaths:
-          - spec.routes.1.match
+          - spec.routes.0.match
