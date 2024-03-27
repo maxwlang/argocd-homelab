@@ -28,5 +28,8 @@ spec:
   routes:
     - match: ingress-route-match
       kind: Rule
+      services:
+        - name: *appname
+          port: 80
       middlewares:
         - name: https-only
