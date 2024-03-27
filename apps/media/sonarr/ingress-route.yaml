@@ -20,6 +20,7 @@ spec:
       priority: 15
       services:
           - kind: Service
+            namespace: web
             name: authentik-server
             port: 80
       middlewares:
