@@ -5,22 +5,13 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+  - certificate.yaml
   - ingress-route.yaml
 
 generators:
   - secret-generator.yaml
 
 replacements:
-  # - source:
-  #     kind: Secret
-  #     name: sonarr-secrets
-  #     fieldPath: stringData.PUBLIC_URI
-  #   targets:
-  #     - select:
-  #         kind: Ingress
-  #         name: sonarr
-  #       fieldPaths:
-  #         - spec.rules.0.host
   - source:
       kind: Secret
       name: sonarr-secrets
@@ -41,3 +32,14 @@ replacements:
           name: sonarr-authentik
         fieldPaths:
           - spec.routes.0.match
+# Certificates
+  - source:
+      kind: Secret
+      name: sonarr-secrets
+      fieldPath: stringData.PUBLIC_URI
+    targets:
+      - select:
+          kind: Certificate
+          name: sonarr-cert
+        fieldPaths:
+          - spec.dnsNames.0

@@ -9,16 +9,6 @@ metadata:
   name: &appname sonarr
 spec:
   rules:
-  # - host: &uri public-uri-secret
-  #   http:
-  #     paths:
-  #     - path: /
-  #       pathType: Prefix
-  #       backend:
-  #         service:
-  #           name: *appname
-  #           port:
-  #             number: 80
   - host: &local_uri sonarr.k8s.maxwlang.com
     http:
       paths:
@@ -31,6 +21,5 @@ spec:
               number: 80
   tls:
   - hosts:
-    # - *uri
     - *local_uri
     secretName: *appname
