@@ -22,6 +22,16 @@ replacements:
           name: chrisitian
         fieldPaths:
           - spec.routes.0.match
+  - source:
+      kind: Secret
+      name: chrisitian-secrets
+      fieldPath: stringData.INGRESS_ROUTE_MATCH
+    targets:
+      - select:
+          kind: IngressRoute
+          name: chrisitian-http
+        fieldPaths:
+          - spec.routes.0.match
 
 # Certificates
   - source:

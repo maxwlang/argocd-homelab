@@ -5,7 +5,6 @@ metadata:
   name: &appname gitea
 spec:
   entryPoints:
-    - web
     - websecure
   routes:
     - kind: Rule
@@ -33,3 +32,36 @@ spec:
     #       port: 80
   tls:
     secretName: gitea-cert
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  namespace: web
+  name: gitea-http
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: ingress-route-match
+      priority: 10
+      services:
+        - name: gitea
+          port: 80
+      middlewares:
+        - name: https-only
+        # - name: authentik-forwardauth-media
+    # - kind: Rule
+    #   match: ingress-route-authentik
+    #   priority: 15
+    #   services:
+    #       - kind: Service
+    #         name: authentik-server
+    #         port: 80
+    #   middlewares:
+    #     - name: https-only
+    # - kind: Rule
+    #   match: Host(`git.k8s.maxwlang.com`)
+    #   services:
+    #     - name: *appname
+    #       port: 80

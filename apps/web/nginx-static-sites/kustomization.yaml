@@ -22,6 +22,16 @@ replacements:
           name: nginx-static-sites
         fieldPaths:
           - spec.routes.0.match
+  - source:
+      kind: Secret
+      name: nginx-static-sites-secrets
+      fieldPath: stringData.INGRESS_ROUTE_MATCH
+    targets:
+      - select:
+          kind: IngressRoute
+          name: nginx-static-sites-http
+        fieldPaths:
+          - spec.routes.0.match
 
 # Certificates
   - source:

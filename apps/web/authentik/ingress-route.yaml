@@ -16,3 +16,20 @@ spec:
         - name: https-only
   tls:
     secretName: authentik-cert
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  namespace: web
+  name: authentik-http
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: ingress-route-match
+      kind: Rule
+      services:
+        - name: authentik-server
+          port: 80
+      middlewares:
+        - name: https-only

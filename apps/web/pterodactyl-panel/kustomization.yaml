@@ -22,6 +22,16 @@ replacements:
           name: pterodactyl-panel
         fieldPaths:
           - spec.routes.0.match
+  - source:
+      kind: Secret
+      name: pterodactyl-panel-secrets
+      fieldPath: stringData.INGRESS_ROUTE_MATCH
+    targets:
+      - select:
+          kind: IngressRoute
+          name: pterodactyl-panel-http
+        fieldPaths:
+          - spec.routes.0.match
 
 # Certificates
   - source:

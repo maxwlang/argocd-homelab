@@ -29,6 +29,16 @@ replacements:
           name: authentik
         fieldPaths:
           - spec.routes.0.match
+  - source:
+      kind: Secret
+      name: authentik-secrets
+      fieldPath: stringData.INGRESS_ROUTE_MATCH
+    targets:
+      - select:
+          kind: IngressRoute
+          name: authentik-http
+        fieldPaths:
+          - spec.routes.0.match
 
 # Certificates
   - source:
