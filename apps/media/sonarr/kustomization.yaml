@@ -11,33 +11,33 @@ generators:
   - secret-generator.yaml
 
 replacements:
+  # - source:
+  #     kind: Secret
+  #     name: sonarr-secrets
+  #     fieldPath: stringData.PUBLIC_URI
+  #   targets:
+  #     - select:
+  #         kind: Ingress
+  #         name: sonarr
+  #       fieldPaths:
+  #         - spec.rules.0.host
   - source:
       kind: Secret
       name: sonarr-secrets
-      fieldPath: stringData.PUBLIC_URI
+      fieldPath: stringData.INGRESS_ROUTE_MATCH
     targets:
       - select:
-          kind: Ingress
+          kind: IngressRoute
           name: sonarr
         fieldPaths:
-          - spec.rules.0.host
-  # - source:
-  #     kind: Secret
-  #     name: sonarr-secrets
-  #     fieldPath: stringData.INGRESS_ROUTE_MATCH
-  #   targets:
-  #     - select:
-  #         kind: IngressRoute
-  #         name: sonarr
-  #       fieldPaths:
-  #         - spec.routes.0.match
-  # - source:
-  #     kind: Secret
-  #     name: sonarr-secrets
-  #     fieldPath: stringData.INGRESS_ROUTE_AUTHENTIK
-  #   targets:
-  #     - select:
-  #         kind: IngressRoute
-  #         name: sonarr-authentik
-  #       fieldPaths:
-  #         - spec.routes.0.match
+          - spec.routes.0.match
+  - source:
+      kind: Secret
+      name: sonarr-secrets
+      fieldPath: stringData.INGRESS_ROUTE_AUTHENTIK
+    targets:
+      - select:
+          kind: IngressRoute
+          name: sonarr-authentik
+        fieldPaths:
+          - spec.routes.0.match
