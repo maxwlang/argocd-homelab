@@ -22,6 +22,16 @@ replacements:
           name: mfox
         fieldPaths:
           - spec.routes.0.match
+  - source:
+      kind: Secret
+      name: mfox-secrets
+      fieldPath: stringData.INGRESS_ROUTE_MATCH
+    targets:
+      - select:
+          kind: IngressRoute
+          name: mfox-http
+        fieldPaths:
+          - spec.routes.0.match
 
 # Certificates
   - source:
