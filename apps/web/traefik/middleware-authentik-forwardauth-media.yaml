@@ -5,7 +5,7 @@ metadata:
     namespace: media
 spec:
     forwardAuth:
-        address: overwritten-by-secret
+        address: http://authentik_server/outpost.goauthentik.io/auth/traefik
         trustForwardHeader: true
         authResponseHeaders:
             - X-authentik-username

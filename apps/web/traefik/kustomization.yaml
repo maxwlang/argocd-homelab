@@ -17,17 +17,6 @@ resources:
   - external-ingress-route-nextcloud.yaml
 
 replacements:
-# Authentik
-  - source:
-      kind: Secret
-      name: traefik-secrets
-      fieldPath: stringData.MIDDLEWARE_AUTHENTIK_FORWARDAUTH_MEDIA_ADDRESS
-    targets:
-      - select:
-          kind: Middleware
-          name: authentik-forwardauth-media
-        fieldPaths:
-          - spec.forwardAuth.address
 # Pterodactyl
   - source:
       kind: Secret
