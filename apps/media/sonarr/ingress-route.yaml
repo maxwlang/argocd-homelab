@@ -1,0 +1,29 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  namespace: web
+  name: &appname sonarr
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: ingress-route-match
+      priority: 10
+      services:
+        - name: *appname
+          port: 80
+      middlewares:
+        - name: https-only
+        - name: authentik-forwardauth-media
+    - kind: Rule
+      match: ingress-route-authentik
+      priority: 15
+      services:
+          - kind: Service
+            name: authentik-server
+            port: 80
+      middlewares:
+        - name: https-only
+  tls:
+    secretName: sonarr-cert

@@ -5,6 +5,7 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+  - ingress-route.yaml
 
 generators:
   - secret-generator.yaml
@@ -20,3 +21,23 @@ replacements:
           name: sonarr
         fieldPaths:
           - spec.rules.0.host
+  - source:
+      kind: Secret
+      name: sonarr-secrets
+      fieldPath: stringData.INGRESS_ROUTE_MATCH
+    targets:
+      - select:
+          kind: IngressRoute
+          name: sonarr
+        fieldPaths:
+          - spec.routes.0.match
+  - source:
+      kind: Secret
+      name: sonarr-secrets
+      fieldPath: stringData.INGRESS_ROUTE_AUTHENTIK
+    targets:
+      - select:
+          kind: IngressRoute
+          name: sonarr
+        fieldPaths:
+          - spec.routes.1.match
