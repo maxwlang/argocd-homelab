@@ -17,7 +17,7 @@ spec:
       containers:
       - name: sabnzbd-vpn-media
         # https://hub.docker.com/r/binhex/arch-sabnzbdvpn/tags
-        image: binhex/arch-sabnzbdvpn:4.2.2-1-01
+        image: binhex/arch-sabnzbdvpn:4.2.3-1-06
         resources:
           requests:
             memory: "6Gi"

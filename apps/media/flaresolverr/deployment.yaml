@@ -17,7 +17,7 @@ spec:
       containers:
       - name: flaresolverr
         # https://github.com/flaresolverr/FlareSolverr/pkgs/container/flaresolverr
-        image: ghcr.io/flaresolverr/flaresolverr:v3.3.15
+        image: ghcr.io/flaresolverr/flaresolverr:v3.3.17
         resources:
           requests:
             memory: "64Mi"

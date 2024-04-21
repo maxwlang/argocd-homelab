@@ -17,7 +17,7 @@ spec:
       containers:
       - name: radarr
         # https://github.com/linuxserver/docker-radarr/releases/latest
-        image: lscr.io/linuxserver/radarr:5.3.6.8612-ls204
+        image: lscr.io/linuxserver/radarr:5.4.6.8723-ls215
         resources:
           requests:
             memory: "64Mi"

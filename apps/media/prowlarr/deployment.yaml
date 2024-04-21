@@ -17,7 +17,7 @@ spec:
       containers:
       - name: prowlarr
         # https://github.com/linuxserver/docker-prowlarr/releases/latest
-        image: lscr.io/linuxserver/prowlarr:1.13.3.4273-ls53
+        image: lscr.io/linuxserver/prowlarr:1.16.2.4435-ls66
         resources:
           requests:
             memory: "64Mi"
