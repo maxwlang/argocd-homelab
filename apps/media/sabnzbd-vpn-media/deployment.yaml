@@ -76,11 +76,11 @@ spec:
       volumes:
       # - name: downloads-nas-ssd
       #   nfs:
-      #     server: "10.0.20.3"
+      #     server: "10.100.0.1"
       #     path: /mnt/ssd/kubernetes/sabnzbd-vpn-media
       - name: downloads-nas-hdd
         nfs:
-          server: "10.0.20.3"
+          server: "10.100.0.1"
           path: /mnt/tank/downloads/sabnzbd-vpn-media
       - name: sabnzbd-vpn-media-config
         hostPath:

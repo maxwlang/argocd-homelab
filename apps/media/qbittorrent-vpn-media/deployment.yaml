@@ -84,11 +84,11 @@ spec:
           path: /etc/localtime
       - name: downloads-nas-ssd
         nfs:
-          server: "10.0.20.3"
+          server: "10.100.0.1"
           path: /mnt/ssd/kubernetes/qbittorrent-vpn-media-content
       - name: downloads-nas-hdd
         nfs:
-          server: "10.0.20.3"
+          server: "10.100.0.1"
           path: /mnt/tank/downloads/qbittorrent-vpn-media
       - name: config
         hostPath:

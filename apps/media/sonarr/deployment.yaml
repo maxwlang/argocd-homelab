@@ -46,15 +46,15 @@ spec:
       volumes:
       - name: tv
         nfs:
-          server: "10.0.20.3"
+          server: "10.100.0.1"
           path: /mnt/tank/media/plex-published-media/TV
       - name: downloads
         nfs:
-          server: "10.0.20.3"
+          server: "10.100.0.1"
           path: /mnt/tank/downloads/qbittorrent-vpn-media
       - name: downloads-sabnzbd
         nfs:
-          server: "10.0.20.3"
+          server: "10.100.0.1"
           path: /mnt/tank/downloads/sabnzbd-vpn-media
       - name: sonarr-config
         hostPath:

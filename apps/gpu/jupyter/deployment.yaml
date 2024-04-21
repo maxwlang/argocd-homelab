@@ -52,7 +52,7 @@ spec:
           type: 'DirectoryOrCreate'
       - name: ssd-storage
         nfs:
-          server: "10.0.20.3"
+          server: "10.100.0.1"
           path: /mnt/ssd/kubernetes/jupyter
       tolerations:
       - key: nvidia.com/gpu

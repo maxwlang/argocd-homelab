@@ -35,9 +35,9 @@ spec:
       volumes:
       - name: site-data
         nfs:
-          server: "10.0.20.3"
+          server: "10.100.0.1"
           path: /mnt/ssd/nginx-static-sites/html
       - name: nginx-config
         nfs:
-          server: "10.0.20.3"
+          server: "10.100.0.1"
           path: /mnt/ssd/nginx-static-sites/config

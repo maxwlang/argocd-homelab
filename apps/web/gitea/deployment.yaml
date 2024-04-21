@@ -61,5 +61,5 @@ spec:
       volumes:
       - name: gitea-data
         nfs:
-          server: "10.0.20.3"
+          server: "10.100.0.1"
           path: /mnt/tank/gitea
