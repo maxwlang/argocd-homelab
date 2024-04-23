@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - deployment.yaml
   - service.yaml
-  - ingress.yaml
+  - ingress-route.yaml
 
 generators:
   - secret-generator.yaml
@@ -18,5 +18,15 @@ replacements:
       - select:
           kind: Ingress
           name: radarr
+        fieldPaths:
+          - spec.rules.0.host
+  - source:
+      kind: Secret
+      name: radarr-secrets
+      fieldPath: stringData.PUBLIC_URI
+    targets:
+      - select:
+          kind: Ingress
+          name: radarr-http
         fieldPaths:
           - spec.rules.0.host
