@@ -4,7 +4,8 @@ kind: Kustomization
 resources:
   - deployment.yaml
   - service.yaml
-  - ingress.yaml
+  - certificate.yaml
+  - ingress-route.yaml
 
 generators:
   - secret-generator.yaml
@@ -13,10 +14,30 @@ replacements:
   - source:
       kind: Secret
       name: qbittorrent-vpn-media-secrets
+      fieldPath: stringData.INGRESS_ROUTE_MATCH
+    targets:
+      - select:
+          kind: IngressRoute
+          name: qbittorrent-media
+        fieldPaths:
+          - spec.routes.0.match
+  - source:
+      kind: Secret
+      name: qbittorrent-vpn-media-secrets
+      fieldPath: stringData.INGRESS_ROUTE_MATCH
+    targets:
+      - select:
+          kind: IngressRoute
+          name: qbittorrent-media-http
+        fieldPaths:
+          - spec.routes.0.match
+  - source:
+      kind: Secret
+      name: qbittorrent-vpn-media-secrets
       fieldPath: stringData.PUBLIC_URI
     targets:
       - select:
-          kind: Ingress
-          name: qbittorrent-vpn-media
+          kind: Certificate
+          name: qbittorrent-media-cert
         fieldPaths:
-          - spec.rules.0.host
+          - spec.dnsNames.0
