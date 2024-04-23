@@ -4,7 +4,40 @@ kind: Kustomization
 resources:
   - deployment.yaml
   - service.yaml
-  - ingress.yaml
+  - certificate.yaml
+  - ingress-route.yaml
 
 generators:
   - secret-generator.yaml
+
+replacements:
+  - source:
+      kind: Secret
+      name: sabnzbd-secrets
+      fieldPath: stringData.INGRESS_ROUTE_MATCH
+    targets:
+      - select:
+          kind: IngressRoute
+          name: sabnzbd
+        fieldPaths:
+          - spec.routes.0.match
+  - source:
+      kind: Secret
+      name: sabnzbd-secrets
+      fieldPath: stringData.INGRESS_ROUTE_MATCH
+    targets:
+      - select:
+          kind: IngressRoute
+          name: sabnzbd-http
+        fieldPaths:
+          - spec.routes.0.match
+  - source:
+      kind: Secret
+      name: sabnzbd-secrets
+      fieldPath: stringData.PUBLIC_URI
+    targets:
+      - select:
+          kind: Certificate
+          name: sabnzbd-cert
+        fieldPaths:
+          - spec.dnsNames.0
