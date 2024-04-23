@@ -14,7 +14,7 @@ replacements:
   - source:
       kind: Secret
       name: radarr-secrets
-      fieldPath: stringData.PUBLIC_URI
+      fieldPath: stringData.INGRESS_ROUTE_MATCH
     targets:
       - select:
           kind: IngressRoute
@@ -24,7 +24,7 @@ replacements:
   - source:
       kind: Secret
       name: radarr-secrets
-      fieldPath: stringData.PUBLIC_URI
+      fieldPath: stringData.INGRESS_ROUTE_MATCH
     targets:
       - select:
           kind: IngressRoute
