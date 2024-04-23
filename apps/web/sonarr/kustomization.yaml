@@ -5,28 +5,3 @@ resources: []
   # - deployment.yaml
   # - service.yaml
   # - ingress-route.yaml
-
-generators:
-  - secret-generator.yaml
-
-replacements:
-  - source:
-      kind: Secret
-      name: sonarr-web-secrets
-      fieldPath: stringData.INGRESS_ROUTE_MATCH
-    targets:
-      - select:
-          kind: IngressRoute
-          name: sonarr-web
-        fieldPaths:
-          - spec.routes.0.match
-  - source:
-      kind: Secret
-      name: sonarr-web-secrets
-      fieldPath: stringData.INGRESS_ROUTE_AUTHENTIK
-    targets:
-      - select:
-          kind: IngressRoute
-          name: sonarr-web-authentik
-        fieldPaths:
-          - spec.routes.0.match
