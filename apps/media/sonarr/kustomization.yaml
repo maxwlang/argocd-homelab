@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - deployment.yaml
   - service.yaml
+  - certificate.yaml
   - ingress-route.yaml
 
 generators:
@@ -30,3 +31,13 @@ replacements:
           name: sonarr-http
         fieldPaths:
           - spec.routes.0.match
+  - source:
+      kind: Secret
+      name: sonarr-secrets
+      fieldPath: stringData.PUBLIC_URI
+    targets:
+      - select:
+          kind: Certificate
+          name: sonarr-cert
+        fieldPaths:
+          - spec.dnsNames.0
