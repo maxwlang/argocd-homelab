@@ -13,7 +13,7 @@ generators:
 replacements:
   - source:
       kind: Secret
-      name: sabnzbd-secrets
+      name: sabnzbd-vpn-media-secrets
       fieldPath: stringData.INGRESS_ROUTE_MATCH
     targets:
       - select:
@@ -23,7 +23,7 @@ replacements:
           - spec.routes.0.match
   - source:
       kind: Secret
-      name: sabnzbd-secrets
+      name: sabnzbd-vpn-media-secrets
       fieldPath: stringData.INGRESS_ROUTE_MATCH
     targets:
       - select:
@@ -33,7 +33,7 @@ replacements:
           - spec.routes.0.match
   - source:
       kind: Secret
-      name: sabnzbd-secrets
+      name: sabnzbd-vpn-media-secrets
       fieldPath: stringData.PUBLIC_URI
     targets:
       - select:
