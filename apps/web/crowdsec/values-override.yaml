@@ -12,6 +12,8 @@ agent:
       value: "crowdsecurity/traefik"
     - name: DISABLE_PARSERS
       value: "crowdsecurity/whitelists"
+    - name: LOCAL_API_URL
+      value: "http://crowdsec-service.web.svc.cluster.local:8080"
   persistentVolume:
     config:
       enabled: false
