@@ -1,0 +1,33 @@
+container_runtime: containerd
+agent:
+  # To specify each pod you want to process logs from (pods present on the node)
+  acquisition:
+    - namespace: kube-system
+      podName: traefik-*
+      program: traefik
+  env:
+    - name: PARSERS
+      value: "crowdsecurity/cri-logs"
+    - name: COLLECTIONS
+      value: "crowdsecurity/traefik"
+    - name: DISABLE_PARSERS
+      value: "crowdsecurity/whitelists"
+  persistentVolume:
+    config:
+      enabled: false
+lapi:
+  dashboard:
+    enabled: false
+    ingress:
+      host: dashboard.local
+      enabled: true
+  env:
+    - name: ENROLL_KEY
+      value: ""
+    - name: ENROLL_INSTANCE_NAME
+      value: "k8s_cluster"
+    - name: ENROLL_TAGS
+      value: "k8s cluster"
+    # If it's a test, we don't want to share signals with CrowdSec so disable the Online API.
+    #- name: DISABLE_ONLINE_API
+    #  value: "true"
