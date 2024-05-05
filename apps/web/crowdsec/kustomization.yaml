@@ -4,7 +4,7 @@ kind: Kustomization
 helmCharts:
 - name: crowdsec
   includeCRDs: true
-  version: 0.9.12
+  version: 0.10.0
   repo: https://crowdsecurity.github.io/helm-charts
   valuesFile: values-override.yaml
   releaseName: crowdsec

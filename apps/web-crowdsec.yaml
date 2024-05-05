@@ -4,12 +4,12 @@ metadata:
   name: crowdsec
 spec:
   destination:
-    namespace: network
+    namespace: web
     server: https://kubernetes.default.svc
-  project: network
+  project: web
   source:
     repoURL: git@github.com:maxwlang/argocd-homelab.git
-    path: apps/network/crowdsec
+    path: apps/web/crowdsec
     targetRevision: HEAD
   syncPolicy:
     syncOptions:
