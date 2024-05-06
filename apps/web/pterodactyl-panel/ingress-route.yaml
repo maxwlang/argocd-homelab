@@ -13,8 +13,8 @@ spec:
         - name: *appname
           port: 80
       middlewares:
-        - name: ingress-traefik-traefik-bouncer@kubernetescrd
         - name: https-only
+        - name: ingress-traefik-traefik-bouncer@kubernetescrd
   tls:
     secretName: pterodactyl-panel-cert
 ---
@@ -33,5 +33,5 @@ spec:
         - name: pterodactyl-panel
           port: 80
       middlewares:
-        - name: ingress-traefik-traefik-bouncer@kubernetescrd
         - name: https-only
+        - name: ingress-traefik-traefik-bouncer@kubernetescrd
