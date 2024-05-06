@@ -49,3 +49,13 @@ replacements:
           name: crowdsec-traefik-bouncer
         fieldPaths:
           - spec.template.spec.containers.0.env.[name=CROWDSEC_BOUNCER_API_KEY].value
+  - source:
+      kind: Secret
+      name: crowdsec-secrets
+      fieldPath: stringData.TRAEFIK_BOUNCER_ADDRESS
+    targets:
+      - select:
+          kind: Middleware
+          name: crowdsec-traefik-bouncer
+        fieldPaths:
+          - spec.forwardAuth.address
