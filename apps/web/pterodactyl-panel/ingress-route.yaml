@@ -14,7 +14,7 @@ spec:
           port: 80
       middlewares:
         # - name: https-only
-        - name: ingress-traefik-traefik-bouncer@kubernetescrd
+        - name: crowdsec-traefik-bouncer@kubernetescrd
   tls:
     secretName: pterodactyl-panel-cert
 ---
@@ -34,4 +34,4 @@ spec:
           port: 80
       middlewares:
         # - name: https-only
-        - name: ingress-traefik-traefik-bouncer@kubernetescrd
+        - name: crowdsec-traefik-bouncer@kubernetescrd
