@@ -16,7 +16,7 @@ resources:
   - external-ingress-route-nextcloud.yaml
 
 replacements:
-# Traefik
+# Traefik.
   - source:
       kind: Secret
       name: traefik-secrets
