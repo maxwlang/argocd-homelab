@@ -32,4 +32,4 @@ replacements:
           kind: DaemonSet
           name: crowdsec-agent
         fieldPaths:
-          - spec.template.spec.initContainers.[name=wait-for-lapi].command
+          - spec.template.spec.initContainers.[name=wait-for-lapi].command.2
