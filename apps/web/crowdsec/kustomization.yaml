@@ -21,6 +21,7 @@ generators:
 resources:
   - blocklist-mirror-config.yaml
   - blocklist-mirror-deployment.yaml
+  - blocklist-mirror-service.yaml
   - blocklist-mirror-ingress.yaml
 
 replacements:
