@@ -22,5 +22,15 @@ spec:
             memory: "64Mi"
             cpu: "250m"
           limits:
-            memory: "256Mi"
-            cpu: "1000m"
+            memory: "5Gi"
+            cpu: "2000m"
+        ports:
+        - containerPort: 8989
+        volumeMounts:
+        - name: config
+          mountPath: /etc/crowdsec/bouncers/crowdsec-blocklist-mirror.yaml
+          subPath: crowdsec-blocklist-mirror.yaml
+      volumes:
+      - name: config
+        configMap:
+          name: blocklist-mirror-config

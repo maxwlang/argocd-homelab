@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: blocklist-mirror-config
 data:
-  cfg.yaml: >
+  crowdsec-blocklist-mirror.yaml: >
     config_version: v1.0
     crowdsec_config:
       lapi_key: api-key
