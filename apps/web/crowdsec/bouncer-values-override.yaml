@@ -1,3 +1,0 @@
-bouncer:
-  crowdsec_bouncer_api_key: overridden
-  crowdsec_agent_host: "crowdsec-service.web.svc.cluster.local:8080"
