@@ -39,3 +39,13 @@ replacements:
           name: crowdsec-agent
         fieldPaths:
           - spec.template.spec.initContainers.[name=wait-for-lapi].command.2
+  - source:
+      kind: Secret
+      name: crowdsec-secrets
+      fieldPath: stringData.TRAEFIK_BOUNCER_SECRET
+    targets:
+      - select:
+          kind: Deployment
+          name: crowdsec-traefik-bouncer
+        fieldPaths:
+          - spec.template.spec.containers.0.env.[name=CROWDSEC_BOUNCER_API_KEY].value
