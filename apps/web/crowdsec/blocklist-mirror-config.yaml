@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: blocklist-mirror-config
+data:
+  cfg.yaml: >
+    config_version: v1.0
+    crowdsec_config:
+      lapi_key: api-key
+      lapi_url: http://crowdsec-service.web.svc.cluster.local:8080
+      update_frequency: 10s
+      include_scenarios_containing: []
+      exclude_scenarios_containing: []
+      only_include_decisions_from: []
+      insecure_skip_verify: false
+
+    blocklists:
+      - format: plain_text # Supported formats are either of "plain_text", "mikrotik"
+        endpoint: /security/blocklist
+        authentication:
+          type: none # Supported types are either of "none", "ip_based", "basic"
+          user:
+          password:
+          trusted_ips: # IP ranges, or IPs which don't require auth to access this blocklist
+            - 127.0.0.1
+            - ::1
+
+    listen_uri: 0.0.0.0:41412
+    tls:
+      cert_file:
+      key_file:
+
+    metrics:
+      enabled: false
+      endpoint: /metrics
+
+    log_media: stdout
+    log_level: info
+
+

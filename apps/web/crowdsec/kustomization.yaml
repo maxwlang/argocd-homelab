@@ -19,6 +19,7 @@ generators:
   - secret-generator.yaml
 
 resources:
+  - blocklist-mirror-config.yaml
   - blocklist-mirror-deployment.yaml
   - blocklist-mirror-ingress.yaml
 
