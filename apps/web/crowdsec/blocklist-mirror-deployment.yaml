@@ -17,6 +17,12 @@ spec:
       containers:
       - name: crowdsec-blacklist-mirror-bouncer
         image: crowdsecurity/blocklist-mirror:v0.0.3
+        env:
+          - name: TRAEFIK_BLOCKLIST_MIRROR_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: crowdsec-secrets
+                key: TRAEFIK_BLOCKLIST_MIRROR_SECRET
         resources:
           requests:
             memory: "64Mi"
