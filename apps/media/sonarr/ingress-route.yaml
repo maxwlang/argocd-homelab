@@ -13,7 +13,6 @@ spec:
         - name: authentik-server
           port: 80
       middlewares:
-        - name: ingress-traefik-traefik-bouncer@kubernetescrd
         - name: https-only
   tls:
     secretName: sonarr-cert
@@ -33,5 +32,4 @@ spec:
         - name: authentik-server
           port: 80
       middlewares:
-        - name: ingress-traefik-traefik-bouncer@kubernetescrd
         - name: https-only
