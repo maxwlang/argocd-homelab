@@ -8,4 +8,18 @@ helmCharts:
   repo: https://crowdsecurity.github.io/helm-charts
   valuesFile: values-override.yaml
   releaseName: crowdsec
-  
+
+generators:
+  - secret-generator.yaml
+
+replacements:
+  - source:
+      kind: Secret
+      name: crowdsec-secrets
+      fieldPath: stringData.LOCAL_API_URL
+    targets:
+      - select:
+          kind: DaemonSet
+          name: crowdsec-agent
+        fieldPaths:
+          - spec.template.spec.containers.[name:crowdsec-agent].env.[name:LOCAL_API_URL].value
