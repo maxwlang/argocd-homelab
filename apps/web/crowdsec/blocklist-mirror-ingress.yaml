@@ -7,13 +7,13 @@ metadata:
   name: crowdsec-lapi
 spec:
   rules:
-  - host: g4f-api.k8s.maxwlang.com
+  - host: crowdsec-blocklist.k8s.maxwlang.com
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: *appname
+            name: crowdsec-blacklist-mirror-bouncer
             port:
-              number: 1337
+              number: 41412
