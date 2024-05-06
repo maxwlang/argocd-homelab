@@ -23,3 +23,13 @@ replacements:
           name: crowdsec-agent
         fieldPaths:
           - spec.template.spec.containers.[name=crowdsec-agent].env.[name=LOCAL_API_URL].value
+  - source:
+      kind: Secret
+      name: crowdsec-secrets
+      fieldPath: stringData.INIT_COMMAND
+    targets:
+      - select:
+          kind: DaemonSet
+          name: crowdsec-agent
+        fieldPaths:
+          - spec.template.spec.initContainers.[name=wait-for-lapi].command
