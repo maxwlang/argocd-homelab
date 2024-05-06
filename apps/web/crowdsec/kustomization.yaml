@@ -8,6 +8,12 @@ helmCharts:
   repo: https://crowdsecurity.github.io/helm-charts
   valuesFile: values-override.yaml
   releaseName: crowdsec
+- name: crowdsec-traefik-bouncer
+  includeCRDs: true
+  version: 0.10.0
+  repo: https://crowdsecurity.github.io/helm-charts
+  valuesFile: bouncer-values-override.yaml
+  releaseName: crowdsec-traefik-bouncer
 
 generators:
   - secret-generator.yaml

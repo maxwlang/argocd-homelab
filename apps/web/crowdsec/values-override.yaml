@@ -11,10 +11,6 @@ config:
       port:     5432
       sslmode:  require
 
-bouncer:
-  crowdsec_bouncer_api_key: overridden
-  crowdsec_agent_host: "crowdsec-service.web.svc.cluster.local:8080"
-
 agent:
   # To specify each pod you want to process logs from (pods present on the node)
   acquisition:
