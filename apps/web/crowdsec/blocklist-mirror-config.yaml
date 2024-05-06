@@ -6,7 +6,7 @@ data:
   crowdsec-blocklist-mirror.yaml: |
     config_version: v1.0
     crowdsec_config:
-      lapi_key: api-key
+      lapi_key: ${CROWDSEC_LAPI_KEY}
       lapi_url: http://crowdsec-service.web.svc.cluster.local:8080
       update_frequency: 10s
       include_scenarios_containing: []
