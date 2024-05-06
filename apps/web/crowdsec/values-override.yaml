@@ -1,4 +1,16 @@
 container_runtime: containerd
+
+config:
+  config.yaml.local: |
+    db_config:
+      type:     postgresql
+      user:     crowdsec
+      password: ${DB_PASSWORD}
+      db_name:  crowdsec
+      host:     10.0.20.32
+      port:     5432
+      sslmode:  require
+
 agent:
   # To specify each pod you want to process logs from (pods present on the node)
   acquisition:
@@ -28,6 +40,11 @@ lapi:
       value: "k8s_cluster"
     - name: ENROLL_TAGS
       value: "k8s cluster"
+    - name: DB_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: crowdsec-secrets
+          key: DB_PASSWORD
     # If it's a test, we don't want to share signals with CrowdSec so disable the Online API.
     #- name: DISABLE_ONLINE_API
     #  value: "true"
