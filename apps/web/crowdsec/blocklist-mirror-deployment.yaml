@@ -31,7 +31,7 @@ spec:
             memory: "5Gi"
             cpu: "2000m"
         ports:
-        - containerPort: 8989
+        - containerPort: 41412
         volumeMounts:
         - name: config
           mountPath: /etc/crowdsec/bouncers/crowdsec-blocklist-mirror.yaml

@@ -4,7 +4,7 @@ metadata:
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web
   namespace: web
-  name: crowdsec-lapi
+  name: crowdsec-blacklist-mirror-bouncer
 spec:
   rules:
   - host: crowdsec-blocklist.k8s.maxwlang.com
