@@ -17,6 +17,9 @@ agent:
     - namespace: kube-system
       podName: traefik-*
       program: traefik
+    - namespace: web
+      podName: vaultwarden-*
+      program: vaultwarden
   env:
     - name: PARSERS
       value: "crowdsecurity/cri-logs"
