@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crowdsec-blacklist-mirror-bouncer
+  namespace: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crowdsec-blacklist-mirror-bouncer
+  template:
+    metadata:
+      labels:
+        app: crowdsec-blacklist-mirror-bouncer
+
+    spec:
+      containers:
+      - name: crowdsec-blacklist-mirror-bouncer
+        image: crowdsecurity/blocklist-mirror:v0.0.3
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "1000m"

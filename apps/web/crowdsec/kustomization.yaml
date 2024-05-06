@@ -18,6 +18,10 @@ helmCharts:
 generators:
   - secret-generator.yaml
 
+resources:
+  - blocklist-mirror-deployment.yaml
+  - blocklist-mirror-ingress.yaml
+
 replacements:
   - source:
       kind: Secret
