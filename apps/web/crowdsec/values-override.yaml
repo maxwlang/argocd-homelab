@@ -21,7 +21,7 @@ agent:
     - name: PARSERS
       value: "crowdsecurity/cri-logs"
     - name: COLLECTIONS
-      value: "crowdsecurity/traefik"
+      value: "crowdsecurity/traefik, Dominic-Wagner/vaultwarden"
     - name: DISABLE_PARSERS
       value: "crowdsecurity/whitelists"
   persistentVolume:
