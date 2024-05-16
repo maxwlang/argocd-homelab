@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: mfox
-        image: ghcr.io/maxwlang/mochafox:v1.1.1
+        image: replaced-by-kustomize
         resources:
           requests:
             memory: "64Mi"

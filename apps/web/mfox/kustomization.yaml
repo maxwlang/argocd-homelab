@@ -11,6 +11,16 @@ generators:
   - secret-generator.yaml
 
 replacements:
+  - source:
+      kind: Secret
+      name: mfox-secrets
+      fieldPath: stringData.IMAGE
+    targets:
+      - select:
+          kind: Deployment
+          name: mfox
+        fieldPaths:
+          - spec.template.spec.containers.0.image
 # Ingress Route
   - source:
       kind: Secret
