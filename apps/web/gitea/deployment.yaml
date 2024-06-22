@@ -4,7 +4,7 @@ metadata:
   name: gitea
   namespace: web
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: gitea
