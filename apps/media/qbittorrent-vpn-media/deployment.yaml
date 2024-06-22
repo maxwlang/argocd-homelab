@@ -16,7 +16,7 @@ spec:
       containers:
       - name: qbittorrent-vpn-media
         # https://hub.docker.com/r/binhex/arch-qbittorrentvpn/tags
-        image: binhex/arch-qbittorrentvpn:4.6.4-1-01
+        image: binhex/arch-qbittorrentvpn:4.6.5-1-04
         resources:
           requests:
             memory: "4Mi"
