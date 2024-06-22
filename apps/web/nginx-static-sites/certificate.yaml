@@ -7,8 +7,6 @@ spec:
   dnsNames: 
     - mcchickers_uri
     - mcchickers_uri_www
-    - 08122036_uri
-    - 08122036_uri_www
     - catvideo_uri
     - catvideo_uri_www
   issuerRef:
