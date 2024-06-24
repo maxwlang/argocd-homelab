@@ -8,7 +8,6 @@ spec:
     - overwritten-by-secret
     - overwritten-by-secret
     - overwritten-by-secret
-    - overwritten-by-secret
   issuerRef:
     kind: Issuer
     name: letsencrypt-prod
