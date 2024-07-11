@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: s4c
+  namespace: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: s4c
+  template:
+    metadata:
+      labels:
+        app: s4c
+
+    spec:
+      containers:
+      - name: s4c
+        image: replaced-by-kustomize
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "1000m"
+        ports:
+          - containerPort: 3000
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: NEXT_PUBLIC_GA_MEASUREMENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: s4c-secrets
+              key: NEXT_PUBLIC_GA_MEASUREMENT_ID
+        # livenessProbe:
+        #   httpGet:
+        #     path: /api/healthz
+        #     port: 3000
+        #   initialDelaySeconds: 30
+        #   periodSeconds: 10
+      imagePullSecrets:
+      - name: ghcr-login-secret

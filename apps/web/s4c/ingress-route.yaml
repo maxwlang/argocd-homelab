@@ -1,0 +1,35 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  namespace: web
+  name: &appname s4c
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: ingress-route-match
+      kind: Rule
+      services:
+        - name: *appname
+          port: 80
+      middlewares:
+        - name: https-only
+  tls:
+    secretName: s4c-cert
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  namespace: web
+  name: s4c-http
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: ingress-route-match
+      kind: Rule
+      services:
+        - name: s4c
+          port: 80
+      middlewares:
+        - name: https-only
