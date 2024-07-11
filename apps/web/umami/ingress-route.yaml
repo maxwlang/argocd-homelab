@@ -1,0 +1,71 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  namespace: web
+  name: &appname umami-mwl
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: ingress-route-match
+      kind: Rule
+      services:
+        - name: *appname
+          port: 80
+      middlewares:
+        - name: https-only
+  tls:
+    secretName: umami-cert-mwl
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  namespace: web
+  name: &appname umami-alt
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: ingress-route-match-alt
+      kind: Rule
+      services:
+        - name: *appname
+          port: 80
+      middlewares:
+        - name: https-only
+  tls:
+    secretName: umami-cert-alt
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  namespace: web
+  name: umami-http-mwl
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: ingress-route-match
+      kind: Rule
+      services:
+        - name: umami
+          port: 80
+      middlewares:
+        - name: https-only
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  namespace: web
+  name: umami-http-alt
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: ingress-route-match-alt
+      kind: Rule
+      services:
+        - name: umami
+          port: 80
+      middlewares:
+        - name: https-only

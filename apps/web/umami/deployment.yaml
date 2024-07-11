@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: umami
+  namespace: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: umami
+  template:
+    metadata:
+      labels:
+        app: umami
+
+    spec:
+      containers:
+        - name: umami
+          image: ghcr.io/umami-software/umami:postgresql-latest
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "1000m"
+          ports:
+            - name: umami
+              containerPort: 3000
+          env:
+            - name: TRACKER_SCRIPT_NAME
+              value: e45e75e27812 # Just need to be something other than "umami", so that ad blockers don't block it
+            - name: DISABLE_TELEMETRY
+              value: "1"
+            - name: DISABLE_UPDATES
+              value: "1"
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: umami-secrets
+                  key: DATABASE_URL
+            - name: HASH_SALT
+              valueFrom:
+                secretKeyRef:
+                  name: umami-secrets
+                  key: HASH_SALT
+          readinessProbe:
+            failureThreshold: 1
+            httpGet:
+              path: /
+              port: 3000
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 2
+      imagePullSecrets:
+      - name: ghcr-login-secret

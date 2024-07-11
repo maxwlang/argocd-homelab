@@ -1,0 +1,27 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: umami-cert-mwl
+spec:
+  secretName: umami-cert-mwl
+  dnsNames: 
+    - overwritten-by-secret
+    - overwritten-by-secret
+  issuerRef:
+    kind: Issuer
+    name: letsencrypt-prod
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: umami-cert-alt
+spec:
+  secretName: umami-cert-alt
+  dnsNames: 
+    - overwritten-by-secret
+    - overwritten-by-secret
+    - overwritten-by-secret
+    - overwritten-by-secret
+  issuerRef:
+    kind: Issuer
+    name: letsencrypt-prod
