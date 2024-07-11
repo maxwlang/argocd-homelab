@@ -109,7 +109,7 @@ replacements:
   - source:
       kind: Secret
       name: umami-secrets
-      fieldPath: stringData.UMAMI_URI_LONG_CRUST
+      fieldPath: stringData.UMAMI_URL_LONG_CRUST
     targets:
       - select:
           kind: Certificate
