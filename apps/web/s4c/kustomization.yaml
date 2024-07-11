@@ -47,7 +47,7 @@ replacements:
   - source:
       kind: Secret
       name: s4c-secrets
-      fieldPath: stringData.s4c_URI
+      fieldPath: stringData.S4C_URI
     targets:
       - select:
           kind: Certificate
@@ -57,7 +57,7 @@ replacements:
   - source:
       kind: Secret
       name: s4c-secrets
-      fieldPath: stringData.s4c_URI_WWW
+      fieldPath: stringData.S4C_URI_WWW
     targets:
       - select:
           kind: Certificate
