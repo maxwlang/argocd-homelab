@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: chrisitian
-        image: ghcr.io/maxwlang/chrisitian:v1.0.4
+        image: ghcr.io/maxwlang/chrisitian:v1.1.0
         resources:
           requests:
             memory: "64Mi"
