@@ -2,7 +2,7 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   namespace: web
-  name: &appname umami-mwl
+  name: umami-mwl
 spec:
   entryPoints:
     - websecure
@@ -10,7 +10,7 @@ spec:
     - match: ingress-route-match
       kind: Rule
       services:
-        - name: *appname
+        - name: umami
           port: 80
       middlewares:
         - name: https-only
@@ -30,7 +30,7 @@ spec:
       kind: Rule
       services:
         - name: umami
-          port: 3000
+          port: 80
       middlewares:
         - name: https-only
   tls:
@@ -49,7 +49,7 @@ spec:
       kind: Rule
       services:
         - name: umami
-          port: 3000
+          port: 80
       middlewares:
         - name: https-only
 ---
@@ -66,6 +66,6 @@ spec:
       kind: Rule
       services:
         - name: umami
-          port: 3000
+          port: 80
       middlewares:
         - name: https-only
