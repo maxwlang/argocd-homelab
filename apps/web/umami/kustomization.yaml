@@ -46,7 +46,7 @@ replacements:
   - source:
       kind: Secret
       name: umami-secrets
-      fieldPath: stringData.INGRESS_ROUTE_MATCH
+      fieldPath: stringData.INGRESS_ROUTE_MATCH_ALT
     targets:
       - select:
           kind: IngressRoute
