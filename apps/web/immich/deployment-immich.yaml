@@ -42,6 +42,8 @@ spec:
             secretKeyRef:
               name: immich-secrets
               key: REDIS_PASSWORD
+        - name: DB_VECTOR_EXTENSION
+          value: "pgvector"
         volumeMounts:
         # - name: config
         #   mountPath: /data
