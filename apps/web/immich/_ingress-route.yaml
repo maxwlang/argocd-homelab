@@ -1,0 +1,35 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  namespace: web
+  name: &appname immich
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: ingress-route-match
+      kind: Rule
+      services:
+        - name: *appname
+          port: 80
+      middlewares:
+        - name: https-only
+  tls:
+    secretName: immich-cert
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  namespace: web
+  name: immich-http
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: ingress-route-match
+      kind: Rule
+      services:
+        - name: immich
+          port: 80
+      middlewares:
+        - name: https-only

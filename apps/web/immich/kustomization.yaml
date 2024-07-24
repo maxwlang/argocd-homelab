@@ -1,0 +1,48 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - deployment-immich.yaml
+  # - deployment-immich-machine-learning.yaml
+  # - service.yaml
+  # - certificate.yaml
+  # - ingress-route.yaml
+
+# generators:
+#   - secret-generator.yaml
+
+# replacements:
+# # Ingress Route
+#   - source:
+#       kind: Secret
+#       name: vaultwarden-secrets
+#       fieldPath: stringData.INGRESS_ROUTE_MATCH
+#     targets:
+#       - select:
+#           kind: IngressRoute
+#           name: vaultwarden
+#         fieldPaths:
+#           - spec.routes.0.match
+#   - source:
+#       kind: Secret
+#       name: vaultwarden-secrets
+#       fieldPath: stringData.INGRESS_ROUTE_MATCH
+#     targets:
+#       - select:
+#           kind: IngressRoute
+#           name: vaultwarden-http
+#         fieldPaths:
+#           - spec.routes.0.match
+
+
+# # Certificates
+#   - source:
+#       kind: Secret
+#       name: vaultwarden-secrets
+#       fieldPath: stringData.APP_DOMAIN
+#     targets:
+#       - select:
+#           kind: Certificate
+#           name: vaultwarden-cert
+#         fieldPaths:
+#           - spec.dnsNames.0
