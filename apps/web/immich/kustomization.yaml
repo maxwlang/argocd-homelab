@@ -8,8 +8,8 @@ resources:
   # - certificate.yaml
   # - ingress-route.yaml
 
-# generators:
-#   - secret-generator.yaml
+generators:
+  - secret-generator.yaml
 
 # replacements:
 # # Ingress Route
