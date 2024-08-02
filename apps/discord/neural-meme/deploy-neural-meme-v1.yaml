@@ -16,6 +16,9 @@ spec:
       - name: neural-meme-v1
         # https://github.com/maxwlang/neural-meme/releases/latest
         image: ghcr.io/maxwlang/neural-meme:v1.1.2
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
         env:
         - name: GPT_API
           value: "http://g4f-api.gpu.svc.cluster.local:1337/v1/chat/completions"
