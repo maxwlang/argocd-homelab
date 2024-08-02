@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: g4f-api
 spec:
-  replicas: 6
+  replicas: 2
   selector:
     matchLabels:
       app: g4f-api
@@ -15,7 +15,10 @@ spec:
       containers:
       - name: g4f-api
         # https://hub.docker.com/r/hlohaus789/g4f/tags
-        image: hlohaus789/g4f:0.2.1.0
+        image: hlohaus789/g4f:0.3.2.3
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
         ports:
         - containerPort: 1337
         - containerPort: 8080
