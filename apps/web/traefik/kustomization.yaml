@@ -10,10 +10,6 @@ resources:
   - external-service-pterodactyl-node.yaml
   - external-certificate-pterodactyl-node.yaml
   - external-ingress-route-pterodactyl-node.yaml
-  - external-endpoint-nextcloud.yaml
-  - external-service-nextcloud.yaml
-  - external-certificate-nextcloud.yaml
-  - external-ingress-route-nextcloud.yaml
 
 replacements:
 # Pterodactyl
@@ -35,56 +31,5 @@ replacements:
       - select:
           kind: IngressRoute
           name: pterodactyl-node
-        fieldPaths:
-          - spec.routes.0.match
-# Nextcloud
-  - source:
-      kind: Secret
-      name: traefik-secrets
-      fieldPath: stringData.EXTERNAL_INGRESS_ROUTE_NEXTCLOUD_ADDRESS_1
-    targets:
-      - select:
-          kind: Certificate
-          name: nextcloud-cert
-        fieldPaths:
-          - spec.dnsNames.0
-  - source:
-      kind: Secret
-      name: traefik-secrets
-      fieldPath: stringData.EXTERNAL_INGRESS_ROUTE_NEXTCLOUD_ADDRESS_3
-    targets:
-      - select:
-          kind: Certificate
-          name: nextcloud-cert
-        fieldPaths:
-          - spec.dnsNames.1
-  - source:
-      kind: Secret
-      name: traefik-secrets
-      fieldPath: stringData.EXTERNAL_INGRESS_ROUTE_NEXTCLOUD_ADDRESS_4
-    targets:
-      - select:
-          kind: Certificate
-          name: nextcloud-cert
-        fieldPaths:
-          - spec.dnsNames.2
-  - source:
-      kind: Secret
-      name: traefik-secrets
-      fieldPath: stringData.EXTERNAL_INGRESS_ROUTE_MATCH_NEXTCLOUD
-    targets:
-      - select:
-          kind: IngressRoute
-          name: nextcloud
-        fieldPaths:
-          - spec.routes.0.match
-  - source:
-      kind: Secret
-      name: traefik-secrets
-      fieldPath: stringData.EXTERNAL_INGRESS_ROUTE_MATCH_NEXTCLOUD
-    targets:
-      - select:
-          kind: IngressRoute
-          name: nextcloud-http
         fieldPaths:
           - spec.routes.0.match
