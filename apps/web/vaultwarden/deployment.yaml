@@ -20,7 +20,7 @@ spec:
         image: vaultwarden/server:1.31.0
         securityContext:
           runAsNonRoot: true
-          # runAsUser: 1000
+          runAsUser: 65534
         resources:
           requests:
             memory: "64Mi"
