@@ -17,6 +17,9 @@ spec:
       containers:
       - name: accomplice-v2
         image: ghcr.io/maxwlang/accomplice-v2:v2.0.1
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
         resources:
           requests:
             memory: "64Mi"
