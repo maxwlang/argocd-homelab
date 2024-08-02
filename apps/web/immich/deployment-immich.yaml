@@ -48,16 +48,16 @@ spec:
         - name: IMMICH_PORT
           value: "3001"
         volumeMounts:
-        # - name: config
-        #   mountPath: /data
+        - name: nas-hdd-immich
+          mountPath: /usr/src/app/upload
         - name: localtime
           mountPath: /etc/localtime
           readOnly: true
       volumes:
-      # - name: config
-      #   hostPath:
-      #     path: /lxc-configs/immich-config # This path contains the same files on all nodes 
-      #     type: DirectoryOrCreate
+      - name: nas-hdd-immich
+        nfs:
+          server: "10.100.0.1"
+          path: /mnt/tank/kubernetes/immich
       - name: localtime
         hostPath:
           path: /etc/localtime
