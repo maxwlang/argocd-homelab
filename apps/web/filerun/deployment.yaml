@@ -17,6 +17,9 @@ spec:
       containers:
       - name: filerun
         image: filerun/filerun:8.1
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 33
         resources:
           requests:
             memory: "64Mi"
