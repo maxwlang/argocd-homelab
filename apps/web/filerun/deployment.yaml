@@ -62,6 +62,11 @@ spec:
             secretKeyRef:
               name: filerun-secrets
               key: APACHE_RUN_USER_ID
+        - name: APACHE_RUN_GROUP
+          valueFrom:
+            secretKeyRef:
+              name: filerun-secrets
+              key: APACHE_RUN_GROUP
         - name: APACHE_RUN_GROUP_ID
           valueFrom:
             secretKeyRef:
