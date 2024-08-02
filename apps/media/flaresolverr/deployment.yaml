@@ -17,7 +17,10 @@ spec:
       containers:
       - name: flaresolverr
         # https://github.com/flaresolverr/FlareSolverr/pkgs/container/flaresolverr
-        image: ghcr.io/flaresolverr/flaresolverr:v3.3.20
+        image: ghcr.io/flaresolverr/flaresolverr:v3.3.21
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
         resources:
           requests:
             memory: "64Mi"
