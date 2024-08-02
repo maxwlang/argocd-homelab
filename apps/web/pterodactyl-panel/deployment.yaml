@@ -20,7 +20,7 @@ spec:
         image: ccarney16/pterodactyl-panel:v1.11.7
         securityContext:
           runAsNonRoot: true
-          runAsUser: 498
+          # runAsUser: 498
         resources:
           requests:
             memory: "64Mi"
