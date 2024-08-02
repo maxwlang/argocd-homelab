@@ -44,6 +44,8 @@ spec:
               key: REDIS_PASSWORD
         - name: DB_VECTOR_EXTENSION
           value: "pgvector"
+        - name: IMMICH_PORT
+          value: "3001"
         volumeMounts:
         # - name: config
         #   mountPath: /data
