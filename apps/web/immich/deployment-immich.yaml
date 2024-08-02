@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: immich
-        image: ghcr.io/immich-app/immich-server:v1.109.2
+        image: ghcr.io/immich-app/immich-server:v1.111.0
         resources:
           requests:
             memory: "64Mi"
