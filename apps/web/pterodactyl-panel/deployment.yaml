@@ -18,8 +18,8 @@ spec:
       - name: pterodactyl-panel
         # https://hub.docker.com/r/ccarney16/pterodactyl-panel/tags
         image: ccarney16/pterodactyl-panel:v1.11.7
-        securityContext:
-          runAsNonRoot: true
+        # securityContext:
+          # runAsNonRoot: true
           # runAsUser: 498
         resources:
           requests:
