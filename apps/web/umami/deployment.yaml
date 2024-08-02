@@ -17,6 +17,9 @@ spec:
       containers:
         - name: umami
           image: ghcr.io/umami-software/umami:postgresql-latest
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1001
           resources:
             requests:
               memory: "64Mi"
