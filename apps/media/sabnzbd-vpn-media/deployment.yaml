@@ -69,15 +69,9 @@ spec:
         volumeMounts:
         - name: sabnzbd-vpn-media-config
           mountPath: /config
-        # - name: downloads-nas-ssd
-        #   mountPath: /config/Downloads
         - name: downloads-nas-hdd
           mountPath: /config/Downloads
       volumes:
-      # - name: downloads-nas-ssd
-      #   nfs:
-      #     server: "10.100.0.1"
-      #     path: /mnt/ssd/kubernetes/sabnzbd-vpn-media
       - name: downloads-nas-hdd
         nfs:
           server: "10.100.0.1"
