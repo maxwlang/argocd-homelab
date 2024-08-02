@@ -55,7 +55,7 @@ spec:
       - name: downloads-sabnzbd
         nfs:
           server: "10.100.0.1"
-          path: /mnt/tank/downloads/sabnzbd-vpn-media
+          path: /mnt/tank/kubernetes/sabnzbd
       - name: radarr-config
         hostPath:
           path: /lxc-configs/radarr-config # This path contains the same files on all nodes 
