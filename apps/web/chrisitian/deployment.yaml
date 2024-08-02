@@ -17,6 +17,9 @@ spec:
       containers:
       - name: chrisitian
         image: ghcr.io/maxwlang/chrisitian:v1.1.0
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1001
         resources:
           requests:
             memory: "64Mi"

@@ -17,6 +17,9 @@ spec:
       containers:
       - name: s4c
         image: replaced-by-kustomize
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1001
         resources:
           requests:
             memory: "64Mi"

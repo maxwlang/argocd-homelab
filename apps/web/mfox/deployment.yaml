@@ -17,12 +17,15 @@ spec:
       containers:
       - name: mfox
         image: replaced-by-kustomize
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1001
         resources:
           requests:
             memory: "64Mi"
             cpu: "250m"
           limits:
-            memory: "1Gi"
+            memory: "2Gi"
             cpu: "4000m"
         ports:
           - containerPort: 3000
