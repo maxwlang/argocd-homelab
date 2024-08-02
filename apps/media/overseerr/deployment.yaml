@@ -18,9 +18,9 @@ spec:
       - name: overseerr
         # https://github.com/linuxserver/docker-overseerr/releases/latest
         image: lscr.io/linuxserver/overseerr:v1.33.2-ls114
-        securityContext:
-          runAsNonRoot: true
-          runAsUser: 1000
+        # securityContext:
+        #   runAsNonRoot: true
+        #   runAsUser: 1000
         resources:
           requests:
             memory: "64Mi"
