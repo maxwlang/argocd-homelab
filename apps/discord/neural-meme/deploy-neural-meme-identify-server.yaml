@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: neural-meme-identify-server
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: neural-meme-identify-server
@@ -16,6 +16,9 @@ spec:
       - name: neural-meme-identify-server
         # https://github.com/maxwlang/neural-meme-identify-server/releases/latest
         image: ghcr.io/maxwlang/neural-meme-identify-server:v1.0.1
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 33
         env:
         - name: PORT
           value: "8338"
