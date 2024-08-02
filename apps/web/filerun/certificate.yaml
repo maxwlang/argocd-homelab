@@ -1,0 +1,11 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: filerun-cert
+spec:
+  secretName: filerun-cert
+  dnsNames: 
+    - overwritten-by-secret
+  issuerRef:
+    kind: Issuer
+    name: letsencrypt-prod
