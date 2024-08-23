@@ -4,7 +4,7 @@ metadata:
   name: filerun
   namespace: web
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: filerun
@@ -90,6 +90,6 @@ spec:
       - name: nas
         nfs:
           server: "10.100.0.1"
-          path: /mnt/tank/storage/filerun 
+          path: /mnt/tank/storage/filerun
       imagePullSecrets:
       - name: ghcr-login-secret
