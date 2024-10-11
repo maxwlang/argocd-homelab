@@ -82,6 +82,8 @@ spec:
           mountPath: /var/www/html
         - name: nas
           mountPath: /user-files
+        - name: plex
+          mountPath: /user-files/maxwlang/Plex
       volumes:
       - name: filerun-config
         hostPath:
@@ -91,5 +93,9 @@ spec:
         nfs:
           server: "10.100.0.1"
           path: /mnt/tank/storage/filerun
+      - name: plex
+        nfs:
+          server: "10.100.0.1"
+          path: /mnt/tank/kubernetes/plex/media
       imagePullSecrets:
       - name: ghcr-login-secret
