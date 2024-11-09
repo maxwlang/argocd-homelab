@@ -17,15 +17,17 @@ spec:
       containers:
       - name: sabnzbd-vpn-media
         # https://hub.docker.com/r/binhex/arch-sabnzbdvpn/tags
-        image: binhex/arch-sabnzbdvpn:4.3.2-1-03
+        image: binhex/arch-sabnzbdvpn:4.3.3-1-01
         resources:
           requests:
             memory: "6Gi"
             cpu: "6000m"
           limits:
-            memory: "10Gi"
-            cpu: "8000m"
+            memory: "16Gi"
+            cpu: "10000m"
         securityContext:
+          # runAsNonRoot: true
+          # runAsUser: 1000
           capabilities:
             add:
               - NET_ADMIN
