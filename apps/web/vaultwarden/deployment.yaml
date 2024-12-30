@@ -17,7 +17,7 @@ spec:
       containers:
       - name: vaultwarden
         # https://hub.docker.com/r/vaultwarden/server/tags
-        image: vaultwarden/server:1.32.4
+        image: vaultwarden/server:1.32.7
         # securityContext:
         #   runAsNonRoot: true
         #   runAsUser: 65534
