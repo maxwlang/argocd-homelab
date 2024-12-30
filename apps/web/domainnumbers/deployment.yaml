@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: domainnumbers
+  namespace: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: domainnumbers
+  template:
+    metadata:
+      labels:
+        app: domainnumbers
+
+    spec:
+      containers:
+      - name: domainnumbers
+        image: replaced-by-kustomize
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1001
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "2Gi"
+            cpu: "4000m"
+        ports:
+          - containerPort: 3000
+        env:
+        - name: NODE_ENV
+          value: "production"
+      imagePullSecrets:
+      - name: ghcr-login-secret
