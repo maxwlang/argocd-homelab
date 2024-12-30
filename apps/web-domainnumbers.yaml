@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: s4c
+  name: domainnumbers
 spec:
   destination:
     namespace: web
