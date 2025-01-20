@@ -1,0 +1,35 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  namespace: web
+  name: &appname portfolio
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: ingress-route-match
+      kind: Rule
+      services:
+        - name: *appname
+          port: 80
+      middlewares:
+        - name: https-only
+  tls:
+    secretName: portfolio-cert
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  namespace: web
+  name: portfolio-http
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: ingress-route-match
+      kind: Rule
+      services:
+        - name: portfolio
+          port: 80
+      middlewares:
+        - name: https-only

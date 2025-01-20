@@ -1,0 +1,66 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - deployment.yaml
+  - service.yaml
+  - certificate.yaml
+  - ingress-route.yaml
+
+generators:
+  - secret-generator.yaml
+
+replacements:
+  - source:
+      kind: Secret
+      name: portfolio-secrets
+      fieldPath: stringData.IMAGE
+    targets:
+      - select:
+          kind: Deployment
+          name: portfolio
+        fieldPaths:
+          - spec.template.spec.containers.0.image
+# Ingress Route
+  - source:
+      kind: Secret
+      name: portfolio-secrets
+      fieldPath: stringData.INGRESS_ROUTE_MATCH
+    targets:
+      - select:
+          kind: IngressRoute
+          name: portfolio
+        fieldPaths:
+          - spec.routes.0.match
+  - source:
+      kind: Secret
+      name: portfolio-secrets
+      fieldPath: stringData.INGRESS_ROUTE_MATCH
+    targets:
+      - select:
+          kind: IngressRoute
+          name: portfolio-http
+        fieldPaths:
+          - spec.routes.0.match
+
+# Certificates
+  - source:
+      kind: Secret
+      name: portfolio-secrets
+      fieldPath: stringData.URI
+    targets:
+      - select:
+          kind: Certificate
+          name: portfolio-cert
+        fieldPaths:
+          - spec.dnsNames.0
+  - source:
+      kind: Secret
+      name: portfolio-secrets
+      fieldPath: stringData.URI_WWW
+    targets:
+      - select:
+          kind: Certificate
+          name: portfolio-cert
+        fieldPaths:
+          - spec.dnsNames.1
