@@ -11,16 +11,6 @@ generators:
   - secret-generator.yaml
 
 replacements:
-  - source:
-      kind: Secret
-      name: portfolio-secrets
-      fieldPath: stringData.IMAGE
-    targets:
-      - select:
-          kind: Deployment
-          name: portfolio
-        fieldPaths:
-          - spec.template.spec.containers.0.image
 # Ingress Route
   - source:
       kind: Secret
