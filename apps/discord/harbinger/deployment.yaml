@@ -37,7 +37,7 @@ spec:
               key: DISCORD_WEBHOOK_FRIENDS
         volumeMounts:
         - name: harbinger-data
-          mountPath: /data
+          mountPath: /app/data
       volumes:
       - name: harbinger-data
         hostPath:
