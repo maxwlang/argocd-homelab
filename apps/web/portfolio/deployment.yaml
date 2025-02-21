@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: portfolio
-        image: ghcr.io/maxwlang/react-portfolio:v1.0.2
+        image: ghcr.io/maxwlang/react-portfolio:v2.0.0
         securityContext:
           runAsNonRoot: true
           runAsUser: 1001
