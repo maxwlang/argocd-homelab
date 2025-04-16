@@ -4,7 +4,7 @@ metadata:
   name: sonarr-radarr-queue-cleaner
   namespace: media
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: sonarr-radarr-queue-cleaner
