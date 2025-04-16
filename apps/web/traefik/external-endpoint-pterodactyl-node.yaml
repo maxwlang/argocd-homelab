@@ -4,7 +4,7 @@ metadata:
   name: pterodactyl-node
 subsets:
   - addresses:
-    - ip: 10.0.50.2
+    - ip: 10.0.50.25
     ports:
     - protocol: TCP
       port: 7329
