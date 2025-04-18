@@ -2,7 +2,8 @@ global:
   image:
     # repository: quay.io/argoproj/argocd
     # tag: v2.9.3
-    tag: v2.10.9
+    # tag: v2.10.9
+    tag: v2.14.0
 
 server:
   # ingress:
