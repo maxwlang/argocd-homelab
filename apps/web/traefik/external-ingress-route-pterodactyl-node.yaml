@@ -13,7 +13,6 @@ spec:
       services:
         - name: *appname
           port: 7329
-      middlewares:
-        - name: https-only
+
   tls:
     secretName: pterodactyl-node-cert

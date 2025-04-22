@@ -12,8 +12,7 @@ spec:
       services:
         - name: *appname
           port: 80
-      middlewares:
-        - name: https-only
+
   tls:
     secretName: s4c-cert
 ---
@@ -31,5 +30,3 @@ spec:
       services:
         - name: s4c
           port: 80
-      middlewares:
-        - name: https-only

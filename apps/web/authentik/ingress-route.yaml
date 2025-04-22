@@ -12,8 +12,7 @@ spec:
       services:
         - name: authentik-server
           port: 80
-      middlewares:
-        - name: https-only
+
   tls:
     secretName: authentik-cert
 ---
@@ -31,5 +30,3 @@ spec:
       services:
         - name: authentik-server
           port: 80
-      middlewares:
-        - name: https-only
