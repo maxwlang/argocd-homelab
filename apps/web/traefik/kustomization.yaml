@@ -5,7 +5,7 @@ generators:
   - secret-generator.yaml
 
 resources:
-  - middleware-https-only.yaml
+  # - middleware-https-only.yaml
   - external-endpoint-pterodactyl-node.yaml
   - external-service-pterodactyl-node.yaml
   - external-certificate-pterodactyl-node.yaml
