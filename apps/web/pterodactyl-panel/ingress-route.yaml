@@ -2,25 +2,7 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   namespace: web
-  name: &appname pterodactyl-panel
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: ingress-route-match
-      kind: Rule
-      services:
-        - name: *appname
-          port: 80
-
-  tls:
-    secretName: pterodactyl-panel-cert
----
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
-metadata:
-  namespace: web
-  name: pterodactyl-panel-http
+  name: pterodactyl-panel
 spec:
   entryPoints:
     - web

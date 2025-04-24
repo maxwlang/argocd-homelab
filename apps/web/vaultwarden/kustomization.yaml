@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - deployment.yaml
   - service.yaml
-  - certificate.yaml
   - ingress-route.yaml
 
 generators:
@@ -22,26 +21,3 @@ replacements:
           name: vaultwarden
         fieldPaths:
           - spec.routes.0.match
-  - source:
-      kind: Secret
-      name: vaultwarden-secrets
-      fieldPath: stringData.INGRESS_ROUTE_MATCH
-    targets:
-      - select:
-          kind: IngressRoute
-          name: vaultwarden-http
-        fieldPaths:
-          - spec.routes.0.match
-
-
-# Certificates
-  - source:
-      kind: Secret
-      name: vaultwarden-secrets
-      fieldPath: stringData.APP_DOMAIN
-    targets:
-      - select:
-          kind: Certificate
-          name: vaultwarden-cert
-        fieldPaths:
-          - spec.dnsNames.0

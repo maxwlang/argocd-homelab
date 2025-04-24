@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - deployment.yaml
   - service.yaml
-  - certificate.yaml
   - ingress-route.yaml
 
 generators:
@@ -21,23 +20,3 @@ replacements:
           name: prowlarr
         fieldPaths:
           - spec.routes.0.match
-  - source:
-      kind: Secret
-      name: prowlarr-secrets
-      fieldPath: stringData.INGRESS_ROUTE_MATCH
-    targets:
-      - select:
-          kind: IngressRoute
-          name: prowlarr-http
-        fieldPaths:
-          - spec.routes.0.match
-  - source:
-      kind: Secret
-      name: prowlarr-secrets
-      fieldPath: stringData.PUBLIC_URI
-    targets:
-      - select:
-          kind: Certificate
-          name: prowlarr-cert
-        fieldPaths:
-          - spec.dnsNames.0

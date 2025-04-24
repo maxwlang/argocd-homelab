@@ -6,10 +6,6 @@ spec:
   selector:
     app: sabnzbd-vpn-media
   ports:
-    - name: https
-      protocol: TCP
-      port: 443
-      targetPort: 8090
     - name: http
       protocol: TCP
       port: 80

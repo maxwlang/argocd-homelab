@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - deployment.yaml
   - service.yaml
-  - certificate.yaml
   - ingress-route.yaml
 
 generators:
@@ -32,35 +31,3 @@ replacements:
           name: mfox
         fieldPaths:
           - spec.routes.0.match
-  - source:
-      kind: Secret
-      name: mfox-secrets
-      fieldPath: stringData.INGRESS_ROUTE_MATCH
-    targets:
-      - select:
-          kind: IngressRoute
-          name: mfox-http
-        fieldPaths:
-          - spec.routes.0.match
-
-# Certificates
-  - source:
-      kind: Secret
-      name: mfox-secrets
-      fieldPath: stringData.MFOX_URI
-    targets:
-      - select:
-          kind: Certificate
-          name: mfox-cert
-        fieldPaths:
-          - spec.dnsNames.0
-  - source:
-      kind: Secret
-      name: mfox-secrets
-      fieldPath: stringData.MFOX_URI_WWW
-    targets:
-      - select:
-          kind: Certificate
-          name: mfox-cert
-        fieldPaths:
-          - spec.dnsNames.1

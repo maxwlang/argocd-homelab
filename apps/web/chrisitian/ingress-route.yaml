@@ -2,25 +2,7 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   namespace: web
-  name: &appname chrisitian
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: ingress-route-match
-      kind: Rule
-      services:
-        - name: *appname
-          port: 80
-
-  tls:
-    secretName: chrisitian-cert
----
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
-metadata:
-  namespace: web
-  name: chrisitian-http
+  name: chrisitian
 spec:
   entryPoints:
     - web

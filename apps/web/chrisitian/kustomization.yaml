@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - deployment.yaml
   - service.yaml
-  - certificate.yaml
   - ingress-route.yaml
 
 generators:
@@ -22,35 +21,3 @@ replacements:
           name: chrisitian
         fieldPaths:
           - spec.routes.0.match
-  - source:
-      kind: Secret
-      name: chrisitian-secrets
-      fieldPath: stringData.INGRESS_ROUTE_MATCH
-    targets:
-      - select:
-          kind: IngressRoute
-          name: chrisitian-http
-        fieldPaths:
-          - spec.routes.0.match
-
-# Certificates
-  - source:
-      kind: Secret
-      name: chrisitian-secrets
-      fieldPath: stringData.CHR_URI
-    targets:
-      - select:
-          kind: Certificate
-          name: chrisitian-cert
-        fieldPaths:
-          - spec.dnsNames.0
-  - source:
-      kind: Secret
-      name: chrisitian-secrets
-      fieldPath: stringData.CHR_URI_WWW
-    targets:
-      - select:
-          kind: Certificate
-          name: chrisitian-cert
-        fieldPaths:
-          - spec.dnsNames.1

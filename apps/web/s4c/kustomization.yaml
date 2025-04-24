@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - deployment.yaml
   - service.yaml
-  - certificate.yaml
   - ingress-route.yaml
 
 generators:
@@ -32,35 +31,3 @@ replacements:
           name: s4c
         fieldPaths:
           - spec.routes.0.match
-  - source:
-      kind: Secret
-      name: s4c-secrets
-      fieldPath: stringData.INGRESS_ROUTE_MATCH
-    targets:
-      - select:
-          kind: IngressRoute
-          name: s4c-http
-        fieldPaths:
-          - spec.routes.0.match
-
-# Certificates
-  - source:
-      kind: Secret
-      name: s4c-secrets
-      fieldPath: stringData.S4C_URI
-    targets:
-      - select:
-          kind: Certificate
-          name: s4c-cert
-        fieldPaths:
-          - spec.dnsNames.0
-  - source:
-      kind: Secret
-      name: s4c-secrets
-      fieldPath: stringData.S4C_URI_WWW
-    targets:
-      - select:
-          kind: Certificate
-          name: s4c-cert
-        fieldPaths:
-          - spec.dnsNames.1

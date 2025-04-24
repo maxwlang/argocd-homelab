@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - deployment.yaml
   - service.yaml
-  - certificate.yaml
   - ingress-route.yaml
 
 generators:
@@ -21,23 +20,3 @@ replacements:
           name: overseerr
         fieldPaths:
           - spec.routes.0.match
-  - source:
-      kind: Secret
-      name: overseerr-secrets
-      fieldPath: stringData.INGRESS_ROUTE_MATCH
-    targets:
-      - select:
-          kind: IngressRoute
-          name: overseerr-http
-        fieldPaths:
-          - spec.routes.0.match
-  - source:
-      kind: Secret
-      name: overseerr-secrets
-      fieldPath: stringData.PUBLIC_URI
-    targets:
-      - select:
-          kind: Certificate
-          name: overseerr-cert
-        fieldPaths:
-          - spec.dnsNames.0

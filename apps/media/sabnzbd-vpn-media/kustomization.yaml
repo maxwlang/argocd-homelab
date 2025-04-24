@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - deployment.yaml
   - service.yaml
-  - certificate.yaml
   - ingress-route.yaml
 
 generators:
@@ -21,23 +20,3 @@ replacements:
           name: sabnzbd
         fieldPaths:
           - spec.routes.0.match
-  - source:
-      kind: Secret
-      name: sabnzbd-vpn-media-secrets
-      fieldPath: stringData.INGRESS_ROUTE_MATCH
-    targets:
-      - select:
-          kind: IngressRoute
-          name: sabnzbd-http
-        fieldPaths:
-          - spec.routes.0.match
-  - source:
-      kind: Secret
-      name: sabnzbd-vpn-media-secrets
-      fieldPath: stringData.PUBLIC_URI
-    targets:
-      - select:
-          kind: Certificate
-          name: sabnzbd-cert
-        fieldPaths:
-          - spec.dnsNames.0
