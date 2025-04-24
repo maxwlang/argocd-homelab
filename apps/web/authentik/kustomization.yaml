@@ -2,7 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - certificate.yaml
   - ingress-route.yaml
 
 helmCharts:
@@ -29,38 +28,6 @@ replacements:
           name: authentik
         fieldPaths:
           - spec.routes.0.match
-  - source:
-      kind: Secret
-      name: authentik-secrets
-      fieldPath: stringData.INGRESS_ROUTE_MATCH
-    targets:
-      - select:
-          kind: IngressRoute
-          name: authentik-http
-        fieldPaths:
-          - spec.routes.0.match
-
-# Certificates
-  - source:
-      kind: Secret
-      name: authentik-secrets
-      fieldPath: stringData.PRIMARY_DOMAIN
-    targets:
-      - select:
-          kind: Certificate
-          name: authentik-cert
-        fieldPaths:
-          - spec.dnsNames.0
-  - source:
-      kind: Secret
-      name: authentik-secrets
-      fieldPath: stringData.SECONDARY_DOMAIN
-    targets:
-      - select:
-          kind: Certificate
-          name: authentik-cert
-        fieldPaths:
-          - spec.dnsNames.1
 
 ## Overwrite chart values with secrets
 # Helm is really cool because when you want to
