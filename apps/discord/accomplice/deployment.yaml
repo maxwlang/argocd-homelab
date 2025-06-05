@@ -44,7 +44,7 @@ spec:
         - name: DISCORD_BOT_ADMIN_SNOWFLAKE
           value: "707022657354203180"
         - name: MESSAGE_SYNC_LIMIT
-          value: 50000
+          value: "50000"
         - name: REDIS_ENABLED
           value: "false"
         - name: REDIS_URL
