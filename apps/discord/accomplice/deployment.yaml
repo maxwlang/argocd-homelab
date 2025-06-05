@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: accomplice-v2
-        image: ghcr.io/maxwlang/accomplice-v2:v2.0.1
+        image: ghcr.io/maxwlang/accomplice-v2:v2.1.1
         securityContext:
           runAsNonRoot: true
           runAsUser: 1000
@@ -43,6 +43,8 @@ spec:
           value: "60"
         - name: DISCORD_BOT_ADMIN_SNOWFLAKE
           value: "707022657354203180"
+        - name: MESSAGE_SYNC_LIMIT
+          value: 50000
         - name: REDIS_ENABLED
           value: "false"
         - name: REDIS_URL
