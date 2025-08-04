@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kimai
+  namespace: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kimai
+  template:
+    metadata:
+      labels:
+        app: kimai
+
+    spec:
+      containers:
+      - name: kimai
+        image: replaced-by-kustomize
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1001
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "4000m"
+        ports:
+          - containerPort: 3000
+        env:
+        - name: ADMINMAIL
+          valueFrom:
+            secretKeyRef:
+              name: kimai-secrets
+              key: adminmail
+        - name: ADMINPASS
+          valueFrom:
+            secretKeyRef:
+              name: kimai-secrets
+              key: adminpass
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: kimai-secrets
+              key: database_url
+        # livenessProbe:
+        #   httpGet:
+        #     path: /api/healthz
+        #     port: 3000
+        #   initialDelaySeconds: 30
+        #   periodSeconds: 10

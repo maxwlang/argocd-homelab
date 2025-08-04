@@ -1,0 +1,14 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  namespace: web
+  name: kimai
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: ingress-route-match
+      kind: Rule
+      services:
+        - name: kimai
+          port: 80
