@@ -57,7 +57,7 @@ spec:
         #   initialDelaySeconds: 30
         #   periodSeconds: 10
       volumes:
-      - name: kimai-config
+      - name: kimai-data
         hostPath:
           path: /lxc-configs/kimai-config/data # This path contains the same files on all nodes 
           type: DirectoryOrCreate
