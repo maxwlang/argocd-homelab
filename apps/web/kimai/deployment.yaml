@@ -47,9 +47,7 @@ spec:
               key: database_url
         volumeMounts:
         - name: kimai-data
-          mountPath: /opt/kimai/var/data
-        - name: kimai-plugins
-          mountPath: /opt/kimai/var/plugins
+          mountPath: /opt/kimai/var
         # livenessProbe:
         #   httpGet:
         #     path: /api/healthz
@@ -59,9 +57,5 @@ spec:
       volumes:
       - name: kimai-data
         hostPath:
-          path: /lxc-configs/kimai-config/data # This path contains the same files on all nodes 
-          type: DirectoryOrCreate
-      - name: kimai-plugins
-        hostPath:
-          path: /lxc-configs/kimai-config/plugins # This path contains the same files on all nodes
+          path: /lxc-configs/kimai-config # This path contains the same files on all nodes 
           type: DirectoryOrCreate
