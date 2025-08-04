@@ -28,7 +28,7 @@ spec:
             memory: "1Gi"
             cpu: "4000m"
         ports:
-          - containerPort: 3000
+          - containerPort: 8001
         env:
         - name: ADMINMAIL
           valueFrom:
