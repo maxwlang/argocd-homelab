@@ -18,8 +18,8 @@ spec:
       - name: grocy
         image: replaced-by-kustomize
         securityContext:
-          runAsNonRoot: true
-          runAsUser: 1000
+          runAsNonRoot: false
+          # runAsUser: 1000
         resources:
           requests:
             memory: "64Mi"
