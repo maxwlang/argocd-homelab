@@ -97,6 +97,7 @@ spec:
         - name: nfs
           securityContext:
             allowPrivilegeEscalation: true
+            privileged: true
             capabilities:
               add: ["SYS_ADMIN"]
             readOnlyRootFilesystem: true
