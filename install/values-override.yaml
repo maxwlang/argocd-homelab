@@ -4,6 +4,17 @@ global:
     # tag: v2.14.0
     tag: v3.1.0
 
+repoServer:
+  volumeMounts:
+    - name: ssh-private-key
+      mountPath: /app/config/ssh
+      readOnly: true
+  volumes:
+    - name: ssh-private-key
+      secret:
+        secretName: private-repo
+        defaultMode: 0600
+
 server:
   # ingress:
   #   enabled: true
