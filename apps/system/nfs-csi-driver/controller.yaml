@@ -125,7 +125,6 @@ spec:
             allowPrivilegeEscalation: true
             capabilities:
               add: ["SYS_ADMIN"]
-            readOnlyRootFilesystem: true
           imagePullPolicy: IfNotPresent
           args:
             - "--v=5"
