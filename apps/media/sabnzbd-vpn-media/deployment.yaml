@@ -75,9 +75,8 @@ spec:
           mountPath: /config/Downloads
       volumes:
       - name: downloads-nas-hdd
-        nfs:
-          server: "10.100.0.1"
-          path: /mnt/tank/kubernetes/sabnzbd
+        persistentVolumeClaim:
+          claimName: sabnzbd-downloads-pvc
       - name: sabnzbd-vpn-media-config
         hostPath:
           path: /lxc-configs/sabnzbd-vpn-media-config # This path contains the same files on all nodes 

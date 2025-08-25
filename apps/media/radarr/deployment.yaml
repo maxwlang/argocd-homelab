@@ -45,17 +45,15 @@ spec:
           mountPath: /downloads-sabnzbd
       volumes:
       - name: movies
-        nfs:
-          server: "10.100.0.1"
-          path: /mnt/tank/kubernetes/plex/media/Movies 
+        persistentVolumeClaim:
+          claimName: movies-pvc
       # - name: downloads-qbittorrent
       #   nfs:
       #     server: "10.100.0.1"
       #     path: /mnt/tank/kubernetes/qbittorrent
       - name: downloads-sabnzbd
-        nfs:
-          server: "10.100.0.1"
-          path: /mnt/tank/kubernetes/sabnzbd
+        persistentVolumeClaim:
+          claimName: sabnzbd-downloads-pvc
       - name: radarr-config
         hostPath:
           path: /lxc-configs/radarr-config # This path contains the same files on all nodes 

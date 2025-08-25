@@ -45,17 +45,15 @@ spec:
           mountPath: /downloads-sabnzbd
       volumes:
       - name: tv
-        nfs:
-          server: "10.100.0.1"
-          path: /mnt/tank/kubernetes/plex/media/TV
+        persistentVolumeClaim:
+          claimName: tv-shows-pvc
       # - name: downloads-qbittorrent
       #   nfs:
       #     server: "10.100.0.1"
       #     path: /mnt/tank/downloads/qbittorrent-vpn-media
       - name: downloads-sabnzbd
-        nfs:
-          server: "10.100.0.1"
-          path: /mnt/tank/kubernetes/sabnzbd
+        persistentVolumeClaim:
+          claimName: sabnzbd-downloads-pvc
       - name: sonarr-config
         hostPath:
           path: /lxc-configs/sonarr-config # This path contains the same files on all nodes 

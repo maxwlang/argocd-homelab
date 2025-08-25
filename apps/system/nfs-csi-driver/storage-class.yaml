@@ -1,0 +1,63 @@
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-csi-krb5-movies
+provisioner: nfs.csi.k8s.io
+parameters:
+  server: "nas.int.maxwlang.com"
+  share: "/mnt/tank/storage/media/Movies"
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+mountOptions:
+  - nfsvers=4.2
+  - sec=krb5i
+  - proto=tcp
+  - hard
+  - intr
+  - rsize=1048576
+  - wsize=1048576
+  - timeo=600
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-csi-krb5-tv
+provisioner: nfs.csi.k8s.io
+parameters:
+  server: "nas.int.maxwlang.com"
+  share: "/mnt/tank/storage/media/TV"
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+mountOptions:
+  - nfsvers=4.2
+  - sec=krb5i
+  - proto=tcp
+  - hard
+  - intr
+  - rsize=1048576
+  - wsize=1048576
+  - timeo=600
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-csi-krb5-sabnzbd
+provisioner: nfs.csi.k8s.io
+parameters:
+  server: "nas.int.maxwlang.com"
+  share: "/mnt/tank/services/sabnzbd"
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+mountOptions:
+  - nfsvers=4.2
+  - sec=krb5i
+  - proto=tcp
+  - hard
+  - intr
+  - rsize=1048576
+  - wsize=1048576
+  - timeo=600
