@@ -7,7 +7,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: nfs-csi-krb5-movies
+  storageClassName: nfs-csi-movies
   resources:
     requests:
       storage: 100Ti
@@ -20,7 +20,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: nfs-csi-krb5-tv
+  storageClassName: nfs-csi-tv
   resources:
     requests:
       storage: 100Ti
@@ -33,7 +33,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: nfs-csi-krb5-sabnzbd
+  storageClassName: nfs-csi-sabnzbd
   resources:
     requests:
       storage: 100Ti
