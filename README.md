@@ -12,7 +12,7 @@
     3. Apply secrets
         1. `kubectl apply -f ../secrets/repo-secret.yaml`
         2. `kubectl apply -f ../secrets/sops-age-secret.yaml`
-    4. Install helm
+    4. Install helm `curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash`
     5. Run as root:
         1. `export KUBECONFIG=/etc/rancher/k3s/k3s.yaml`
         2. `helm install argo-cd argo-cd/ --namespace argocd --values values-override.yaml`
