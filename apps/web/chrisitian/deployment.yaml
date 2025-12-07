@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: chrisitian
-        image: ghcr.io/maxwlang/chrisitian:v1.1.0
+        image: ghcr.io/maxwlang/chrisitian:v1.2.0
         securityContext:
           runAsNonRoot: true
           runAsUser: 1001
