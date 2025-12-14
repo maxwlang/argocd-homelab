@@ -4,7 +4,7 @@ metadata:
   name: chrisitian
   namespace: web
 spec:
-  replicas: 2
+  replicas: 0
   selector:
     matchLabels:
       app: chrisitian
