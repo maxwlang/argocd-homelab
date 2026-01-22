@@ -48,13 +48,8 @@ spec:
       #   persistentVolumeClaim:
       #     claimName: tv-shows-pvc
       - name: downloads-sabnzbd
-        csi:
-          driver: smb.csi.k8s.io
-          volumeAttributes:
-            source: "//10.100.0.1/mnt/ssd/services/test"
-          nodeStageSecretRef:
-            name: smb-creds
-            namespace: media
+        persistentVolumeClaim:
+          claimName: smb-downloads-sabnzbd-pvc
       # - name: downloads-sabnzbd
       #   persistentVolumeClaim:
       #     claimName: sabnzbd-downloads-pvc
