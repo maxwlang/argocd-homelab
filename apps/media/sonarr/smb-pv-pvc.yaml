@@ -16,7 +16,7 @@ spec:
     driver: smb.csi.k8s.io
     volumeHandle: smb-downloads-sabnzbd
     volumeAttributes:
-      source: "//10.100.0.1/mnt/ssd/services/test"
+      source: "//10.100.0.1/test"
     nodeStageSecretRef:
       name: smb-creds
       namespace: media
