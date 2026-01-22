@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: smb-csi-driver
+spec:
+  destination:
+    namespace: kube-system
+    server: https://kubernetes.default.svc
+  project: system
+  source:
+    repoURL: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
+    chart: csi-driver-smb
+    targetRevision: v1.15.0
+    helm:
+      values: |
+        controller:
+          replicas: 1
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
