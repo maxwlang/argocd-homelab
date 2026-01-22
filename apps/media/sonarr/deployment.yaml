@@ -39,18 +39,22 @@ spec:
           mountPath: /config
         - name: tv
           mountPath: /tv
-        # - name: downloads-qbittorrent
-        #   mountPath: /downloads
+        - name: downloads-qbittorrent
+          mountPath: /downloads
         - name: downloads-sabnzbd
           mountPath: /downloads-sabnzbd
       volumes:
       - name: tv
         persistentVolumeClaim:
           claimName: tv-shows-pvc
-      # - name: downloads-qbittorrent
-      #   nfs:
-      #     server: "10.100.0.1"
-      #     path: /mnt/tank/downloads/qbittorrent-vpn-media
+      - name: downloads-qbittorrent
+        csi:
+          driver: smb.csi.k8s.io
+          volumeAttributes:
+            source: "//10.100.0.1/mnt/tank/downloads/qbittorrent-vpn-media"
+          nodeStageSecretRef:
+            name: smb-creds
+            namespace: media
       - name: downloads-sabnzbd
         persistentVolumeClaim:
           claimName: sabnzbd-downloads-pvc
