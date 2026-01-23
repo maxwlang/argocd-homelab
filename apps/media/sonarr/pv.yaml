@@ -19,5 +19,29 @@ spec:
     volumeAttributes:
       source: "//10.100.0.1/sabnzbd"
     nodeStageSecretRef:
-      name: sonarr-downloads-sabnzbd-smb-creds
+      name: sonarr-smb-creds
+      namespace: media
+---
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: sonarr-media-pv
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: smb
+  mountOptions:
+    - dir_mode=0777
+    - file_mode=0777
+  csi:
+    driver: smb.csi.k8s.io
+    volumeHandle: sonarr-media
+    volumeAttributes:
+      source: "//10.100.0.1/media"
+    nodeStageSecretRef:
+      name: sonarr-smb-creds
       namespace: media
