@@ -47,12 +47,12 @@ spec:
         - name: VPN_USER
           valueFrom:
             secretKeyRef:
-              name: qbittorrent-vpn-media-secrets
+              name: sabnzbd-vpn-media-secrets
               key: PIA_USER
         - name: VPN_PASS
           valueFrom:
             secretKeyRef:
-              name: qbittorrent-vpn-media-secrets
+              name: sabnzbd-vpn-media-secrets
               key: PIA_PASS
         - name: VPN_PROV
           value: "pia"
