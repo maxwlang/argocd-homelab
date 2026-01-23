@@ -45,3 +45,27 @@ spec:
     nodeStageSecretRef:
       name: radarr-smb-creds
       namespace: media
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: radarr-config-pv
+  namespace: media
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: smb
+  mountOptions:
+    - dir_mode=0777
+    - file_mode=0777
+  csi:
+    driver: smb.csi.k8s.io
+    volumeHandle: radarr-config
+    volumeAttributes:
+      source: "//10.100.0.1/pod-configs"
+    nodeStageSecretRef:
+      name: radarr-smb-creds
+      namespace: media
