@@ -63,7 +63,7 @@ spec:
     - file_mode=0777
   csi:
     driver: smb.csi.k8s.io
-    volumeHandle: sonarr-config
+    volumeHandle: sonarr-config-v2
     volumeAttributes:
       source: "//10.100.0.1/pod-configs"
     nodeStageSecretRef:
