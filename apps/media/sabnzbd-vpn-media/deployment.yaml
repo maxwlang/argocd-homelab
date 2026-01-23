@@ -69,15 +69,15 @@ spec:
         - name: DEBUG
           value: "false"
         volumeMounts:
-        - name: sabnzbd-vpn-media-config
+        - name: config
           mountPath: /config
-        - name: downloads-nas-hdd
+        - name: downloads
           mountPath: /config/Downloads
       volumes:
-      - name: downloads-nas-hdd
+      - name: downloads
         persistentVolumeClaim:
-          claimName: sabnzbd-downloads-pvc
-      - name: sabnzbd-vpn-media-config
+          claimName: sabnzbd-downloads-sabnzbd-pvc
+      - name: config
         hostPath:
           path: /lxc-configs/sabnzbd-vpn-media-config # This path contains the same files on all nodes 
           type: DirectoryOrCreate
