@@ -44,9 +44,9 @@ spec:
         - name: downloads-sabnzbd
           mountPath: /downloads/sabnzbd
       volumes:
-      - name: media
-        persistentVolumeClaim:
-          claimName:  sonarr-media-pvc
+      # - name: media
+      #   persistentVolumeClaim:
+      #     claimName:  sonarr-media-pvc
       - name: downloads-sabnzbd
         persistentVolumeClaim:
           claimName: sonarr-downloads-sabnzbd-pvc
