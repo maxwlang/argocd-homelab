@@ -2,6 +2,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: static-sites-config-pv
+  namespace: web
 spec:
   capacity:
     storage: 1Ti
@@ -19,11 +20,13 @@ spec:
       source: "//10.100.0.1/static-sites-config"
     nodeStageSecretRef:
       name: static-sites-smb-creds
+      namespace: web
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: static-sites-html-pv
+  namespace: web
 spec:
   capacity:
     storage: 1Ti
@@ -41,3 +44,4 @@ spec:
       source: "//10.100.0.1/static-sites-html"
     nodeStageSecretRef:
       name: static-sites-smb-creds
+      namespace: web
