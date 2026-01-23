@@ -65,7 +65,7 @@ spec:
     driver: smb.csi.k8s.io
     volumeHandle: sonarr-config
     volumeAttributes:
-      source: "//10.100.0.1/media"
+      source: "//10.100.0.1/pod-configs"
     nodeStageSecretRef:
       name: sonarr-smb-creds
       namespace: media
