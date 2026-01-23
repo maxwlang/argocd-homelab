@@ -35,18 +35,16 @@ spec:
         - name: TZ
           value: "America/Chicago"
         volumeMounts:
-        # - name: sonarr-config
-        #   mountPath: /config
+        - name: sonarr-config
+          mountPath: /config
         - name: media
           mountPath: /media
-        # - name: downloads-qbittorrent
-        #   mountPath: /downloads
         - name: downloads-sabnzbd
           mountPath: /downloads/sabnzbd
       volumes:
       - name: media
         persistentVolumeClaim:
-          claimName:  sonarr-media-pvc
+          claimName: sonarr-media-pvc
       - name: downloads-sabnzbd
         persistentVolumeClaim:
           claimName: sonarr-downloads-sabnzbd-pvc

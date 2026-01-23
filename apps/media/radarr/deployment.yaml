@@ -37,23 +37,17 @@ spec:
         volumeMounts:
         - name: radarr-config
           mountPath: /config
-        - name: movies
-          mountPath: /movies
-        # - name: downloads-qbittorrent
-        #   mountPath: /downloads
+        - name: media
+          mountPath: /media
         - name: downloads-sabnzbd
-          mountPath: /downloads-sabnzbd
+          mountPath: /downloads/sabnzbd
       volumes:
-      - name: movies
+      - name: media
         persistentVolumeClaim:
-          claimName: movies-pvc
-      # - name: downloads-qbittorrent
-      #   nfs:
-      #     server: "10.100.0.1"
-      #     path: /mnt/tank/kubernetes/qbittorrent
+          claimName: radarr-media-pvc
       - name: downloads-sabnzbd
         persistentVolumeClaim:
-          claimName: sabnzbd-downloads-pvc
+          claimName: radarr-downloads-sabnzbd-pvc
       - name: radarr-config
         hostPath:
           path: /lxc-configs/radarr-config # This path contains the same files on all nodes 
