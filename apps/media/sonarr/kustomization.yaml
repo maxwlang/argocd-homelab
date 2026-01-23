@@ -5,6 +5,7 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress-route.yaml
+  - pv.yaml
   - pvc.yaml
 
 generators:
