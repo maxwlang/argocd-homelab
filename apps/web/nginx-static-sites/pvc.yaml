@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: static-sites-config-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: smb
+  volumeName: static-sites-config-pv
+  resources:
+    requests:
+      storage: 1Ti
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: static-sites-html-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: smb
+  volumeName: static-sites-html-pv
+  resources:
+    requests:
+      storage: 1Ti

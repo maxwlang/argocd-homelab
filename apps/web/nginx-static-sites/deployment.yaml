@@ -34,10 +34,8 @@ spec:
             mountPath: /etc/nginx/conf.d
       volumes:
       - name: site-data
-        nfs:
-          server: "10.100.0.1"
-          path: /mnt/ssd/nginx-static-sites/html
+        persistentVolumeClaim:
+          claimName: static-sites-html-pvc
       - name: nginx-config
-        nfs:
-          server: "10.100.0.1"
-          path: /mnt/ssd/nginx-static-sites/config
+        persistentVolumeClaim:
+          claimName: static-sites-config-pvc
