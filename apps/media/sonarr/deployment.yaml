@@ -22,7 +22,8 @@ spec:
             - -c
             - |
               mkdir -p /mnt/config/sonarr & \
-              ls -lah /mnt
+              ls -lah /mnt/config & \
+              ls -lah /mnt/config/*
           volumeMounts:
             - name: config
               mountPath: /mnt/config
