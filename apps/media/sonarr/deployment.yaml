@@ -46,7 +46,7 @@ spec:
         - name: TZ
           value: "America/Chicago"
         volumeMounts:
-        - name: sonarr-config
+        - name: config
           mountPath: /config
           subPath: sonarr
         - name: media
