@@ -10,6 +10,6 @@ spec:
     - match: ingress-route-match
       kind: Rule
       services:
-        - name: authentik-server
+        - name: radarr
           port: 80
 
