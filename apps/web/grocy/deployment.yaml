@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: grocy
-        image: replaced-by-kustomize
+        image: linuxserver/grocy:4.5.0
+        
         securityContext:
           runAsNonRoot: false
           # runAsUser: 1000

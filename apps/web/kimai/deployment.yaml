@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: kimai
-        image: replaced-by-kustomize
+        image: kimai/kimai2:apache
         securityContext:
           runAsNonRoot: true
           runAsUser: 1001

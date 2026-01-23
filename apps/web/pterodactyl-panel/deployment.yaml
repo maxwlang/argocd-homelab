@@ -17,7 +17,7 @@ spec:
       containers:
       - name: pterodactyl-panel
         # https://hub.docker.com/r/ccarney16/pterodactyl-panel/tags
-        image: ccarney16/pterodactyl-panel:v1.11.11
+        image: ccarney16/pterodactyl-panel:v1.12.0
         # securityContext:
           # runAsNonRoot: true
           # runAsUser: 498
