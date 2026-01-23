@@ -37,16 +37,16 @@ spec:
         volumeMounts:
         # - name: sonarr-config
         #   mountPath: /config
-        # - name: tv
-        #   mountPath: /tv
+        - name: media
+          mountPath: /media
         # - name: downloads-qbittorrent
         #   mountPath: /downloads
         - name: downloads-sabnzbd
           mountPath: /downloads/sabnzbd
       volumes:
-      # - name: media
-      #   persistentVolumeClaim:
-      #     claimName:  sonarr-media-pvc
+      - name: media
+        persistentVolumeClaim:
+          claimName:  sonarr-media-pvc
       - name: downloads-sabnzbd
         persistentVolumeClaim:
           claimName: sonarr-downloads-sabnzbd-pvc

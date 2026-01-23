@@ -22,11 +22,11 @@ spec:
       name: sonarr-smb-creds
       namespace: media
 ---
----
 apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: sonarr-media-pv
+  namespace: media
 spec:
   capacity:
     storage: 1Ti

@@ -11,3 +11,17 @@ spec:
   resources:
     requests:
       storage: 1Ti
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sonarr-media-pvc
+  namespace: media
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: smb
+  volumeName: sonarr-media-pv
+  resources:
+    requests:
+      storage: 1Ti
