@@ -42,17 +42,14 @@ spec:
         # - name: downloads-qbittorrent
         #   mountPath: /downloads
         - name: downloads-sabnzbd
-          mountPath: /downloads-sabnzbd
+          mountPath: /downloads/sabnzbd
       volumes:
-      # - name: tv
-      #   persistentVolumeClaim:
-      #     claimName: tv-shows-pvc
+      - name: media
+        persistentVolumeClaim:
+          claimName:  sonarr-media-pvc
       - name: downloads-sabnzbd
         persistentVolumeClaim:
-          claimName: smb-downloads-sabnzbd-pvc
-      # - name: downloads-sabnzbd
-      #   persistentVolumeClaim:
-      #     claimName: sabnzbd-downloads-pvc
+          claimName: sonarr-downloads-sabnzbd-pvc
       - name: sonarr-config
         hostPath:
           path: /lxc-configs/sonarr-config # This path contains the same files on all nodes 

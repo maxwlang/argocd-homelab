@@ -5,7 +5,7 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress-route.yaml
-  - smb-pv-pvc.yaml
+  - pvc.yaml
 
 generators:
   - secret-generator.yaml
