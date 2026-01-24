@@ -12,8 +12,20 @@ spec:
     metadata:
       labels:
         app: sabnzbd-vpn-media
-
     spec:
+      initContainers:
+        - name: init-config-folder
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              mkdir -p /mnt/config/sabnzbd-vpn-media & \
+              ls -lah /mnt/config & \
+              ls -lah /mnt/config/*
+          volumeMounts:
+            - name: config
+              mountPath: /mnt/config
       containers:
       - name: sabnzbd-vpn-media
         # https://hub.docker.com/r/binhex/arch-sabnzbdvpn/tags
@@ -71,6 +83,7 @@ spec:
         volumeMounts:
         - name: config
           mountPath: /config
+          subPath: sabnzbd-vpn-media
         - name: downloads
           mountPath: /config/Downloads
       volumes:
@@ -78,6 +91,5 @@ spec:
         persistentVolumeClaim:
           claimName: sabnzbd-downloads-sabnzbd-pvc
       - name: config
-        hostPath:
-          path: /lxc-configs/sabnzbd-vpn-media-config # This path contains the same files on all nodes 
-          type: DirectoryOrCreate
+        persistentVolumeClaim:
+          claimName: sabnzbd-vpn-media-config-pvc
