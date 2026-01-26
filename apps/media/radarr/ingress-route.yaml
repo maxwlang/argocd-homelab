@@ -10,6 +10,7 @@ spec:
     - match: ingress-route-match
       kind: Rule
       middlewares:
+        - name: https-proto
         - name: authelia-forwardauth
       services:
         - name: radarr
