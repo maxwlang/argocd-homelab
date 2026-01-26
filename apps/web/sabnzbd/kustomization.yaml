@@ -1,0 +1,24 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - deployment.yaml
+  - service.yaml
+  - ingress-route.yaml
+  - pv.yaml
+  - pvc.yaml
+
+generators:
+  - secret-generator.yaml
+
+replacements:
+  - source:
+      kind: Secret
+      name: sabnzbd-secrets
+      fieldPath: stringData.INGRESS_ROUTE_MATCH
+    targets:
+      - select:
+          kind: IngressRoute
+          name: sabnzbd
+        fieldPaths:
+          - spec.routes.0.match

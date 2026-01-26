@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: accomplice-v2
+  namespace: service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: accomplice-v2
+  template:
+    metadata:
+      labels:
+        app: accomplice-v2
+
+    spec:
+      containers:
+      - name: accomplice-v2
+        image: ghcr.io/maxwlang/accomplice-v2:v2.2.0
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "500Mi"
+            cpu: "2000m"
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: LOG_LEVEL
+          value: "debug"
+        - name: DISCORD_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: accomplice-secrets
+              key: DISCORD_TOKEN
+        - name: DISCORD_DISPLAY_NAME
+          value: "Accomplice"
+        - name: DISCORD_ACTIVITY_REFRESH_INTERVAL
+          value: "60"
+        - name: DISCORD_BOT_ADMIN_SNOWFLAKE
+          value: "707022657354203180"
+        - name: MESSAGE_SYNC_LIMIT
+          value: "50000"
+        - name: REDIS_ENABLED
+          value: "false"
+        - name: REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              name: accomplice-secrets
+              key: REDIS_URL
+        - name: REDIS_PREFIX
+          value: "accomplice_v2_prod"
+        - name: DB_DIALECT
+          value: "mariadb"
+        - name: DB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: accomplice-secrets
+              key: MARIADB_HOST
+        - name: DB_PORT
+          value: "3306"
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: accomplice-secrets
+              key: MARIADB_USERNAME
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: accomplice-secrets
+              key: MARIADB_PASSWORD
+        - name: DB_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: accomplice-secrets
+              key: MARIADB_DATABASE

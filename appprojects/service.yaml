@@ -1,16 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: system
+  name: service
   namespace: argocd
 spec:
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
   destinations:
-  - namespace: argocd
-    server: https://kubernetes.default.svc
-  - namespace: system
+  - namespace: service
     server: https://kubernetes.default.svc
   - namespace: kube-system
     server: https://kubernetes.default.svc

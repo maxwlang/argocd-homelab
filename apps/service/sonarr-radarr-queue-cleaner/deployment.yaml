@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarr-radarr-queue-cleaner
+  namespace: service
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: sonarr-radarr-queue-cleaner
+  template:
+    metadata:
+      labels:
+        app: sonarr-radarr-queue-cleaner
+
+    spec:
+      containers:
+      - name: sonarr-radarr-queue-cleaner
+        # https://github.com/maxwlang/sonarr-radarr-queue-cleaner/releases/latest
+        image: ghcr.io/maxwlang/sonarr-radarr-queue-cleaner:v1.0.0
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "1000m"
+        env:
+        - name: SONARR_URL
+          value: "http://sonarr.media.svc.cluster.local"
+        - name: SONARR_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: sonarr-radarr-queue-cleaner-secrets
+              key: SONARR_API_KEY
+        - name: RADARR_URL
+          value: "http://radarr.media.svc.cluster.local"
+        - name: RADARR_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: sonarr-radarr-queue-cleaner-secrets
+              key: RADARR_API_KEY
+        - name: TIMEOUT
+          value: "600"

@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+  namespace: service
+  name: &appname neural-meme-identify-server
+spec:
+  rules:
+  - host: neural-meme-identify-server.k8s.maxwlang.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: *appname
+            port:
+              number: 80
+
+  
