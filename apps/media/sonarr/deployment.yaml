@@ -14,19 +14,19 @@ spec:
         app: sonarr
 
     spec:
-      initContainers:
-        - name: init-config-folder
-          image: busybox
-          command:
-            - sh
-            - -c
-            - |
-              mkdir -p /mnt/config/sonarr & \
-              ls -lah /mnt/config & \
-              ls -lah /mnt/config/*
-          volumeMounts:
-            - name: config
-              mountPath: /mnt/config
+      # initContainers:
+      #   - name: init-config-folder
+      #     image: busybox
+      #     command:
+      #       - sh
+      #       - -c
+      #       - |
+      #         mkdir -p /mnt/config/sonarr & \
+      #         ls -lah /mnt/config & \
+      #         ls -lah /mnt/config/*
+      #     volumeMounts:
+      #       - name: config
+      #         mountPath: /mnt/config
       containers:
       - name: sonarr
         # https://github.com/linuxserver/docker-sonarr/releases/latest
@@ -63,5 +63,8 @@ spec:
         persistentVolumeClaim:
           claimName: sonarr-downloads-sabnzbd-pvc
       - name: config
-        persistentVolumeClaim:
-          claimName: sonarr-config-pvc
+        # persistentVolumeClaim:
+        #   claimName: sonarr-config-pvc
+        hostPath:
+          path: /lxc-configs/sonarr-config # This path contains the same files on all nodes 
+          type: DirectoryOrCreate
