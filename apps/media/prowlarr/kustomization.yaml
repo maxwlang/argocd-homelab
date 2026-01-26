@@ -5,6 +5,7 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress-route.yaml
+  - ../authelia-middleware.yaml
 
 generators:
   - secret-generator.yaml
