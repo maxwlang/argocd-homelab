@@ -14,19 +14,6 @@ spec:
         app: n8n
 
     spec:
-      initContainers:
-        - name: init-config-folder
-          image: busybox
-          command:
-            - sh
-            - -c
-            - |
-              mkdir -p /mnt/config/n8n & \
-              ls -lah /mnt/config & \
-              ls -lah /mnt/config/*
-          volumeMounts:
-            - name: config
-              mountPath: /mnt/config
       containers:
       - name: n8n
         # https://hub.docker.com/r/n8nio/n8n
@@ -83,10 +70,11 @@ spec:
               name: n8n-secrets
               key: N8N_ENCRYPTION_KEY
         volumeMounts:
-        - name: n8n
+        - name: config
           mountPath: /home/node/.n8n
           subPath: n8n
       volumes:
-      - name: n8n
-        persistentVolumeClaim:
-          claimName: n8n-pvc
+      - name: config
+        hostPath:
+          path: /mnt/kubernetes-data/n8n-config # This path contains the same files on all nodes 
+          type: DirectoryOrCreate

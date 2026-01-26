@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: sabnzbd-downloads-sabnzbd-pv
+  name: sabnzbd-downloads-pv
   namespace: web
 spec:
   capacity:
@@ -15,7 +15,7 @@ spec:
     - file_mode=0777
   csi:
     driver: smb.csi.k8s.io
-    volumeHandle: sabnzbd-downloads-sabnzbd
+    volumeHandle: sabnzbd-downloads
     volumeAttributes:
       source: "//10.100.0.1/sabnzbd"
     nodeStageSecretRef:

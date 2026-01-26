@@ -14,19 +14,6 @@ spec:
         app: sabnzbd
 
     spec:
-      initContainers:
-        - name: init-config-folder
-          image: busybox
-          command:
-            - sh
-            - -c
-            - |
-              mkdir -p /mnt/config/sabnzbd & \
-              ls -lah /mnt/config & \
-              ls -lah /mnt/config/*
-          volumeMounts:
-            - name: config
-              mountPath: /mnt/config
       containers:
       - name: sabnzbd
         # https://hub.docker.com/r/binhex/arch-sabnzbdvpn/tags
@@ -90,7 +77,8 @@ spec:
       volumes:
       - name: downloads
         persistentVolumeClaim:
-          claimName: sabnzbd-downloads-sabnzbd-pvc
+          claimName: sabnzbd-downloads-pvc
       - name: config
-        persistentVolumeClaim:
-          claimName: sabnzbd-config-pvc
+        hostPath:
+          path: /mnt/kubernetes-data/sabnzbd-config # This path contains the same files on all nodes 
+          type: DirectoryOrCreate
