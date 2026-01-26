@@ -37,7 +37,6 @@ spec:
         volumeMounts:
         - name: config
           mountPath: /config
-          subPath: radarr
         - name: media
           mountPath: /mnt/media
         - name: sabnzbd

@@ -12,6 +12,7 @@ spec:
     metadata:
       labels:
         app: sabnzbd
+
     spec:
       initContainers:
         - name: init-config-folder
