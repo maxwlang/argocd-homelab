@@ -1,0 +1,61 @@
+authentik:
+  # Secret key is loaded from existing secret
+  secret_key: ""
+  error_reporting:
+    enabled: false
+
+global:
+  env:
+    - name: AUTHENTIK_SECRET_KEY
+      valueFrom:
+        secretKeyRef:
+          name: authentik-secrets
+          key: AUTHENTIK_SECRET_KEY
+    - name: AUTHENTIK_POSTGRESQL__PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: authentik-secrets
+          key: POSTGRES_PASSWORD
+
+server:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+  # Ingress disabled - we use Traefik IngressRoute instead
+  ingress:
+    enabled: false
+
+worker:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+postgresql:
+  enabled: true
+  auth:
+    password: ""
+    existingSecret: authentik-secrets
+    secretKeys:
+      adminPasswordKey: POSTGRES_PASSWORD
+      userPasswordKey: POSTGRES_PASSWORD
+  primary:
+    persistence:
+      enabled: true
+      size: 8Gi
+
+redis:
+  enabled: true
+  master:
+    persistence:
+      enabled: true
+      size: 2Gi

@@ -9,7 +9,17 @@ spec:
   routes:
     - match: ingress-route-match
       kind: Rule
+      middlewares:
+        - name: authentik-forward-auth
+          namespace: web
       services:
         - name: sabnzbd
+          port: 80
+    - match: ingress-route-match-outpost
+      kind: Rule
+      priority: 15
+      services:
+        - name: authentik-server
+          namespace: web
           port: 80
 
