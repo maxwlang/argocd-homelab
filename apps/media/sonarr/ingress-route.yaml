@@ -9,9 +9,9 @@ spec:
   routes:
     - match: ingress-route-match
       kind: Rule
-      middlewares:
-        - name: keycloak-forwardauth
-          namespace: web
+      # middlewares:
+      #   - name: keycloak-forwardauth
+      #     namespace: web
       services:
         - name: sonarr
           port: 80
