@@ -1,18 +1,14 @@
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  namespace: media
-  name: sonarr
+  namespace: web
+  name: keycloak
 spec:
   entryPoints:
     - web
   routes:
     - match: ingress-route-match
       kind: Rule
-      middlewares:
-        - name: keycloak-forwardauth
-          namespace: web
       services:
-        - name: sonarr
+        - name: keycloak
           port: 80
-
