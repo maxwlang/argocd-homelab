@@ -72,7 +72,6 @@ spec:
         volumeMounts:
         - name: config
           mountPath: /home/node/.n8n
-          subPath: n8n
       volumes:
       - name: config
         hostPath:

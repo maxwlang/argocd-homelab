@@ -71,7 +71,6 @@ spec:
         volumeMounts:
         - name: config
           mountPath: /config
-          subPath: sabnzbd
         - name: downloads
           mountPath: /config/Downloads
       volumes:
