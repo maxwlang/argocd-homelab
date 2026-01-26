@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: sonarr-downloads-sabnzbd-pvc
+  name: sonarr-sabnzbd-pvc
   namespace: web
 spec:
   accessModes:
     - ReadWriteMany
   storageClassName: smb
-  volumeName: sonarr-downloads-sabnzbd-pv
+  volumeName: sonarr-sabnzbd-pv
   resources:
     requests:
       storage: 1Ti
@@ -22,20 +22,6 @@ spec:
     - ReadWriteMany
   storageClassName: smb
   volumeName: sonarr-media-pv
-  resources:
-    requests:
-      storage: 1Ti
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: sonarr-config-pvc
-  namespace: web
-spec:
-  accessModes:
-    - ReadWriteMany
-  storageClassName: smb
-  volumeName: sonarr-config-pv
   resources:
     requests:
       storage: 1Ti

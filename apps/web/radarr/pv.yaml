@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: radarr-downloads-sabnzbd-pv
+  name: radarr-sabnzbd-pv
   namespace: web
 spec:
   capacity:
@@ -15,7 +15,7 @@ spec:
     - file_mode=0777
   csi:
     driver: smb.csi.k8s.io
-    volumeHandle: radarr-downloads-sabnzbd
+    volumeHandle: radarr-sabnzbd
     volumeAttributes:
       source: "//10.100.0.1/sabnzbd"
     nodeStageSecretRef:

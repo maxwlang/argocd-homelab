@@ -14,19 +14,6 @@ spec:
         app: radarr
 
     spec:
-      initContainers:
-        - name: init-config-folder
-          image: busybox
-          command:
-            - sh
-            - -c
-            - |
-              mkdir -p /mnt/config/radarr & \
-              ls -lah /mnt/config & \
-              ls -lah /mnt/config/*
-          volumeMounts:
-            - name: config
-              mountPath: /mnt/config
       containers:
       - name: radarr
         # https://github.com/linuxserver/docker-radarr/releases/latest
@@ -52,16 +39,17 @@ spec:
           mountPath: /config
           subPath: radarr
         - name: media
-          mountPath: /media
-        - name: downloads-sabnzbd
-          mountPath: /downloads/sabnzbd
+          mountPath: /mnt/media
+        - name: sabnzbd
+          mountPath: /mnt/sabnzbd
       volumes:
       - name: media
         persistentVolumeClaim:
           claimName: radarr-media-pvc
-      - name: downloads-sabnzbd
+      - name: sabnzbd
         persistentVolumeClaim:
-          claimName: radarr-downloads-sabnzbd-pvc
+          claimName: radarr-sabnzbd-pvc
       - name: config
-        persistentVolumeClaim:
-          claimName: radarr-config-pvc
+        hostPath:
+          path: /lxc-configs/radarr-config # This path contains the same files on all nodes 
+          type: DirectoryOrCreate
