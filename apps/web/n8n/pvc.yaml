@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: n8n-pvc
+  namespace: web
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: smb
+  volumeName: n8n-pv
+  resources:
+    requests:
+      storage: 1Ti
