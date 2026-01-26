@@ -22,13 +22,3 @@ replacements:
           name: sonarr
         fieldPaths:
           - spec.routes.0.match
-  - source:
-      kind: Secret
-      name: sonarr-secrets
-      fieldPath: stringData.INGRESS_ROUTE_MATCH_OUTPOST
-    targets:
-      - select:
-          kind: IngressRoute
-          name: sonarr
-        fieldPaths:
-          - spec.routes.1.match
