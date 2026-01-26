@@ -27,14 +27,14 @@ spec:
             cpu: "1000m"
         env:
         - name: SONARR_URL
-          value: "http://sonarr.media.svc.cluster.local"
+          value: "http://sonarr.web.svc.cluster.local"
         - name: SONARR_API_KEY
           valueFrom:
             secretKeyRef:
               name: sonarr-radarr-queue-cleaner-secrets
               key: SONARR_API_KEY
         - name: RADARR_URL
-          value: "http://radarr.media.svc.cluster.local"
+          value: "http://radarr.web.svc.cluster.local"
         - name: RADARR_API_KEY
           valueFrom:
             secretKeyRef:

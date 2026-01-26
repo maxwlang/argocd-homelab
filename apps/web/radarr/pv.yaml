@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: radarr-downloads-sabnzbd-pv
-  namespace: media
+  namespace: web
 spec:
   capacity:
     storage: 1Ti
@@ -20,13 +20,13 @@ spec:
       source: "//10.100.0.1/sabnzbd"
     nodeStageSecretRef:
       name: radarr-smb-creds
-      namespace: media
+      namespace: web
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: radarr-media-pv
-  namespace: media
+  namespace: web
 spec:
   capacity:
     storage: 1Ti
@@ -44,13 +44,13 @@ spec:
       source: "//10.100.0.1/media"
     nodeStageSecretRef:
       name: radarr-smb-creds
-      namespace: media
+      namespace: web
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: radarr-config-pv
-  namespace: media
+  namespace: web
 spec:
   capacity:
     storage: 1Ti
@@ -68,4 +68,4 @@ spec:
       source: "//10.100.0.1/pod-configs"
     nodeStageSecretRef:
       name: radarr-smb-creds
-      namespace: media
+      namespace: web

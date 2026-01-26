@@ -1,7 +1,7 @@
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  namespace: media
+  namespace: web
   name: prowlarr
 spec:
   entryPoints:
@@ -10,8 +10,8 @@ spec:
     - match: ingress-route-match
       kind: Rule
       middlewares:
-        - name: https-proto-media
-        - name: authelia-forwardauth-media
+        - name: https-proto
+        - name: authelia-forwardauth
       services:
         - name: prowlarr
           port: 80

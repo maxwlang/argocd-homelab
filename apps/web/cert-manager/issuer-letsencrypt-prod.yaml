@@ -18,7 +18,7 @@ apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: letsencrypt-prod
-  namespace: media
+  namespace: web
 spec:
   acme:
     email: homelab@maxwlang.com

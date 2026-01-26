@@ -10,8 +10,6 @@ spec:
   destinations:
   - namespace: web
     server: https://kubernetes.default.svc
-  - namespace: media
-    server: https://kubernetes.default.svc
   - namespace: kube-system
     server: https://kubernetes.default.svc
   orphanedResources:
