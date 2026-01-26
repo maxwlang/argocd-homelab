@@ -9,6 +9,9 @@ spec:
   routes:
     - match: ingress-route-match
       kind: Rule
+      middlewares:
+        - name: authelia-forwardauth
+          namespace: web
       services:
         - name: overseerr
           port: 80

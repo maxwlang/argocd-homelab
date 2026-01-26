@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authelia
+  namespace: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authelia
+  template:
+    metadata:
+      labels:
+        app: authelia
+    spec:
+      containers:
+      - name: authelia
+        image: authelia/authelia:4.39.15
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 9091
+        env:
+        - name: AUTHELIA_JWT_SECRET_FILE
+          value: /secrets/JWT_SECRET
+        - name: AUTHELIA_SESSION_SECRET_FILE
+          value: /secrets/SESSION_SECRET
+        - name: AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE
+          value: /secrets/STORAGE_ENCRYPTION_KEY
+        - name: AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE
+          value: /secrets/POSTGRES_PASSWORD
+        - name: TZ
+          value: "America/Chicago"
+        volumeMounts:
+        - name: config
+          mountPath: /config/configuration.yml
+          subPath: configuration.yml
+          readOnly: true
+        - name: users
+          mountPath: /config/users_database.yml
+          subPath: users_database.yml
+          readOnly: true
+        - name: secrets
+          mountPath: /secrets
+          readOnly: true
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: 9091
+          initialDelaySeconds: 10
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 9091
+          initialDelaySeconds: 5
+          periodSeconds: 10
+      volumes:
+      - name: config
+        secret:
+          secretName: authelia-config
+      - name: users
+        secret:
+          secretName: authelia-users
+      - name: secrets
+        secret:
+          secretName: authelia-secrets
