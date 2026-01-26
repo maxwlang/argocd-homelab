@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: keycloak
-        image: quay.io/keycloak/keycloak:26.0.7
+        image: quay.io/keycloak/keycloak:26.5.2
         args:
           - start
           - --hostname-strict=false
@@ -29,7 +29,7 @@ spec:
             memory: "2Gi"
             cpu: "1000m"
         ports:
-        - containerPort: 8080
+        - containerPort: 8000
           name: http
         env:
         - name: KC_DB
@@ -61,15 +61,15 @@ spec:
               key: KEYCLOAK_ADMIN_PASSWORD
         - name: KC_HEALTH_ENABLED
           value: "true"
-        readinessProbe:
-          httpGet:
-            path: /health/ready
-            port: 8080
-          initialDelaySeconds: 30
-          periodSeconds: 10
-        livenessProbe:
-          httpGet:
-            path: /health/live
-            port: 8080
-          initialDelaySeconds: 60
-          periodSeconds: 30
+        # readinessProbe:
+        #   httpGet:
+        #     path: /health/ready
+        #     port: 8080
+        #   initialDelaySeconds: 30
+        #   periodSeconds: 10
+        # livenessProbe:
+        #   httpGet:
+        #     path: /health/live
+        #     port: 8080
+        #   initialDelaySeconds: 60
+        #   periodSeconds: 30
