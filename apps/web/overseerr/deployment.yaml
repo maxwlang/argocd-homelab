@@ -43,5 +43,5 @@ spec:
       volumes:
       - name: overseerr-config
         hostPath:
-          path: /lxc-configs/overseerr-config # This path contains the same files on all nodes 
+          path: /mnt/kubernetes-data/overseerr-config # This path contains the same files on all nodes 
           type: DirectoryOrCreate

@@ -50,5 +50,5 @@ spec:
           claimName: sonarr-sabnzbd-pvc
       - name: config
         hostPath:
-          path: /lxc-configs/sonarr-config # This path contains the same files on all nodes 
+          path: /mnt/kubernetes-data/sonarr-config # This path contains the same files on all nodes 
           type: DirectoryOrCreate

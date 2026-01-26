@@ -158,5 +158,5 @@ spec:
       volumes:
       - name: config
         hostPath:
-          path: /lxc-configs/pterodactyl-panel-config # This path contains the same files on all nodes 
+          path: /mnt/kubernetes-data/pterodactyl-panel-config # This path contains the same files on all nodes 
           type: DirectoryOrCreate

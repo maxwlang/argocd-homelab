@@ -50,5 +50,5 @@ spec:
           claimName: radarr-sabnzbd-pvc
       - name: config
         hostPath:
-          path: /lxc-configs/radarr-config # This path contains the same files on all nodes 
+          path: /mnt/kubernetes-data/radarr-config # This path contains the same files on all nodes 
           type: DirectoryOrCreate
