@@ -29,8 +29,10 @@ spec:
             memory: "2Gi"
             cpu: "1000m"
         ports:
-        - containerPort: 8000
+        - containerPort: 8080
           name: http
+        - containerPort: 9000
+          name: management
         env:
         - name: KC_DB
           value: postgres
