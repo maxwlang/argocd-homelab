@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radicale
+  namespace: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: radicale
+  template:
+    metadata:
+      labels:
+        app: radicale
+    spec:
+      containers:
+      - name: radicale
+        # https://hub.docker.com/r/11notes/radicale
+        image: 11notes/radicale:3.6.0
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - name: radicale-config
+          mountPath: /radicale/etc
+        - name: radicale-data
+          mountPath: /radicale/var
+      volumes:
+      - name: radicale-config
+        hostPath:
+          path: /mnt/kubernetes-data/radicale/config
+          type: DirectoryOrCreate
+      - name: radicale-data
+        hostPath:
+          path: /mnt/kubernetes-data/radicale/data
+          type: DirectoryOrCreate
