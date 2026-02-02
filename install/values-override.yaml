@@ -17,12 +17,12 @@ global:
 #       readOnly: true
 
 server:
-  # ingress:
-  #   enabled: true
-  #   ingressClassName: "traefik"
-  #   hosts:
-  #     - argocd.k8s.maxwlang.com
-  #   https: true
+  ingress:
+    enabled: true
+    ingressClassName: "traefik"
+    hosts:
+      - argocd.maxwlang.com
+    https: true
   configEnabled: true
   config:
     # Argo CD's externally facing base URL (optional). Required when configuring SSO
