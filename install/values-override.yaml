@@ -19,6 +19,9 @@ global:
 server:
   ingress:
     enabled: false
+  # Run in insecure mode since Traefik handles TLS termination
+  extraArgs:
+    - --insecure
   configEnabled: true
   config:
     # Argo CD's externally facing base URL (optional). Required when configuring SSO
