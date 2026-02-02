@@ -18,14 +18,7 @@ global:
 
 server:
   ingress:
-    enabled: true
-    ingressClassName: "traefik"
-    annotations:
-      traefik.ingress.kubernetes.io/router.entrypoints: websecure
-      traefik.ingress.kubernetes.io/router.tls: "true"
-    hosts:
-      - argocd.maxwlang.com
-    https: true
+    enabled: false
   configEnabled: true
   config:
     # Argo CD's externally facing base URL (optional). Required when configuring SSO
