@@ -16,7 +16,7 @@ spec:
       containers:
       - name: radicale
         # https://hub.docker.com/r/11notes/radicale
-        image: 11notes/radicale:3.6.0
+        image: 11notes/radicale:4.2.0
         resources:
           requests:
             memory: "64Mi"
