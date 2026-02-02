@@ -19,7 +19,7 @@ global:
 server:
   ingress:
     enabled: true
-    ingressClassName: "traefik"
+    # ingressClassName: "traefik"
     hosts:
       - argocd.maxwlang.com
     https: true
