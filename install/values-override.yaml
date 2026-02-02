@@ -19,7 +19,10 @@ global:
 server:
   ingress:
     enabled: true
-    # ingressClassName: "traefik"
+    ingressClassName: "traefik"
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
     hosts:
       - argocd.maxwlang.com
     https: true
