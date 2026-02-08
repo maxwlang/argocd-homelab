@@ -36,7 +36,7 @@ server:
     # Keycloak OIDC configuration
     oidc.config: |
       name: Keycloak
-      issuer: https://auth.maxwlang.com/realms/master
+      issuer: https://keycloak.maxwlang.com/realms/master
       clientID: argocd
       clientSecret: $oidc.keycloak.clientSecret
       requestedScopes:
