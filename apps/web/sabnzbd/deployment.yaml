@@ -21,11 +21,11 @@ spec:
         image: lscr.io/linuxserver/sabnzbd:latest
         resources:
           requests:
-            memory: "6Gi"
-            cpu: "6000m"
+            memory: "1Gi"
+            cpu: "100m"
           limits:
-            memory: "16Gi"
-            cpu: "10000m"
+            memory: "8Gi"
+            cpu: "6000m"
         securityContext:
           # runAsNonRoot: true
           # runAsUser: 1000
