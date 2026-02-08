@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
       - name: nginx-static-sites
-        # https://hub.docker.com/_/nginx/tags
-        image: nginx:stable
+        # https://github.com/TrafeX/docker-php-nginx/releases/latest
+        image: trafex/php-nginx:latest
         resources:
           requests:
             memory: "64Mi"
