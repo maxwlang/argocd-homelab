@@ -17,7 +17,8 @@ spec:
       containers:
       - name: sabnzbd
         # https://hub.docker.com/r/binhex/arch-sabnzbdvpn/tags
-        image: binhex/arch-sabnzbdvpn:4.5.5-1-01
+        # image: binhex/arch-sabnzbdvpn:4.5.5-1-01
+        image: lscr.io/linuxserver/sabnzbd:latest
         resources:
           requests:
             memory: "6Gi"
@@ -65,14 +66,20 @@ spec:
         - name: LAN_NETWORK
           value: "10.0.0.0/8"
         - name: NAME_SERVERS
-          value: "1.1.1.1,1.0.0.1,8.8.8.8,8.8.4.4"
+          value: "1.1.1.1,1.0.0.1"
         - name: DEBUG
           value: "false"
         volumeMounts:
         - name: config
           mountPath: /config
         - name: downloads
-          mountPath: /config/Downloads
+          # mountPath: /config/Downloads
+          mountPath: /downloads
+          subPath: complete
+        - name: downloads
+          # mountPath: /config/Downloads
+          mountPath: /incomplete-downloads
+          subPath: incomplete
       volumes:
       - name: downloads
         persistentVolumeClaim:
